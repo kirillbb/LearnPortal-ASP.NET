@@ -1,0 +1,3 @@
+[{"Email":"nat@mail.ru","Password":"natatata","Name":"Nataly"}]
+[{"Email":"rylo@gmail.com","Password":"salo101","Name":"Kyrylo"}]
+[{"Email":"batko_wash@ukr.net","Password":"14eighty-eight","Name":"Stepan Bandera"}]
