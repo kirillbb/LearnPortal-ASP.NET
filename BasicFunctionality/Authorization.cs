@@ -30,6 +30,7 @@ namespace BasicFunctionality
                 user.Email = email;
                 user.Password = password;
                 user.Name = name;
+                user.Id = SetUserId();
             }
 
             SaveUserInFile(user);
@@ -49,7 +50,8 @@ namespace BasicFunctionality
             {
                 Email = user.Email.ToString(),
                 Password = user.Password.ToString(),
-                Name = user.Name.ToString()
+                Name = user.Name.ToString(),
+                Id = user.Id
             });
 
             string json = JsonConvert.SerializeObject(currentUser.ToArray());
@@ -64,6 +66,19 @@ namespace BasicFunctionality
         public static void LogIn()
         {
 
+        }
+
+        public static int SetUserId()
+        {
+            int id = 1;
+            using (TextReader reader = new StreamReader(@"C:\Users\Kirill\source\repos\LearnPortal\BasicFunctionality\data\users.txt"))
+            {
+                while ((reader.ReadLine()) != null)
+                {
+                    id++;
+                }
+            }
+            return id;
         }
     }
 }

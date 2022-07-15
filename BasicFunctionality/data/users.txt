@@ -1,3 +1,4 @@
-[{"Email":"nat@mail.ru","Password":"natatata","Name":"Nataly"}]
-[{"Email":"rylo@gmail.com","Password":"salo101","Name":"Kyrylo"}]
-[{"Email":"batko_wash@ukr.net","Password":"14eighty-eight","Name":"Stepan Bandera"}]
+[{"Email":"nat@mail.ru","Password":"natatata","Name":"Nataly","Id":1}]
+[{"Email":"rylo@gmail.com","Password":"salo101","Name":"Kyrylo","Id":2}]
+[{"Email":"batko_wash@ukr.net","Password":"14eighty-eight","Name":"Stepan Bandera","Id":3}]
+[{"Email":"sarakazi@ge.gr","Password":"hachapuri","Name":"Nicolya","Id":4}]
