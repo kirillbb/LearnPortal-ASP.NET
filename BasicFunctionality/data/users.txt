@@ -4,3 +4,4 @@
 {"Email":"sarakazi@ge.gr","Password":"hachapuri","Name":"Nicolya","Id":4}
 {"Email":"kirill@gmail.com","Password":"kirill","Name":"kirill","Id":5}
 {"Email":"kgkljsdhfkjgh","Password":"kldjsfghkldsjfhg","Name":"kirill","Id":6}
+{"Email":"pavel@gmail.com","Password":"pavel","Name":"pavel","Id":7}
