@@ -5,8 +5,21 @@
         public void Run()
         {
             bool isAuthorizated = false;
+            try
+            {
+                isAuthorizated = Authorization.AuthorizationMenu();
 
+                if (isAuthorizated)
+                {
+                    Menu(ChooseMenuItem());
+                }
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine(ex.Message);
+            }
             isAuthorizated = Authorization.AuthorizationMenu();
+
             if (isAuthorizated)
             {
                 Menu(ChooseMenuItem());
@@ -18,29 +31,26 @@
             switch (menuItem)
             {
                 case 1:
-
-                    break;
+                        throw new NotImplementedException();
                 case 2:
-
-                    break;
+                        throw new NotImplementedException();
                 case 3:
-
-                    break;
+                        throw new NotImplementedException();
                 case 4:
-
-                    break;
+                        throw new NotImplementedException();
                 case 0:
-                    Environment.Exit(0);
-                    break;
+                        Environment.Exit(0);
+                        break;
                 default:
-                    Menu(ChooseMenuItem());
-                    break;
+                        Menu(ChooseMenuItem());
+                        break;
             }
         }
         public static int ChooseMenuItem()
         {
             int menuItem;
             bool isItem = false;
+
             do
             {
                 PrintMenu();
