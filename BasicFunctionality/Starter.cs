@@ -1,17 +1,16 @@
-﻿using Portal;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-
-namespace BasicFunctionality
+﻿namespace BasicFunctionality
 {
     internal class Starter
     {
         public void Run()
         {
-            Menu(ChooseMenuItem());
+            bool isAuthorizated = false;
+
+            isAuthorizated = Authorization.AuthorizationMenu();
+            if (isAuthorizated)
+            {
+                Menu(ChooseMenuItem());
+            }
         }
 
         public void Menu(int menuItem)
@@ -19,10 +18,10 @@ namespace BasicFunctionality
             switch (menuItem)
             {
                 case 1:
-                    Authorization.SignUp();
+
                     break;
                 case 2:
-                    Authorization.LogIn();
+
                     break;
                 case 3:
 
@@ -44,11 +43,6 @@ namespace BasicFunctionality
             bool isItem = false;
             do
             {
-                if (isItem == false)
-                {
-                    Console.Clear();
-                }
-
                 PrintMenu();
                 isItem = int.TryParse(Console.ReadLine(), out menuItem);
             }
@@ -61,8 +55,8 @@ namespace BasicFunctionality
         {
             Console.WriteLine("-- Select a menu item by pressing the desired number and Enter --");
             Console.WriteLine("-----------------------------------------------------");
-            Console.WriteLine("[1] Sign up   *if you don't have an account");
-            Console.WriteLine("[2] Log in   *if you have an account");
+            Console.WriteLine("[1] ");
+            Console.WriteLine("[2] ");
             Console.WriteLine("[3] ");
             Console.WriteLine("[4] ");
             Console.WriteLine("[5] ");
