@@ -1,8 +1,12 @@
-﻿namespace BasicFunctionality
+﻿// <copyright file="Starter.cs" company="PlaceholderCompany">
+// Copyright (c) PlaceholderCompany. All rights reserved.
+// </copyright>
+
+namespace BasicFunctionality
 {
     internal class Starter
     {
-        public void Run()
+        public static void Run()
         {
             bool isAuthorizated = false;
             try
@@ -18,6 +22,7 @@
             {
                 Console.WriteLine(ex.Message);
             }
+
             isAuthorizated = Authorization.AuthorizationMenu();
 
             if (isAuthorizated)
@@ -26,7 +31,7 @@
             }
         }
 
-        public void Menu(int menuItem)
+        public static void Menu(int menuItem)
         {
             switch (menuItem)
             {
@@ -46,6 +51,7 @@
                         break;
             }
         }
+
         public static int ChooseMenuItem()
         {
             int menuItem;
@@ -73,7 +79,7 @@
             Console.WriteLine("[6] ");
             Console.WriteLine("[7] ");
             Console.WriteLine("[0] Close the program");
-            Console.WriteLine("-----------------------------------------------------");
+            Console.WriteLine("-----------------------------------------------------------------");
         }
     }
 }

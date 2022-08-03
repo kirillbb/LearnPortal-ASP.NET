@@ -1,16 +1,21 @@
-﻿using Newtonsoft.Json;
+﻿// <copyright file="Authorization.cs" company="PlaceholderCompany">
+// Copyright (c) PlaceholderCompany. All rights reserved.
+// </copyright>
 
 namespace BasicFunctionality
 {
+    using Newtonsoft.Json;
+
     internal static class Authorization
     {
         public static bool AuthorizationMenu()
         {
             Console.WriteLine("-- Select a menu item by pressing the desired number and Enter --");
-            Console.WriteLine("-----------------------------------------------------");
+            Console.WriteLine("-----------------------------------------------------------------");
             Console.WriteLine("[1] Sign up   *if you don't have an account");
             Console.WriteLine("[2] Log in   *if you have an account");
             Console.WriteLine("[0] Close the program");
+            Console.WriteLine("-----------------------------------------------------------------");
 
             int menuItem;
             int.TryParse(Console.ReadLine(), out menuItem);
@@ -36,10 +41,6 @@ namespace BasicFunctionality
             if (!isAuthorizated)
             {
                 AuthorizationMenu();
-            }
-            else
-            {
-                return isAuthorizated;
             }
 
             return isAuthorizated;
@@ -70,7 +71,7 @@ namespace BasicFunctionality
 
             User user;
 
-            if (password != null && password != "" && email != "" && email != null && name != null)
+            if (password != null && password != string.Empty && email != string.Empty && email != null && name != null)
             {
                 user = new User(email: email, password: password, name: name, id: SetUserId());
             }
@@ -95,9 +96,11 @@ namespace BasicFunctionality
             var jsons = File.ReadLines(@"C:\Users\Kirill\source\repos\LearnPortal\BasicFunctionality\data\users.txt");
             List<User> users = new List<User>();
 
-            foreach(string json in jsons)
+            foreach (string json in jsons)
             {
+                #pragma warning disable CS8604 // Possible null reference argument.
                 users.Add(JsonConvert.DeserializeObject<User>(json.ToString()));
+                #pragma warning restore CS8604 // Possible null reference argument.
             }
 
             foreach (var user in users)
@@ -116,7 +119,7 @@ namespace BasicFunctionality
                     }
                 }
             }
-            
+
             Console.WriteLine("Email or password is not correct\n");
             return false;
         }
@@ -127,7 +130,7 @@ namespace BasicFunctionality
 
             using (TextReader reader = new StreamReader(@"C:\Users\Kirill\source\repos\LearnPortal\BasicFunctionality\data\users.txt"))
             {
-                while ((reader.ReadLine()) != null)
+                while (reader.ReadLine() != null)
                 {
                     id++;
                 }
@@ -144,9 +147,11 @@ namespace BasicFunctionality
             {
                 User? user = JsonConvert.DeserializeObject<User>(json.ToString());
 
+                #pragma warning disable CS8602 // Dereference of a possibly null reference.
                 if (user.Email != null)
-                {   
-                    return email == user.Email ?  true : false;
+                #pragma warning restore CS8602 // Dereference of a possibly null reference.
+                {
+                    return email == user.Email ? true : false;
                 }
             }
 
@@ -157,7 +162,7 @@ namespace BasicFunctionality
         {
             string json = JsonConvert.SerializeObject(user);
 
-            using (System.IO.StreamWriter writer = new(@"C:\Users\Kirill\source\repos\LearnPortal\BasicFunctionality\data\users.txt", true))
+            using (System.IO.StreamWriter writer = new (@"C:\Users\Kirill\source\repos\LearnPortal\BasicFunctionality\data\users.txt", true))
             {
                 writer.WriteLine(json);
             }
