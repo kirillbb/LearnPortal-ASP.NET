@@ -1,4 +1,14 @@
-﻿using BasicFunctionality;
+﻿// <copyright file="Program.cs" company="PlaceholderCompany">
+// Copyright (c) PlaceholderCompany. All rights reserved.
+// </copyright>
 
-Starter Starter = new Starter();
-Starter.Run();
+namespace BasicFunctionality
+{
+    public static class Program
+    {
+        public static void Main(string[] args)
+        {
+            Starter.Run();
+        }
+    }
+}
