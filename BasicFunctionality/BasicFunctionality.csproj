@@ -6,11 +6,7 @@
     <ImplicitUsings>enable</ImplicitUsings>
     <Nullable>enable</Nullable>
       <TreatWarningsAsErrors>true</TreatWarningsAsErrors>
-<<<<<<< HEAD
       <WarningsAsErrors />
-=======
-      <WarningsAsErrors/>
->>>>>>> f136b713f83d82b3d848ff98d1c6a9f2dd23abca
       <GenerateDocumentationFile>true</GenerateDocumentationFile>
       <NoWarn>$(NoWarn),1573,1591,1712</NoWarn>
   </PropertyGroup>
