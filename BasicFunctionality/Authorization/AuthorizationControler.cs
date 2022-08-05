@@ -6,7 +6,7 @@ namespace BasicFunctionality
 {
     public static class AuthorizationControler
     {
-        public static bool AuthorizationMenu()
+        public static void AuthorizationMenu()
         {
             Console.WriteLine("-- Select a menu item by pressing the desired number and Enter --");
             Console.WriteLine("-----------------------------------------------------------------");
@@ -23,24 +23,20 @@ namespace BasicFunctionality
                 menuItem = 999; // to make it work in default-case if it is not a number
             }
 
-            bool isAuthorizated = false;
-
             switch (menuItem)
             {
                 case 1:
                     Registrator.SignUp();
                     break;
                 case 2:
-                    isAuthorizated = Authorizator.LogIn();
+                    Authorizator.LogIn();
                     break;
                 case 0:
                     Environment.Exit(0);
                     break;
                 default:
-                    return isAuthorizated;
+                    break;
             }
-
-            return isAuthorizated;
         }
     }
 }

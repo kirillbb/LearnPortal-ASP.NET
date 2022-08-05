@@ -8,7 +8,7 @@ namespace BasicFunctionality
 
     public static class Registrator
     {
-        public static bool SignUp()
+        public static void SignUp()
         {
             Console.WriteLine("Enter your Name and press Enter key:");
             string? name = Console.ReadLine();
@@ -28,7 +28,6 @@ namespace BasicFunctionality
             if (isExistingUser)
             {
                 Console.WriteLine("Error! User is already registered\n");
-                return false;
             }
 
             User user;
@@ -36,15 +35,12 @@ namespace BasicFunctionality
             if (password != null && password != string.Empty && email != string.Empty && email != null && name != null)
             {
                 user = new User(email: email, password: password, name: name);
+                SaveUserInFile(user);
             }
             else
             {
                 Console.WriteLine("email or password can't be empty!\n");
-                return false;
             }
-
-            SaveUserInFile(user);
-            return true;
         }
 
         private static bool IsExistingUser(string email)

@@ -7,3 +7,4 @@
 {"Email":"pavel@gmail.com","Password":"pavel","Name":"pavel","Id":7}
 {"Email":"fedor@mail.ru","Password":"gedor","Name":"fedor","Id":8}
 {"Email":"stepan@gmail.com","Password":"stepan","Name":"stepan","Id":9}
+{"Email":"lena@yahoo.com","Password":"lenalena","Name":"Lena","Id":10}

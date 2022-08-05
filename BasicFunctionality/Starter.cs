@@ -8,20 +8,18 @@ namespace BasicFunctionality
     {
         public static void Run()
         {
-            bool isAuthorizated = false;
-
             do
             {
                 try
                 {
-                    isAuthorizated = AuthorizationControler.AuthorizationMenu();
+                    AuthorizationControler.AuthorizationMenu();
                 }
                 catch (Exception ex)
                 {
                     Console.WriteLine(ex.Message);
                 }
             }
-            while (!isAuthorizated);
+            while (!Authorizator.IsAuthorizated);
 
             Menu(ChooseMenuItem());
         }

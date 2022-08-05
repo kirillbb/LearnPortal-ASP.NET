@@ -9,6 +9,12 @@ namespace BasicFunctionality
     internal static class Authorizator
     {
         public static readonly string Path = @"C:\Users\Kirill\source\repos\LearnPortal\BasicFunctionality\data\users.txt";
+        private static bool isAuthorizated = false;
+
+        public static bool IsAuthorizated
+        {
+            get { return isAuthorizated; }
+        }
 
         public static bool LogIn()
         {
@@ -35,11 +41,13 @@ namespace BasicFunctionality
                     if (password == user.Password)
                     {
                         Console.WriteLine("Authorization successful!\n");
+                        isAuthorizated = true;
                         return true;
                     }
                     else
                     {
                         Console.WriteLine("Authorization failed!\n");
+                        isAuthorizated = false;
                         return false;
                     }
                 }
