@@ -9,26 +9,21 @@ namespace BasicFunctionality
         public static void Run()
         {
             bool isAuthorizated = false;
-            try
-            {
-                isAuthorizated = Authorization.AuthorizationMenu();
 
-                if (isAuthorizated)
+            do
+            {
+                try
                 {
-                    Menu(ChooseMenuItem());
+                    isAuthorizated = AuthorizationControler.AuthorizationMenu();
+                }
+                catch (Exception ex)
+                {
+                    Console.WriteLine(ex.Message);
                 }
             }
-            catch (Exception ex)
-            {
-                Console.WriteLine(ex.Message);
-            }
+            while (!isAuthorizated);
 
-            isAuthorizated = Authorization.AuthorizationMenu();
-
-            if (isAuthorizated)
-            {
-                Menu(ChooseMenuItem());
-            }
+            Menu(ChooseMenuItem());
         }
 
         public static void Menu(int menuItem)
