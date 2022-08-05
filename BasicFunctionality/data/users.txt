@@ -5,5 +5,8 @@
 {"Email":"kirill@gmail.com","Password":"kirill","Name":"kirill","Id":5}
 {"Email":"kgkljsdhfkjgh","Password":"kldjsfghkldsjfhg","Name":"kirill","Id":6}
 {"Email":"pavel@gmail.com","Password":"pavel","Name":"pavel","Id":7}
+<<<<<<< HEAD
 {"Email":"fedor@mail.ru","Password":"gedor","Name":"fedor","Id":8}
 {"Email":"stepan@gmail.com","Password":"stepan","Name":"stepan","Id":9}
+=======
+>>>>>>> f136b713f83d82b3d848ff98d1c6a9f2dd23abca
