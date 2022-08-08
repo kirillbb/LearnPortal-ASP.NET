@@ -4,14 +4,15 @@
 
 namespace BasicFunctionality
 {
-    internal class Publication : IMaterial
+    public class Publication : IMaterial
     {
-        public Publication(User user, DateTime creationDate, string sourse, string title)
+        public Publication(User creator, DateTime creationDate, string sourse, string title)
         {
-            this.Creator = user;
+            this.Creator = creator;
             this.CreationDate = creationDate;
             this.Source = sourse;
             this.Id = SetId();
+            this.Type = MaterialType.Publication;
         }
 
         public DateTime CreationDate { get; set; }
@@ -28,7 +29,7 @@ namespace BasicFunctionality
 
         private static int SetId()
         {
-            string path = @"C:\Users\Kirill\source\repos\LearnPortal\BasicFunctionality\data\materials.txt";
+            string path = @"C:\Users\Kirill\source\repos\LearnPortal\BasicFunctionality\data\materials\publications.txt";
             int id = 1;
 
             if (File.Exists(path))

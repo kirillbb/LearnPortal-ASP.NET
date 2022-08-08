@@ -6,13 +6,14 @@ namespace BasicFunctionality
 {
     public partial class Video : IMaterial
     {
-        public Video(User user, int resolution, string title, int duretionInMinutes)
+        public Video(User creator, int resolution, string title, int duretionInMinutes)
         {
-            this.Creator = user;
+            this.Creator = creator;
             this.Resolution = resolution;
             this.Title = title;
             this.Duration = duretionInMinutes;
             this.Id = SetId();
+            this.Type = MaterialType.Video;
         }
 
         public int Resolution { get; set; }
@@ -25,11 +26,11 @@ namespace BasicFunctionality
 
         public User Creator { get; set; }
 
-        public MaterialType Type { get; } = MaterialType.Video;
+        public MaterialType Type { get; }
 
         private static int SetId()
         {
-            string path = @"C:\Users\Kirill\source\repos\LearnPortal\BasicFunctionality\data\materials.txt";
+            string path = @"C:\Users\Kirill\source\repos\LearnPortal\BasicFunctionality\data\materials\videos.txt";
             int id = 1;
 
             if (File.Exists(path))

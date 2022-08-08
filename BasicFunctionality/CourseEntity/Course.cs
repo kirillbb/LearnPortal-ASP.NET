@@ -1,12 +1,12 @@
-﻿// <copyright file="SomeCourse.cs" company="PlaceholderCompany">
+﻿// <copyright file="Course.cs" company="PlaceholderCompany">
 // Copyright (c) PlaceholderCompany. All rights reserved.
 // </copyright>
 
 namespace BasicFunctionality
 {
-    public class SomeCourse
+    public class Course
     {
-        public SomeCourse(int id, string? name, string? description, List<IMaterial>? materialList, List<Skill>? courseSkillList, User? creator)
+        public Course(int id, string? name, string? description, List<IMaterial>? materialList, List<Skill>? courseSkillList, User? creator)
         {
             this.Id = id;
             this.Name = name;

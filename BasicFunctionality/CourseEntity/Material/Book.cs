@@ -4,17 +4,18 @@
 
 namespace BasicFunctionality
 {
-    internal class Book : IMaterial
+    public class Book
     {
-        public Book(User user, string author, string title, DateTime publicationDate, int pages, string format)
+        public Book(User creator, string author, string title, DateTime publicationDate, int pages, string format)
         {
-            this.Creator = user;
+            this.Creator = creator;
             this.Author = author;
             this.Title = title;
             this.PublicationDate = publicationDate;
             this.Pages = pages;
             this.BookFormat = format;
             this.Id = SetId();
+            this.Type = MaterialType.Book.ToString();
         }
 
         public string? Author { get; set; }
@@ -31,11 +32,11 @@ namespace BasicFunctionality
 
         public User Creator { get; set; }
 
-        public MaterialType Type { get; } = MaterialType.Book;
+        public string Type { get; }
 
         private static int SetId()
         {
-            string path = @"C:\Users\Kirill\source\repos\LearnPortal\BasicFunctionality\data\materials.txt";
+            string path = @"C:\Users\Kirill\source\repos\LearnPortal\BasicFunctionality\data\materials\books.txt";
             int id = 1;
 
             if (File.Exists(path))
