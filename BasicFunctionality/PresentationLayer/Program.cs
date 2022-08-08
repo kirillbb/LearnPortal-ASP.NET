@@ -25,6 +25,10 @@ namespace BasicFunctionality
 
             repository.Remove(book1);
 
+            ICourseRepository courseRepository = new CourseRepository<Course>();
+
+
+
             Console.WriteLine();
         }
     }

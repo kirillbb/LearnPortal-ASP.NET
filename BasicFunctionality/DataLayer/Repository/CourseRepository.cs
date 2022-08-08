@@ -6,7 +6,7 @@ namespace BasicFunctionality
 {
     using Newtonsoft.Json;
 
-    internal class CourseRepository<TSomeCourse>
+    internal class CourseRepository<TCourse> : ICourseRepository
     {
         private List<Course> data;
         private string path = @"C:\Users\Kirill\source\repos\LearnPortal\BasicFunctionality\data\courses.txt";
