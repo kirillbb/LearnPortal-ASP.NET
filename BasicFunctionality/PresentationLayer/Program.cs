@@ -27,8 +27,6 @@ namespace BasicFunctionality
 
             ICourseRepository courseRepository = new CourseRepository<Course>();
 
-
-
             Console.WriteLine();
         }
     }

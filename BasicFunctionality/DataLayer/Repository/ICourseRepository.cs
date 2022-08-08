@@ -6,7 +6,7 @@ namespace BasicFunctionality
 {
     public interface ICourseRepository
     {
-        public Course FindById(int id);
+        public Course? FindById(int id);
 
         public void Create(Course course);
 
