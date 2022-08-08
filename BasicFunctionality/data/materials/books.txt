@@ -16,3 +16,6 @@
 {"Author":"g.hgdf","PublicationDate":"2012-12-12T00:00:00","Pages":101,"BookFormat":"epub","Title":"Bookname2","Id":17,"Creator":{"Email":"stepan@gmail.com","Password":"stepan","Name":"stepan","Id":11},"Type":"Book"}
 {"Author":"g.afas","PublicationDate":"2002-09-02T00:00:00","Pages":101,"BookFormat":"doc","Title":"Bookname3","Id":18,"Creator":{"Email":"kirill@gmail.com","Password":"kirill","Name":"kirill","Id":11},"Type":"Book"}
 {"Author":"g.gfhj","PublicationDate":"1991-02-10T00:00:00","Pages":101,"BookFormat":"pdf","Title":"Bookname4","Id":19,"Creator":{"Email":"stepan@gmail.com","Password":"stepan","Name":"stepan","Id":11},"Type":"Book"}
+{"Author":"g.hgdf","PublicationDate":"2012-12-12T00:00:00","Pages":101,"BookFormat":"epub","Title":"Bookname2","Id":20,"Creator":{"Email":"stepan@gmail.com","Password":"stepan","Name":"stepan","Id":11},"Type":"Book"}
+{"Author":"g.afas","PublicationDate":"2002-09-02T00:00:00","Pages":101,"BookFormat":"doc","Title":"Bookname3","Id":21,"Creator":{"Email":"kirill@gmail.com","Password":"kirill","Name":"kirill","Id":11},"Type":"Book"}
+{"Author":"g.gfhj","PublicationDate":"1991-02-10T00:00:00","Pages":101,"BookFormat":"pdf","Title":"Bookname4","Id":22,"Creator":{"Email":"stepan@gmail.com","Password":"stepan","Name":"stepan","Id":11},"Type":"Book"}

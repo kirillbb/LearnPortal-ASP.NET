@@ -4,10 +4,10 @@
 
 namespace BasicFunctionality
 {
-    using Microsoft.EntityFrameworkCore;
+    using System.Collections;
     using Newtonsoft.Json;
 
-    public class BookRepository<TBook>
+    public class BookRepository<TBook> : IEnumerable
     {
         private List<Book> data;
         private string path = @"C:\Users\Kirill\source\repos\LearnPortal\BasicFunctionality\data\materials\books.txt";
@@ -102,5 +102,7 @@ namespace BasicFunctionality
 
             Console.WriteLine("Material saved");
         }
+
+        public IEnumerator GetEnumerator() => this.data.GetEnumerator();
     }
 }

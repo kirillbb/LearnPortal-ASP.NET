@@ -27,6 +27,11 @@ namespace BasicFunctionality
 
         public MaterialType Type { get; } = MaterialType.Publication;
 
+        public override string ToString()
+        {
+            return $"Title: {this.Title} Source: {this.Source} Creation Date: {this.CreationDate}\nCreator: {this.Creator} MaterialType: {this.Type.ToString()} ID: {this.Id}";
+        }
+
         private static int SetId()
         {
             string path = @"C:\Users\Kirill\source\repos\LearnPortal\BasicFunctionality\data\materials\publications.txt";

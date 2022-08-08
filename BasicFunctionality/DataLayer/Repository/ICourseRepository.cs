@@ -4,6 +4,8 @@
 
 namespace BasicFunctionality
 {
+    using System.Collections;
+
     public interface ICourseRepository
     {
         public Course? FindById(int id);
@@ -13,5 +15,7 @@ namespace BasicFunctionality
         public void Update(Course course, string? newName, string? newDescription, List<IMaterial>? newMaterialList, List<Skill>? newCourseSkillList, User? newCreator);
 
         public void Remove(Course course);
+
+        public IEnumerator GetEnumerator();
     }
 }

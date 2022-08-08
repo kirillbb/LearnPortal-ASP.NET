@@ -4,9 +4,11 @@
 
 namespace BasicFunctionality
 {
+    using System.Collections;
+    using System.Collections.Generic;
     using Newtonsoft.Json;
 
-    internal class CourseRepository<TCourse> : ICourseRepository
+    internal class CourseRepository<TCourse> : ICourseRepository, IEnumerable
     {
         private List<Course> data;
         private string path = @"C:\Users\Kirill\source\repos\LearnPortal\BasicFunctionality\data\courses.txt";
@@ -100,5 +102,7 @@ namespace BasicFunctionality
 
             Console.WriteLine("Material saved");
         }
+
+        public IEnumerator GetEnumerator() => this.data.GetEnumerator();
     }
 }

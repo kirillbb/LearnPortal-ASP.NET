@@ -29,19 +29,17 @@ namespace BasicFunctionality
             switch (menuItem)
             {
                 case 1:
-                        throw new NotImplementedException();
+                    MaterialOperations.Menu(CoursesOperations.ChooseMenuItem());
+                    break;
                 case 2:
-                        throw new NotImplementedException();
-                case 3:
-                        throw new NotImplementedException();
-                case 4:
-                        throw new NotImplementedException();
+                    CoursesOperations.Menu(CoursesOperations.ChooseMenuItem());
+                    break;
                 case 0:
-                        Environment.Exit(0);
-                        break;
+                    Environment.Exit(0);
+                    break;
                 default:
-                        Menu(ChooseMenuItem());
-                        break;
+                    Menu(ChooseMenuItem());
+                    break;
             }
         }
 
@@ -64,14 +62,9 @@ namespace BasicFunctionality
         {
             Console.WriteLine("-- Select a menu item by pressing the desired number and Enter --");
             Console.WriteLine("-----------------------------------------------------");
-            Console.WriteLine("[1] ");
-            Console.WriteLine("[2] ");
-            Console.WriteLine("[3] ");
-            Console.WriteLine("[4] ");
-            Console.WriteLine("[5] ");
-            Console.WriteLine("[6] ");
-            Console.WriteLine("[7] ");
-            Console.WriteLine("[0] Close the program");
+            Console.WriteLine("[1] Materials operations");
+            Console.WriteLine("[2] Courses operations");
+            Console.WriteLine("\n[0] Close the program");
             Console.WriteLine("-----------------------------------------------------------------");
         }
     }

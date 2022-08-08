@@ -12,7 +12,7 @@ namespace BasicFunctionality
             Console.WriteLine("-----------------------------------------------------------------");
             Console.WriteLine("[1] Sign up   *if you don't have an account");
             Console.WriteLine("[2] Log in   *if you have an account");
-            Console.WriteLine("[0] Close the program");
+            Console.WriteLine("\n[0] Close the program");
             Console.WriteLine("-----------------------------------------------------------------");
 
             int menuItem;

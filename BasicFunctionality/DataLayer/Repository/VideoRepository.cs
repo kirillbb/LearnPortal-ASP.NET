@@ -4,9 +4,10 @@
 
 namespace BasicFunctionality
 {
+    using System.Collections;
     using Newtonsoft.Json;
 
-    public class VideoRepository<TVideo>
+    public class VideoRepository<TVideo> : IEnumerable
     {
         private List<Video> data;
         private string path = @"C:\Users\Kirill\source\repos\LearnPortal\BasicFunctionality\data\materials\videos.txt";
@@ -30,6 +31,8 @@ namespace BasicFunctionality
         {
             get { return this.data; }
         }
+
+        public IEnumerator GetEnumerator() => this.data.GetEnumerator();
 
         public Video? FindById(int id)
         {

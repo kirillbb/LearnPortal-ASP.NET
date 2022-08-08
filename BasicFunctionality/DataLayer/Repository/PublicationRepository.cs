@@ -4,9 +4,10 @@
 
 namespace BasicFunctionality
 {
+    using System.Collections;
     using Newtonsoft.Json;
 
-    public class PublicationRepository<TPublication>
+    public class PublicationRepository<TPublication> : IEnumerable
     {
         private List<Publication> data;
         private string path = @"C:\Users\Kirill\source\repos\LearnPortal\BasicFunctionality\data\materials\publications.txt";
@@ -49,6 +50,8 @@ namespace BasicFunctionality
             this.data.Add(publication);
             this.SaveChanges(publication);
         }
+
+        public IEnumerator GetEnumerator() => this.data.GetEnumerator();
 
         public void Update(Publication publication, User newCreator, DateTime newCreationDate, string newSourse, string newTitle)
         {

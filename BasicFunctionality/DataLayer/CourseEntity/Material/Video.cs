@@ -28,6 +28,11 @@ namespace BasicFunctionality
 
         public MaterialType Type { get; }
 
+        public override string ToString()
+        {
+            return $"Title: {this.Title} Resolution: {this.Resolution} {this.Duration} minutes,\nCreator: {this.Creator} MaterialType: {this.Type.ToString()} ID: {this.Id}";
+        }
+
         private static int SetId()
         {
             string path = @"C:\Users\Kirill\source\repos\LearnPortal\BasicFunctionality\data\materials\videos.txt";

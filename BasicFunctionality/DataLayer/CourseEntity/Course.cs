@@ -27,5 +27,10 @@ namespace BasicFunctionality
         public List<Skill>? CourseSkillList { get; set; }
 
         public User? Creator { get; set; }
+
+        public override string ToString()
+        {
+            return $"Name: {this.Name} Description: {this.Description}\n Materials: {this.MaterialList} Skills: {this.CourseSkillList} Creator: {this.Creator} ID: {this.Id}";
+        }
     }
 }
