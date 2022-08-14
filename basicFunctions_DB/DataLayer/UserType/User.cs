@@ -1,7 +1,7 @@
-﻿using basicFunctions_DB.DataLayer.CourseType;
-
-namespace basicFunctions_DB.DataLayer.UserType
+﻿namespace basicFunctions_DB.DataLayer.UserType
 {
+    using basicFunctions_DB.DataLayer.CourseType;
+
     public class User
     {
         public int Id { get; set; }
