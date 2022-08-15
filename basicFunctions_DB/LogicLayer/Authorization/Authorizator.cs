@@ -23,29 +23,25 @@
 
             using (ApplicationContext db = new ApplicationContext())
             {
-                var users = db.Users.ToList();
-
-
-                foreach (var user in users)
+                try
                 {
-                    if (email == user.Email)
+                    var user = db.Users.Where(x => x.Email == email).FirstOrDefault();
+                    if (password == user.Password)
                     {
-                        if (password == user.Password)
-                        {
-                            Console.WriteLine("Authorization successful!\n");
-                            authorizatedUser = user;
-                            return;
-                        }
-                        else
-                        {
-                            Console.WriteLine("Authorization failed!\n");
-                            return;
-                        }
+                        Console.WriteLine("Authorization successful!\n");
+                        authorizatedUser = user;
+                        return;
+                    }
+                    else
+                    {
+                        throw new Exception();
                     }
                 }
+                catch (Exception ex)
+                {
+                    Console.WriteLine("\nEmail or password is not correct\n");
+                }
             }
-
-            Console.WriteLine("Email or password is not correct\n");
         }
 
     }
