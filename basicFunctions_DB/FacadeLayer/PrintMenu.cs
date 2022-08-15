@@ -1,6 +1,6 @@
 ﻿namespace basicFunctions_DB.FacadeLayer
 {
-    internal static class Menu
+    internal static class PrintMenu
     {
         public static void Authorization()
         {
@@ -26,7 +26,7 @@
         public static void CoursesOperations()
         {
             Console.WriteLine("-- Select a menu item by pressing the desired number and Enter --");
-            Console.WriteLine("-----------------------------------------------------");
+            Console.WriteLine("-----------------------------------------------------------------");
             Console.WriteLine("[1] Create course");
             Console.WriteLine("[2] Find by Id course");
             Console.WriteLine("[3] Update course");
@@ -49,6 +49,19 @@
             Console.WriteLine("[9] <--- Back");
             Console.WriteLine("[0] Close the program");
             Console.WriteLine("-----------------------------------------------------------------");
+        }
+
+        internal static void ChooseMaterialType()
+        {
+            Console.WriteLine("-- Select a menu item by pressing the desired number and Enter --");
+            Console.WriteLine("-----------------------------------------------------------------");
+            Console.WriteLine("[1] new Book");
+            Console.WriteLine("[2] new Video");
+            Console.WriteLine("[3] new Publication\n");
+            Console.WriteLine("[9] <--- Back");
+            Console.WriteLine("[0] Close the program");
+            Console.WriteLine("-----------------------------------------------------------------");
+
         }
     }
 }

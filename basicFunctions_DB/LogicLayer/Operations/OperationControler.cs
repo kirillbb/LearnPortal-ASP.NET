@@ -1,13 +1,13 @@
-﻿namespace basicFunctions_DB.LogicLayer.Authorization
+﻿namespace basicFunctions_DB.LogicLayer.Operations
 {
-    using basicFunctions_DB.DataLayer.UserType;
+    using basicFunctions_DB.FacadeLayer;
 
-    public static class AuthorizationControler
+    internal static class OperationControler
     {
-        public static User AuthorizatedUser { get; private set; }
-
-        public static User Control()
+        public static void Control()
         {
+            PrintMenu.General();
+
             int menuItem;
             bool isMenu = int.TryParse(Console.ReadLine(), out menuItem);
 
@@ -16,26 +16,21 @@
                 menuItem = 999; // to make it work in default-case if it is not a number
             }
 
-            User? user = new User();
-            AuthorizatedUser = null;
-
             switch (menuItem)
             {
                 case 1:
-                    Registrator.SignUp();
+                    MaterialOperation.Run();
                     break;
                 case 2:
-                    Authorizator.LogIn();
-                    AuthorizatedUser = Authorizator.AuthorizatedUser;
+                    CourseOperation.Run();
                     break;
                 case 0:
                     Environment.Exit(0);
                     break;
                 default:
+                    Control();
                     break;
             }
-
-            return user;
         }
     }
 }

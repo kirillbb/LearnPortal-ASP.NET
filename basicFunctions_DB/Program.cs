@@ -5,17 +5,50 @@
     using basicFunctions_DB.DataLayer.MaterialType;
     using basicFunctions_DB.DataLayer.UserType;
     using basicFunctions_DB.FacadeLayer;
+    using basicFunctions_DB.GenericRepository;
+    using basicFunctions_DB.LogicLayer.Authorization;
+    using System.Linq;
 
     public static class Program
     {
         static void Main(string[] args)
         {
-            // Test();
+            // DbTest();
 
             Starter starter = new Starter();
             starter.Run();
+
+            // RepositoryTest();
         }
-        static void Test()
+
+        private static void RepositoryTest()
+        {
+            using (ApplicationContext db = new ApplicationContext())
+            {
+                GenericRepository<Material> repository = new GenericRepository<Material>(db);
+                var material = repository.GetById(3);
+                var material2 = repository.GetById(4);
+                var material3 = repository.GetById(5);
+                var material4 = repository.GetWithInclude(x => x.Creator);
+
+                var material5 = material4.ToList();
+                foreach (var item in material5)
+                {
+                    var mater = item;
+                }
+                var list = repository.GetAll();
+
+                User user = AuthorizationControler.AuthorizatedUser;
+                Book book = new Book { Author = "J.Aive", BookFormat = "docx", Creator = db.Users.Where(x => x.Id == user.Id).FirstOrDefault(), Pages = 202, Title = "Apple is not just design", PublicationDate = DateTime.Parse("12.05.2022") };
+
+                repository.Insert(book);
+                repository.Save();
+
+                Console.WriteLine();
+            }
+        }
+
+        static void DbTest()
         {
             using (ApplicationContext db = new ApplicationContext())
             {
