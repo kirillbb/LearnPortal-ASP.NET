@@ -3,11 +3,6 @@ using basicFunctions_DB.BLL.Interfaces;
 using basicFunctions_DB.DAL;
 using basicFunctions_DB.DAL.CourseType;
 using Microsoft.EntityFrameworkCore;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace basicFunctions_DB.BLL.DataServices
 {
