@@ -39,6 +39,12 @@ namespace basicFunctions_DB.BLL.UI
                     CourseOperationService courseOperationService = new CourseOperationService(_context);
                    await courseOperationService.StarterAsync();
                     break;
+                case 3:
+
+                    break;//skils
+                case 4:
+
+                    break;//user profile
                 case 0:
                     Environment.Exit(0);
                     break;

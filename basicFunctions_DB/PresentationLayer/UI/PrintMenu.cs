@@ -12,12 +12,28 @@
             Console.WriteLine("-----------------------------------------------------------------");
         }
 
+        internal static void SkillOperations()
+        {
+            Console.WriteLine("-- Select a menu item by pressing the desired number and Enter --");
+            Console.WriteLine("-----------------------------------------------------------------");
+            Console.WriteLine("[1] Create skill");
+            Console.WriteLine("[2] Find skill by Id");
+            Console.WriteLine("[3] Update skill");
+            Console.WriteLine("[4] Delete skill");
+            Console.WriteLine("[5] Show all skills\n");
+            Console.WriteLine("[9] <--- Back");
+            Console.WriteLine("[0] Close the program");
+            Console.WriteLine("-----------------------------------------------------------------");
+        }
+
         public static void General()
         {
             Console.WriteLine("-- Select a menu item by pressing the desired number and Enter --");
             Console.WriteLine("-----------------------------------------------------");
             Console.WriteLine("[1] Materials operations");
             Console.WriteLine("[2] Courses operations\n");
+            Console.WriteLine("[3] Skills operations\n");
+            Console.WriteLine("[4] User profile\n");
             Console.WriteLine("[0] Close the program");
             Console.WriteLine("-----------------------------------------------------------------");
         }
