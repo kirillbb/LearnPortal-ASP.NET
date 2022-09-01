@@ -9,5 +9,10 @@
         public List<CourseDTO> Courses { get; set; }
 
         public int Id { get; set; }
+
+        public override string ToString()
+        {
+            return $"ID: {Id} | Name: {Name} | Description: {Description}";
+        }
     }
 }

@@ -4,6 +4,7 @@
     {
         public static void Authorization()
         {
+            Console.WriteLine("-----------------------------------------------------------------");
             Console.WriteLine("-- Select a menu item by pressing the desired number and Enter --");
             Console.WriteLine("-----------------------------------------------------------------");
             Console.WriteLine("[1] Sign up   *if you don't have an account");
@@ -14,6 +15,7 @@
 
         internal static void SkillOperations()
         {
+            Console.WriteLine("-----------------------------------------------------------------");
             Console.WriteLine("-- Select a menu item by pressing the desired number and Enter --");
             Console.WriteLine("-----------------------------------------------------------------");
             Console.WriteLine("[1] Create skill");
@@ -28,11 +30,12 @@
 
         public static void General()
         {
+            Console.WriteLine("-----------------------------------------------------------------");
             Console.WriteLine("-- Select a menu item by pressing the desired number and Enter --");
-            Console.WriteLine("-----------------------------------------------------");
+            Console.WriteLine("-----------------------------------------------------------------");
             Console.WriteLine("[1] Materials operations");
-            Console.WriteLine("[2] Courses operations\n");
-            Console.WriteLine("[3] Skills operations\n");
+            Console.WriteLine("[2] Courses operations");
+            Console.WriteLine("[3] Skills operations");
             Console.WriteLine("[4] User profile\n");
             Console.WriteLine("[0] Close the program");
             Console.WriteLine("-----------------------------------------------------------------");
@@ -40,6 +43,7 @@
 
         public static void CoursesOperations()
         {
+            Console.WriteLine("-----------------------------------------------------------------");
             Console.WriteLine("-- Select a menu item by pressing the desired number and Enter --");
             Console.WriteLine("-----------------------------------------------------------------");
             Console.WriteLine("[1] Create course");
@@ -54,8 +58,9 @@
 
         public static void MaterialOperations()
         {
+            Console.WriteLine("-----------------------------------------------------------------");
             Console.WriteLine("-- Select a menu item by pressing the desired number and Enter --");
-            Console.WriteLine("-----------------------------------------------------");
+            Console.WriteLine("-----------------------------------------------------------------");
             Console.WriteLine("[1] Create material");
             Console.WriteLine("[2] Find by Id material");
             Console.WriteLine("[3] Update material");
@@ -65,9 +70,13 @@
             Console.WriteLine("[0] Close the program");
             Console.WriteLine("-----------------------------------------------------------------");
         }
-
+        public static void BreakLine()
+        {
+            Console.WriteLine("-----------------------------------------------------------------");
+        }
         internal static void ChooseMaterialType()
         {
+            Console.WriteLine("-----------------------------------------------------------------");
             Console.WriteLine("-- Select a menu item by pressing the desired number and Enter --");
             Console.WriteLine("-----------------------------------------------------------------");
             Console.WriteLine("[1] Book");
@@ -76,7 +85,6 @@
             Console.WriteLine("[9] <--- Back");
             Console.WriteLine("[0] Close the program");
             Console.WriteLine("-----------------------------------------------------------------");
-
         }
     }
 }

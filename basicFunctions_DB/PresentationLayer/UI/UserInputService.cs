@@ -1,5 +1,6 @@
 ﻿using basicFunctions_DB.BLL.DTO;
 using basicFunctions_DB.DAL.UserType;
+using basicFunctions_DB.PresentationLayer;
 
 namespace basicFunctions_DB.BLL.UI
 {
@@ -12,6 +13,7 @@ namespace basicFunctions_DB.BLL.UI
             Console.WriteLine("Enter your password and press Enter key:");
             string password = Console.ReadLine();
 
+            PrintMenu.BreakLine();
             return new UserDTO { Email = email, Password = password };
         }
         public static UserDTO Registration()
@@ -23,6 +25,7 @@ namespace basicFunctions_DB.BLL.UI
             Console.WriteLine("Enter your password and press Enter key:");
             string password = Console.ReadLine();
 
+            PrintMenu.BreakLine();
             return new UserDTO { Email = email, Name = name, Password = password };
         }
 
@@ -30,6 +33,7 @@ namespace basicFunctions_DB.BLL.UI
         {
             Console.WriteLine("Enter Id:");
             int id = int.Parse(Console.ReadLine());
+            PrintMenu.BreakLine();
             return id;
         }
 
@@ -57,6 +61,7 @@ namespace basicFunctions_DB.BLL.UI
                     Creator = user
                 };
 
+                PrintMenu.BreakLine();
                 return book;
             }
             catch (Exception ex)
@@ -86,6 +91,7 @@ namespace basicFunctions_DB.BLL.UI
                     Creator = user
                 };
 
+                PrintMenu.BreakLine();
                 return video;
             }
             catch (Exception ex)
@@ -115,7 +121,33 @@ namespace basicFunctions_DB.BLL.UI
                     Creator = user
                 };
 
+                PrintMenu.BreakLine();
                 return publication;
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine(ex.Message);
+            }
+
+            return null;
+        }
+        public static SkillDTO AddSkill()
+        {
+            try
+            {
+                Console.WriteLine("Enter a Name of a skill:");
+                string name = Console.ReadLine();
+                Console.WriteLine("Enter a description of a skill:");
+                string description = Console.ReadLine();
+
+                SkillDTO skillDTO = new SkillDTO
+                {
+                    Name = name,
+                    Description = description
+                };
+
+                PrintMenu.BreakLine();
+                return skillDTO;
             }
             catch (Exception ex)
             {
@@ -141,6 +173,7 @@ namespace basicFunctions_DB.BLL.UI
                     Creator = user
                 };
 
+                PrintMenu.BreakLine();
                 return course;
             }
             catch (Exception ex)

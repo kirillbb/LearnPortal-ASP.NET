@@ -16,30 +16,30 @@ namespace basicFunctions_DB.BLL.DataServices
             Console.WriteLine();
             PrintMenu.SkillOperations();
             int menuItem = UiService.Controller();
-            MaterialService materialService = new MaterialService(_context);
+            SkillService skillService = new SkillService(_context);
 
             switch (menuItem)
             {
                 case 1:
-                    await CreateCourseAsync();
+                    await CreateSkillAsync();
                     Console.WriteLine();
                     break;
                 case 2:
-                    var course = await courseService.GetAsync(UserInputService.GetId());
+                    var course = await skillService.GetAsync(UserInputService.GetId());
                     Console.WriteLine(course.ToString());
                     break;
                 case 3:
-                    await UpdateCourseAsync();
+                    await UpdateSkillAsync();
                     break;
                 case 4:
-                    await courseService.DeleteAsync(UserInputService.GetId());
+                    await skillService.DeleteAsync(UserInputService.GetId());
                     break;
                 case 5:
                     {
-                        var allCourses = await courseService.GetAllAsync();
-                        foreach (var material in allCourses)
+                        var allSkills = await skillService.GetAllAsync();
+                        foreach (var skill in allSkills)
                         {
-                            Console.WriteLine(material.ToString());
+                            Console.WriteLine(skill.ToString());
                         }
 
                         break;
@@ -57,6 +57,21 @@ namespace basicFunctions_DB.BLL.DataServices
             }
 
             await StarterAsync();
+        }
+
+        private async Task UpdateSkillAsync()
+        {
+            SkillService skillService = new SkillService(_context);
+            var skillDTO = UserInputService.AddSkill();
+            skillDTO.Id = UserInputService.GetId();
+            await skillService.UpdateAsync(skillDTO);
+        }
+
+        private async Task CreateSkillAsync()
+        {
+            SkillService skillService = new SkillService(_context);
+            var skillDTO = UserInputService.AddSkill();
+            await skillService.CreateAsync(skillDTO);
         }
     }
 }

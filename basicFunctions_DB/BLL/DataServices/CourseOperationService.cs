@@ -37,9 +37,9 @@ namespace basicFunctions_DB.BLL.DataServices
                 case 5:
                     {
                         var allCourses = await courseService.GetAllAsync();
-                        foreach (var material in allCourses)
+                        foreach (var courseDTO in allCourses)
                         {
-                            Console.WriteLine(material.ToString());
+                            Console.WriteLine(courseDTO.ToString());
                         }
 
                         break;

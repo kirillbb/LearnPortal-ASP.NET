@@ -37,11 +37,12 @@ namespace basicFunctions_DB.BLL.UI
                     break;
                 case 2:
                     CourseOperationService courseOperationService = new CourseOperationService(_context);
-                   await courseOperationService.StarterAsync();
+                    await courseOperationService.StarterAsync();
                     break;
                 case 3:
-
-                    break;//skils
+                    SkillOperationService skillOperationService = new SkillOperationService(_context);
+                    await skillOperationService.StarterAsync();
+                    break;
                 case 4:
 
                     break;//user profile
@@ -92,6 +93,8 @@ namespace basicFunctions_DB.BLL.UI
             {
             }
 
+            PrintMenu.BreakLine();
+            PrintMenu.BreakLine();
             return menuItem;
         }
     }

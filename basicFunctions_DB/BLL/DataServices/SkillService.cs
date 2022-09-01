@@ -39,9 +39,9 @@ namespace basicFunctions_DB.BLL.DataServices
 
         public async Task<List<SkillDTO>> GetAllAsync()
         {
-            var skills = await this._context.Skills.Include(x => x.Courses).ToListAsync();
+            var skills = await this._context.Skills.ToListAsync();
             List<SkillDTO> skillDTOs = new List<SkillDTO>();
-            foreach (var item in skillDTOs)
+            foreach (var item in skills)
             {
                 SkillDTO skillDTO = new SkillDTO
                 {
@@ -52,6 +52,7 @@ namespace basicFunctions_DB.BLL.DataServices
 
                 skillDTOs.Add(skillDTO);
             }
+
             return skillDTOs;
         }
 
