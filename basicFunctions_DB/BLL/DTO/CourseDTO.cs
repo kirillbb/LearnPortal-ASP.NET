@@ -16,7 +16,8 @@ namespace basicFunctions_DB.BLL.DTO
 
         public List<Skill>? CourseSkills { get; set; }
 
-        public User? Creator { get; set; }
+        public int CreatorId { get; set; }
+
         public override string ToString()
         {
             return $"ID: {Id} | Name: {Name} | Description: {Description}";

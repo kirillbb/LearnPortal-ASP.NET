@@ -1,4 +1,5 @@
-﻿using basicFunctions_DB.BLL.UI;
+﻿using basicFunctions_DB.BLL.DTO;
+using basicFunctions_DB.BLL.UI;
 using basicFunctions_DB.DAL;
 using basicFunctions_DB.PresentationLayer;
 
@@ -44,6 +45,9 @@ namespace basicFunctions_DB.BLL.DataServices
 
                         break;
                     }
+                case 6:
+                    await AddSkillsAsync();
+                    break;
                 case 9:
                     UiService uiService = new UiService(_context);
                     await uiService.GeneralMenuAsync();
@@ -58,11 +62,24 @@ namespace basicFunctions_DB.BLL.DataServices
 
             await StarterAsync();
         }
+
+        private async Task AddSkillsAsync()
+        {
+            CourseService courseService = new CourseService(_context);
+            SkillService skillService = new SkillService(_context);
+            Console.WriteLine("Course");
+            int courseId = UserInputService.GetId();
+            Console.WriteLine("Skill");
+            int skillId = UserInputService.GetId();
+            await courseService.AddSkill(courseId, skillId);
+        }
+
         private async Task UpdateCourseAsync()
         {
             CourseService courseService = new CourseService(_context);
             var course = UserInputService.AddCourse(UiService.AuthorizatedUser);
             course.Id = UserInputService.GetId();
+            course.CreatorId = UiService.AuthorizatedUser.Id;
             await courseService.UpdateAsync(course);
         } 
 

@@ -170,7 +170,7 @@ namespace basicFunctions_DB.BLL.UI
                 {
                     Name = name,
                     Description = description,
-                    Creator = user
+                    CreatorId = user.Id
                 };
 
                 PrintMenu.BreakLine();

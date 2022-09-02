@@ -44,8 +44,11 @@ namespace basicFunctions_DB.BLL.UI
                     await skillOperationService.StarterAsync();
                     break;
                 case 4:
-
-                    break;//user profile
+                    throw new NotImplementedException(); //take a course
+                    break;
+                case 5:
+                    throw new NotImplementedException(); //user profile
+                    break;
                 case 0:
                     Environment.Exit(0);
                     break;

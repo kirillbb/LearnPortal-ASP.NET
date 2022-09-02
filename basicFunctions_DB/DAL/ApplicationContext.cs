@@ -27,7 +27,7 @@
 
         protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
         {
-            optionsBuilder.UseSqlServer(@"Server=DESKTOP-6KJ2COE;Database=LearnPortal_DB;Trusted_Connection=True;");
+            optionsBuilder.UseSqlServer(@"Server=DESKTOP-6KJ2COE;Database=LearnPortal;Trusted_Connection=True;");
         }
     }
 }

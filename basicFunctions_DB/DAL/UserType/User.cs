@@ -14,7 +14,7 @@
 
         public List<UserSkillState> UserSkillList { get; set; }
 
-        public List<Course> CompletedCourse { get; set; }
+        public List<Course> Courses { get; set; }
 
         public override string ToString()
         {

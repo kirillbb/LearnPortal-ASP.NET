@@ -12,7 +12,7 @@
 
         public override string ToString()
         {
-            return $"ID: {Id} | Title: \"{Title}\" | Author: {Author} | Publication date: {PublicationDate.ToShortDateString} | {Pages} pages | Format: {BookFormat} | added: {Creator.ToString} ";
+            return $"ID: {Id} | Title: \"{Title}\" | Author: {Author} | Publication date: {PublicationDate.ToString("d")} | {Pages} pages | Format: {BookFormat} | added: {Creator.ToString()} ";
         }
     }
 }

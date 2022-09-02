@@ -36,7 +36,8 @@
             Console.WriteLine("[1] Materials operations");
             Console.WriteLine("[2] Courses operations");
             Console.WriteLine("[3] Skills operations");
-            Console.WriteLine("[4] User profile\n");
+            Console.WriteLine("[4] Take a course");
+            Console.WriteLine("[5] User profile\n");
             Console.WriteLine("[0] Close the program");
             Console.WriteLine("-----------------------------------------------------------------");
         }
@@ -50,7 +51,8 @@
             Console.WriteLine("[2] Find by Id course");
             Console.WriteLine("[3] Update course");
             Console.WriteLine("[4] Delete course");
-            Console.WriteLine("[5] Show all courses\n");
+            Console.WriteLine("[5] Show all courses");
+            Console.WriteLine("[6] Add skills to course\n");
             Console.WriteLine("[9] <--- Back");
             Console.WriteLine("[0] Close the program");
             Console.WriteLine("-----------------------------------------------------------------");
