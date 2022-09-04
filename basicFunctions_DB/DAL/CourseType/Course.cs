@@ -1,5 +1,6 @@
 ﻿using basicFunctions_DB.DAL.MaterialType;
 using basicFunctions_DB.DAL.UserType;
+using System.ComponentModel.DataAnnotations.Schema;
 
 namespace basicFunctions_DB.DAL.CourseType
 {
@@ -18,5 +19,10 @@ namespace basicFunctions_DB.DAL.CourseType
         public int CreatorId { get; set; }
 
         public List<User> Students { get; set; }
+
+        public override string ToString()
+        {
+            return $"ID: {Id} | Name: {Name} | Description: {Description}";
+        }
     }
 }

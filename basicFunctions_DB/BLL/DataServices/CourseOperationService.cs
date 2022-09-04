@@ -16,9 +16,11 @@ namespace basicFunctions_DB.BLL.DataServices
         public async Task StarterAsync()
         {
             Console.WriteLine();
-            PrintMenu.CoursesOperations();
+            Printer.CoursesOperationsMenu();
             int menuItem = UiService.Controller();
             CourseService courseService = new CourseService(_context);
+            UserService userService = new UserService(_context);
+
             switch (menuItem)
             {
                 case 1:
@@ -47,6 +49,12 @@ namespace basicFunctions_DB.BLL.DataServices
                     }
                 case 6:
                     await AddSkillsAsync();
+                    break;
+                case 7:
+                    await userService.TakeCourse(UserInputService.GetId());
+                    break;
+                case 8:
+                    await userService.FinishCourse(UserInputService.GetId());
                     break;
                 case 9:
                     UiService uiService = new UiService(_context);

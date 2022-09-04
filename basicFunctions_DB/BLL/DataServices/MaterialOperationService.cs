@@ -15,7 +15,7 @@ namespace basicFunctions_DB.BLL.DataServices
         public async Task StarterAsync()
         {
             Console.WriteLine();
-            PrintMenu.MaterialOperations();
+            Printer.MaterialOperationsMenu();
             int menuItem = UiService.Controller();
             MaterialService materialService = new MaterialService(_context);
 
@@ -108,7 +108,7 @@ namespace basicFunctions_DB.BLL.DataServices
 
         private async Task<string?> ChooseMaterialTypeMenuAsync()
         {
-            PrintMenu.ChooseMaterialType();
+            Printer.ChooseMaterialTypeMenu();
             int menuItem = UiService.Controller();
             string type = null;
             switch (menuItem)

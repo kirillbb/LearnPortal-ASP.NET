@@ -13,9 +13,10 @@ namespace basicFunctions_DB.BLL.UI
             Console.WriteLine("Enter your password and press Enter key:");
             string password = Console.ReadLine();
 
-            PrintMenu.BreakLine();
+            Printer.BreakLine();
             return new UserDTO { Email = email, Password = password };
         }
+
         public static UserDTO Registration()
         {
             Console.WriteLine("Enter your Name and press Enter key:");
@@ -25,15 +26,22 @@ namespace basicFunctions_DB.BLL.UI
             Console.WriteLine("Enter your password and press Enter key:");
             string password = Console.ReadLine();
 
-            PrintMenu.BreakLine();
+            Printer.BreakLine();
             return new UserDTO { Email = email, Name = name, Password = password };
+        }
+
+        public  static string GetString()
+        {
+            string str = Console.ReadLine();
+            Printer.BreakLine();
+            return str;
         }
 
         public static int GetId()
         {
             Console.WriteLine("Enter Id:");
             int id = int.Parse(Console.ReadLine());
-            PrintMenu.BreakLine();
+            Printer.BreakLine();
             return id;
         }
 
@@ -61,7 +69,7 @@ namespace basicFunctions_DB.BLL.UI
                     Creator = user
                 };
 
-                PrintMenu.BreakLine();
+                Printer.BreakLine();
                 return book;
             }
             catch (Exception ex)
@@ -91,7 +99,7 @@ namespace basicFunctions_DB.BLL.UI
                     Creator = user
                 };
 
-                PrintMenu.BreakLine();
+                Printer.BreakLine();
                 return video;
             }
             catch (Exception ex)
@@ -121,7 +129,7 @@ namespace basicFunctions_DB.BLL.UI
                     Creator = user
                 };
 
-                PrintMenu.BreakLine();
+                Printer.BreakLine();
                 return publication;
             }
             catch (Exception ex)
@@ -146,7 +154,7 @@ namespace basicFunctions_DB.BLL.UI
                     Description = description
                 };
 
-                PrintMenu.BreakLine();
+                Printer.BreakLine();
                 return skillDTO;
             }
             catch (Exception ex)
@@ -173,7 +181,7 @@ namespace basicFunctions_DB.BLL.UI
                     CreatorId = user.Id
                 };
 
-                PrintMenu.BreakLine();
+                Printer.BreakLine();
                 return course;
             }
             catch (Exception ex)

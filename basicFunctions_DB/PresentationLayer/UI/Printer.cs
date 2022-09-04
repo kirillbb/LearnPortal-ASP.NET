@@ -1,23 +1,25 @@
-﻿namespace basicFunctions_DB.PresentationLayer
+﻿using basicFunctions_DB.BLL.DTO;
+
+namespace basicFunctions_DB.PresentationLayer
 {
-    internal static class PrintMenu
+    internal static class Printer
     {
-        public static void Authorization()
+        public static void AuthorizationMenu()
         {
-            Console.WriteLine("-----------------------------------------------------------------");
+            BreakLine();
             Console.WriteLine("-- Select a menu item by pressing the desired number and Enter --");
-            Console.WriteLine("-----------------------------------------------------------------");
+            BreakLine();
             Console.WriteLine("[1] Sign up   *if you don't have an account");
             Console.WriteLine("[2] Log in   *if you have an account\n");
             Console.WriteLine("[0] Close the program");
-            Console.WriteLine("-----------------------------------------------------------------");
+            BreakLine();
         }
 
-        internal static void SkillOperations()
+        internal static void SkillOperationsMenu()
         {
-            Console.WriteLine("-----------------------------------------------------------------");
+            BreakLine();
             Console.WriteLine("-- Select a menu item by pressing the desired number and Enter --");
-            Console.WriteLine("-----------------------------------------------------------------");
+            BreakLine();
             Console.WriteLine("[1] Create skill");
             Console.WriteLine("[2] Find skill by Id");
             Console.WriteLine("[3] Update skill");
@@ -25,44 +27,73 @@
             Console.WriteLine("[5] Show all skills\n");
             Console.WriteLine("[9] <--- Back");
             Console.WriteLine("[0] Close the program");
-            Console.WriteLine("-----------------------------------------------------------------");
+            BreakLine();
+        }
+        public static void Profile(UserDTO user)
+        {
+            BreakLine();
+            Console.WriteLine("|* Your profile: *");
+            Console.WriteLine($"|Id: {user.Id} | Name: {user.Name} | Email: {user.Email}");
+            BreakLine();
+            Console.WriteLine("|You are student in:");
+            foreach (var item in user.Courses)
+            {
+                Console.WriteLine("| " + item.ToString());
+            }
+            BreakLine();
+            BreakLine();
         }
 
-        public static void General()
+        public  static void ProfileMenu()
         {
-            Console.WriteLine("-----------------------------------------------------------------");
+            BreakLine();
             Console.WriteLine("-- Select a menu item by pressing the desired number and Enter --");
-            Console.WriteLine("-----------------------------------------------------------------");
+            BreakLine();
+            Console.WriteLine("[1] Change Email");
+            Console.WriteLine("[2] Change Password");
+            Console.WriteLine("[3] Take a course");
+            Console.WriteLine("[4] Finish a course");
+            Console.WriteLine("[9] <--- Back");
+            Console.WriteLine("[0] Close the program");
+            BreakLine();
+        }
+
+        public static void GeneralMenu()
+        {
+            BreakLine();
+            Console.WriteLine("-- Select a menu item by pressing the desired number and Enter --");
+            BreakLine();
             Console.WriteLine("[1] Materials operations");
             Console.WriteLine("[2] Courses operations");
             Console.WriteLine("[3] Skills operations");
-            Console.WriteLine("[4] Take a course");
-            Console.WriteLine("[5] User profile\n");
+            Console.WriteLine("[4] User profile\n");
             Console.WriteLine("[0] Close the program");
-            Console.WriteLine("-----------------------------------------------------------------");
+            BreakLine();
         }
 
-        public static void CoursesOperations()
+        public static void CoursesOperationsMenu()
         {
-            Console.WriteLine("-----------------------------------------------------------------");
+            BreakLine();
             Console.WriteLine("-- Select a menu item by pressing the desired number and Enter --");
-            Console.WriteLine("-----------------------------------------------------------------");
+            BreakLine();
             Console.WriteLine("[1] Create course");
             Console.WriteLine("[2] Find by Id course");
             Console.WriteLine("[3] Update course");
             Console.WriteLine("[4] Delete course");
             Console.WriteLine("[5] Show all courses");
             Console.WriteLine("[6] Add skills to course\n");
+            Console.WriteLine("[7] Take a course");
+            Console.WriteLine("[8] Finish a course");
             Console.WriteLine("[9] <--- Back");
             Console.WriteLine("[0] Close the program");
-            Console.WriteLine("-----------------------------------------------------------------");
+            BreakLine();
         }
 
-        public static void MaterialOperations()
+        public static void MaterialOperationsMenu()
         {
-            Console.WriteLine("-----------------------------------------------------------------");
+            BreakLine();
             Console.WriteLine("-- Select a menu item by pressing the desired number and Enter --");
-            Console.WriteLine("-----------------------------------------------------------------");
+            BreakLine();
             Console.WriteLine("[1] Create material");
             Console.WriteLine("[2] Find by Id material");
             Console.WriteLine("[3] Update material");
@@ -70,23 +101,23 @@
             Console.WriteLine("[5] Show all materials\n");
             Console.WriteLine("[9] <--- Back");
             Console.WriteLine("[0] Close the program");
-            Console.WriteLine("-----------------------------------------------------------------");
+            BreakLine();
         }
         public static void BreakLine()
         {
-            Console.WriteLine("-----------------------------------------------------------------");
+            Console.WriteLine("\n-----------------------------------------------------------------");
         }
-        internal static void ChooseMaterialType()
+        internal static void ChooseMaterialTypeMenu()
         {
-            Console.WriteLine("-----------------------------------------------------------------");
+            BreakLine();
             Console.WriteLine("-- Select a menu item by pressing the desired number and Enter --");
-            Console.WriteLine("-----------------------------------------------------------------");
+            BreakLine();
             Console.WriteLine("[1] Book");
             Console.WriteLine("[2] Video");
             Console.WriteLine("[3] Publication\n");
             Console.WriteLine("[9] <--- Back");
             Console.WriteLine("[0] Close the program");
-            Console.WriteLine("-----------------------------------------------------------------");
+            BreakLine();
         }
     }
 }

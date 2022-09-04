@@ -27,7 +27,7 @@ namespace basicFunctions_DB.BLL.UI
 
         public async Task GeneralMenuAsync()
         {
-            PrintMenu.General();
+            Printer.GeneralMenu();
             int menuItem = Controller();
             switch (menuItem)
             {
@@ -44,10 +44,8 @@ namespace basicFunctions_DB.BLL.UI
                     await skillOperationService.StarterAsync();
                     break;
                 case 4:
-                    throw new NotImplementedException(); //take a course
-                    break;
-                case 5:
-                    throw new NotImplementedException(); //user profile
+                    UserOperationService userOperationService = new UserOperationService(_context);
+                    await userOperationService.StarterAsync();
                     break;
                 case 0:
                     Environment.Exit(0);
@@ -62,7 +60,7 @@ namespace basicFunctions_DB.BLL.UI
 
         private async Task AuthorizationMenuAsync()
         {
-            PrintMenu.Authorization();
+            Printer.AuthorizationMenu();
             int menuItem = Controller();
             switch (menuItem)
             {
@@ -89,6 +87,12 @@ namespace basicFunctions_DB.BLL.UI
                     break;
             }
         }
+
+        public async Task Profile()
+        {
+
+        }
+
         public static int Controller()
         {
             int menuItem;
@@ -96,8 +100,8 @@ namespace basicFunctions_DB.BLL.UI
             {
             }
 
-            PrintMenu.BreakLine();
-            PrintMenu.BreakLine();
+            Printer.BreakLine();
+            Printer.BreakLine();
             return menuItem;
         }
     }

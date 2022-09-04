@@ -14,7 +14,7 @@ namespace basicFunctions_DB.BLL.DataServices
         public async Task StarterAsync()
         {
             Console.WriteLine();
-            PrintMenu.SkillOperations();
+            Printer.SkillOperationsMenu();
             int menuItem = UiService.Controller();
             SkillService skillService = new SkillService(_context);
 
