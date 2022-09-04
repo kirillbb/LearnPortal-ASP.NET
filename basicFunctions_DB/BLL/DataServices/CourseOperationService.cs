@@ -87,6 +87,7 @@ namespace basicFunctions_DB.BLL.DataServices
         {
             CourseService courseService = new CourseService(_context);
             var course = UserInputService.AddCourse(UiService.AuthorizatedUser);
+            course.CreatorId = UiService.AuthorizatedUser.Id;
             await courseService.CreateAsync(course);
         }
     }

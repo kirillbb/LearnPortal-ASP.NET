@@ -20,10 +20,10 @@
         {            
             await this._context.Courses.AddAsync(new Course
             {
-                //Creator = courseDTO.Creator,
                 Name = courseDTO.Name,
                 Description = courseDTO.Description,
                 CourseMaterials = courseDTO.CourseMaterials,
+                CreatorId = courseDTO.CreatorId,
                 CourseSkills = courseDTO.CourseSkills
             });
 
@@ -43,6 +43,7 @@
                     Name = course.Name,
                     Description = course.Description,
                     CourseMaterials = course.CourseMaterials,
+                    CreatorId = courseDTO.CreatorId,
                     CourseSkills = course.CourseSkills
                 };
 
@@ -64,6 +65,7 @@
                 course.Description = courseDTO.Description;
                 course.CourseSkills = courseDTO.CourseSkills;
                 course.CourseMaterials = courseDTO.CourseMaterials;
+                course.CreatorId = course.CreatorId;
 
                 this._context.Courses.Update(course);
                 await this._context.SaveChangesAsync();
