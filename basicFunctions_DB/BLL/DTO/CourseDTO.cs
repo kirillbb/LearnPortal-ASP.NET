@@ -1,6 +1,5 @@
 ﻿using basicFunctions_DB.DAL.CourseType;
 using basicFunctions_DB.DAL.MaterialType;
-using basicFunctions_DB.DAL.UserType;
 
 namespace basicFunctions_DB.BLL.DTO
 {

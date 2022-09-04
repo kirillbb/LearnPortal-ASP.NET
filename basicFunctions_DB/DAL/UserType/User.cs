@@ -1,7 +1,6 @@
 ﻿namespace basicFunctions_DB.DAL.UserType
 {
     using basicFunctions_DB.DAL.CourseType;
-    using System.ComponentModel.DataAnnotations.Schema;
 
     public class User
     {

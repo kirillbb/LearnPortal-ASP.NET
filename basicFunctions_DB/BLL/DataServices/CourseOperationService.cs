@@ -1,5 +1,4 @@
-﻿using basicFunctions_DB.BLL.DTO;
-using basicFunctions_DB.BLL.UI;
+﻿using basicFunctions_DB.BLL.UI;
 using basicFunctions_DB.DAL;
 using basicFunctions_DB.PresentationLayer;
 
@@ -8,9 +7,13 @@ namespace basicFunctions_DB.BLL.DataServices
     internal class CourseOperationService
     {
         private readonly ApplicationContext _context;
+        private readonly CourseService _courseService;
+        private readonly UserService _userService;
         public CourseOperationService(ApplicationContext context)
         {
             this._context = context;
+            this._courseService = new CourseService(_context);
+            this._userService = new UserService(_context);
         }
 
         public async Task StarterAsync()
@@ -18,8 +21,6 @@ namespace basicFunctions_DB.BLL.DataServices
             Console.WriteLine();
             Printer.CoursesOperationsMenu();
             int menuItem = UiService.Controller();
-            CourseService courseService = new CourseService(_context);
-            UserService userService = new UserService(_context);
 
             switch (menuItem)
             {
@@ -28,18 +29,18 @@ namespace basicFunctions_DB.BLL.DataServices
                     Console.WriteLine();
                     break;
                 case 2:
-                    var course = await courseService.GetAsync(UserInputService.GetId());
+                    var course = await _courseService.GetAsync(UserInputService.GetId());
                     Console.WriteLine(course.ToString());
                     break;
                 case 3:
                     await UpdateCourseAsync();
                     break;
                 case 4:
-                    await courseService.DeleteAsync(UserInputService.GetId());
+                    await _courseService.DeleteAsync(UserInputService.GetId());
                     break;
                 case 5:
                     {
-                        var allCourses = await courseService.GetAllAsync();
+                        var allCourses = await _courseService.GetAllAsync();
                         foreach (var courseDTO in allCourses)
                         {
                             Console.WriteLine(courseDTO.ToString());
@@ -51,10 +52,10 @@ namespace basicFunctions_DB.BLL.DataServices
                     await AddSkillsAsync();
                     break;
                 case 7:
-                    await userService.TakeCourse(UserInputService.GetId());
+                    await _userService.TakeCourse(UserInputService.GetId());
                     break;
                 case 8:
-                    await userService.FinishCourse(UserInputService.GetId());
+                    await _userService.FinishCourse(UserInputService.GetId());
                     break;
                 case 9:
                     UiService uiService = new UiService(_context);
@@ -73,22 +74,20 @@ namespace basicFunctions_DB.BLL.DataServices
 
         private async Task AddSkillsAsync()
         {
-            CourseService courseService = new CourseService(_context);
             SkillService skillService = new SkillService(_context);
             Console.WriteLine("Course");
             int courseId = UserInputService.GetId();
             Console.WriteLine("Skill");
             int skillId = UserInputService.GetId();
-            await courseService.AddSkill(courseId, skillId);
+            await _courseService.AddSkill(courseId, skillId);
         }
 
         private async Task UpdateCourseAsync()
         {
-            CourseService courseService = new CourseService(_context);
             var course = UserInputService.AddCourse(UiService.AuthorizatedUser);
             course.Id = UserInputService.GetId();
             course.CreatorId = UiService.AuthorizatedUser.Id;
-            await courseService.UpdateAsync(course);
+            await _courseService.UpdateAsync(course);
         } 
 
         private async Task CreateCourseAsync()

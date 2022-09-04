@@ -29,6 +29,7 @@ namespace basicFunctions_DB.PresentationLayer
             Console.WriteLine("[0] Close the program");
             BreakLine();
         }
+
         public static void Profile(UserDTO user)
         {
             BreakLine();
@@ -103,10 +104,12 @@ namespace basicFunctions_DB.PresentationLayer
             Console.WriteLine("[0] Close the program");
             BreakLine();
         }
+
         public static void BreakLine()
         {
             Console.WriteLine("\n-----------------------------------------------------------------");
         }
+
         internal static void ChooseMaterialTypeMenu()
         {
             BreakLine();

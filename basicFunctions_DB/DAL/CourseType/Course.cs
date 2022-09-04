@@ -1,6 +1,5 @@
 ﻿using basicFunctions_DB.DAL.MaterialType;
 using basicFunctions_DB.DAL.UserType;
-using System.ComponentModel.DataAnnotations.Schema;
 
 namespace basicFunctions_DB.DAL.CourseType
 {
