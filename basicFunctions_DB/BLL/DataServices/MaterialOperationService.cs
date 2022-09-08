@@ -7,17 +7,25 @@ namespace basicFunctions_DB.BLL.DataServices
     internal class MaterialOperationService
     {
         private readonly ApplicationContext _context;
+        private readonly MaterialService _materialService;
+        private readonly BookService _bookService;
+        private readonly VideoService _videoService;
+        private readonly PublicationService _publicationService;
+
         public MaterialOperationService(ApplicationContext context)
         {
             this._context = context;
+            this._materialService = new MaterialService(context);
+            this._bookService = new BookService(context);
+            this._publicationService = new PublicationService(context);
+            this._videoService = new VideoService(context);
         }
 
         public async Task StarterAsync()
         {
             Console.WriteLine();
-            PrintMenu.MaterialOperations();
+            Printer.MaterialOperationsMenu();
             int menuItem = UiService.Controller();
-            MaterialService materialService = new MaterialService(_context);
 
             switch (menuItem)
             {
@@ -31,11 +39,11 @@ namespace basicFunctions_DB.BLL.DataServices
                     await UpdateMaterialAsync(await ChooseMaterialTypeMenuAsync());
                     break;
                 case 4:
-                    materialService.DeleteAsync(UserInputService.GetId());
+                    _materialService.DeleteAsync(UserInputService.GetId());
                     break;
                 case 5:
                     {
-                        var allMaterials = await materialService.GetAllAsync();
+                        var allMaterials = await _materialService.GetAllAsync();
                         foreach (var material in allMaterials)
                         {
                             Console.WriteLine(material.ToString());
@@ -56,49 +64,45 @@ namespace basicFunctions_DB.BLL.DataServices
 
             await StarterAsync();
         }
+
         public async Task UpdateMaterialAsync(string materialType)
         {
             switch (materialType)
             {
                 case "book":
-                    BookService bookService = new BookService(_context);
                     var book = UserInputService.AddBook(UiService.AuthorizatedUser);
                     book.Id = UserInputService.GetId();
-                    await bookService.UpdateAsync(book);
+                    await _bookService.UpdateAsync(book);
                     break;
                 case "video":
-                    VideoService videoService = new VideoService(_context);
                     var video = UserInputService.AddVideo(UiService.AuthorizatedUser);
                     video.Id = UserInputService.GetId();
-                    await videoService.UpdateAsync(video);
+                    await _videoService.UpdateAsync(video);
                     break;
                 case "publication":
-                    PublicationService publicationService = new PublicationService(_context);
                     var publication = UserInputService.AddPublication(UiService.AuthorizatedUser);
                     publication.Id = UserInputService.GetId();
-                    await publicationService.UpdateAsync(publication);
+                    await _publicationService.UpdateAsync(publication);
                     break;
                 default:
                     break;
             }
         }
+
         private async Task FindMaterialAsync(string materialType)
         {
             switch (materialType)
             {
                 case "book":
-                    BookService bookService = new BookService(_context);
-                    var book = await bookService.GetAsync(UserInputService.GetId());
+                    var book = await _bookService.GetAsync(UserInputService.GetId());
                     Console.WriteLine(book.ToString());
                     break;
                 case "video":
-                    VideoService videoService = new VideoService(_context);
-                    var video = await videoService.GetAsync(UserInputService.GetId());
+                    var video = await _videoService.GetAsync(UserInputService.GetId());
                     Console.WriteLine(video.ToString());
                     break;
                 case "publication":
-                    PublicationService publicationService = new PublicationService(_context);
-                    var publication = await publicationService.GetAsync(UserInputService.GetId());
+                    var publication = await _publicationService.GetAsync(UserInputService.GetId());
                     Console.WriteLine(publication.ToString());
                     break;
                 default:
@@ -108,7 +112,7 @@ namespace basicFunctions_DB.BLL.DataServices
 
         private async Task<string?> ChooseMaterialTypeMenuAsync()
         {
-            PrintMenu.ChooseMaterialType();
+            Printer.ChooseMaterialTypeMenu();
             int menuItem = UiService.Controller();
             string type = null;
             switch (menuItem)
@@ -146,19 +150,16 @@ namespace basicFunctions_DB.BLL.DataServices
             switch (materialType)
             {
                 case "book":
-                    BookService bookService = new BookService(_context);
                     var book = UserInputService.AddBook(UiService.AuthorizatedUser);
-                    await bookService.CreateAsync(book);
+                    await _bookService.CreateAsync(book);
                     break;
                 case "video":
-                    VideoService videoService = new VideoService(_context);
                     var video = UserInputService.AddVideo(UiService.AuthorizatedUser);
-                    await videoService.CreateAsync(video);
+                    await _videoService.CreateAsync(video);
                     break;
                 case "publication":
-                    PublicationService publicationService = new PublicationService(_context);
                     var publication = UserInputService.AddPublication(UiService.AuthorizatedUser);
-                    await publicationService.CreateAsync(publication);
+                    await _publicationService.CreateAsync(publication);
                     break;
                 default:
                     break;

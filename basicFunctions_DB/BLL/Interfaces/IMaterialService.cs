@@ -5,6 +5,7 @@ namespace basicFunctions_DB.BLL.Interfaces
     internal interface IMaterialService
     {
         Task<List<MaterialDTO>> GetAllAsync();
+
         Task DeleteAsync(int id);
     }
 }

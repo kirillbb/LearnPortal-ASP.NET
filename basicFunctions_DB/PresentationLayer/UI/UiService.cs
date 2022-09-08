@@ -9,10 +9,21 @@ namespace basicFunctions_DB.BLL.UI
     internal class UiService
     {
         private readonly ApplicationContext _context;
+        private readonly MaterialOperationService _materialOperationService;
+        private readonly CourseOperationService _courseOperationService;
+        private readonly SkillOperationService _skillOperationService;
+        private readonly UserOperationService _userOperationService;
+
+
         public static User AuthorizatedUser { get; private set; }
+
         public UiService(ApplicationContext context)
         {
             this._context = context;
+            this._materialOperationService = new MaterialOperationService(context);
+            this._courseOperationService = new CourseOperationService(context);
+            this._skillOperationService = new SkillOperationService(context);
+            this._userOperationService = new UserOperationService(context);
         }
 
         public async Task Start()
@@ -27,17 +38,21 @@ namespace basicFunctions_DB.BLL.UI
 
         public async Task GeneralMenuAsync()
         {
-            PrintMenu.General();
+            Printer.GeneralMenu();
             int menuItem = Controller();
             switch (menuItem)
             {
                 case 1:
-                    MaterialOperationService materialOperationService = new MaterialOperationService(_context);
-                    await materialOperationService.StarterAsync();
+                    await _materialOperationService.StarterAsync();
                     break;
                 case 2:
-                    CourseOperationService courseOperationService = new CourseOperationService(_context);
-                   await courseOperationService.StarterAsync();
+                    await _courseOperationService.StarterAsync();
+                    break;
+                case 3:
+                    await _skillOperationService.StarterAsync();
+                    break;
+                case 4:
+                    await _userOperationService.StarterAsync();
                     break;
                 case 0:
                     Environment.Exit(0);
@@ -52,7 +67,7 @@ namespace basicFunctions_DB.BLL.UI
 
         private async Task AuthorizationMenuAsync()
         {
-            PrintMenu.Authorization();
+            Printer.AuthorizationMenu();
             int menuItem = Controller();
             switch (menuItem)
             {
@@ -79,6 +94,7 @@ namespace basicFunctions_DB.BLL.UI
                     break;
             }
         }
+
         public static int Controller()
         {
             int menuItem;
@@ -86,6 +102,8 @@ namespace basicFunctions_DB.BLL.UI
             {
             }
 
+            Printer.BreakLine();
+            Printer.BreakLine();
             return menuItem;
         }
     }
