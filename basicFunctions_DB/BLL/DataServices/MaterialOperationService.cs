@@ -64,6 +64,7 @@ namespace basicFunctions_DB.BLL.DataServices
 
             await StarterAsync();
         }
+
         public async Task UpdateMaterialAsync(string materialType)
         {
             switch (materialType)
@@ -87,6 +88,7 @@ namespace basicFunctions_DB.BLL.DataServices
                     break;
             }
         }
+
         private async Task FindMaterialAsync(string materialType)
         {
             switch (materialType)

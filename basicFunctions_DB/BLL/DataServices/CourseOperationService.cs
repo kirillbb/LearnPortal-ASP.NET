@@ -9,6 +9,7 @@ namespace basicFunctions_DB.BLL.DataServices
         private readonly ApplicationContext _context;
         private readonly CourseService _courseService;
         private readonly UserService _userService;
+
         public CourseOperationService(ApplicationContext context)
         {
             this._context = context;
