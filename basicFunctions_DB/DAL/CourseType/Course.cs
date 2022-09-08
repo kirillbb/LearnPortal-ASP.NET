@@ -15,6 +15,13 @@ namespace basicFunctions_DB.DAL.CourseType
 
         public List<Skill>? CourseSkills { get; set; }
 
-        public User? Creator { get; set; }
+        public int CreatorId { get; set; }
+
+        public List<User> Students { get; set; }
+
+        public override string ToString()
+        {
+            return $"ID: {Id} | Name: {Name} | Description: {Description}";
+        }
     }
 }

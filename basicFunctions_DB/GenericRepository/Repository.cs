@@ -9,7 +9,6 @@
         private DbContext _context = null;
         private DbSet<T> _dbSet = null;
 
-
         public Repository()
         {
             this._context = new ApplicationContext();

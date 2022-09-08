@@ -19,10 +19,10 @@
         {            
             await this._context.Courses.AddAsync(new Course
             {
-                Creator = courseDTO.Creator,
                 Name = courseDTO.Name,
                 Description = courseDTO.Description,
                 CourseMaterials = courseDTO.CourseMaterials,
+                CreatorId = courseDTO.CreatorId,
                 CourseSkills = courseDTO.CourseSkills
             });
 
@@ -31,7 +31,7 @@
 
         public async Task<CourseDTO?> GetAsync(int id)
         {
-            var course = await this._context.Courses.Include(x => x.Creator).FirstOrDefaultAsync(x => x.Id == id);
+            var course = await this._context.Courses.FirstOrDefaultAsync(x => x.Id == id);
             CourseDTO courseDTO = null;
 
             if (course != null)
@@ -42,8 +42,8 @@
                     Name = course.Name,
                     Description = course.Description,
                     CourseMaterials = course.CourseMaterials,
-                    CourseSkills = course.CourseSkills,
-                    Creator = course.Creator
+                    CreatorId = courseDTO.CreatorId,
+                    CourseSkills = course.CourseSkills
                 };
 
                 return courseDTO;
@@ -64,6 +64,7 @@
                 course.Description = courseDTO.Description;
                 course.CourseSkills = courseDTO.CourseSkills;
                 course.CourseMaterials = courseDTO.CourseMaterials;
+                course.CreatorId = course.CreatorId;
 
                 this._context.Courses.Update(course);
                 await this._context.SaveChangesAsync();
@@ -72,7 +73,7 @@
 
         public async Task<List<CourseDTO>> GetAllAsync()
         {
-            var courses = await this._context.Courses.Include(x => x.Creator).ToListAsync();
+            var courses = await this._context.Courses.ToListAsync();
             List<CourseDTO> courseDTOs = new List<CourseDTO>();
             foreach (var item in courses)
             {
@@ -82,14 +83,37 @@
                     Name = item.Name,
                     Description = item.Description,
                     CourseMaterials = item.CourseMaterials,
-                    CourseSkills = item.CourseSkills,
-                    Creator = item.Creator
+                    CourseSkills = item.CourseSkills
                 };
 
                 courseDTOs.Add(courseDTO);
             }
 
             return courseDTOs;
+        }
+
+        internal async Task AddSkill(int courseId, int skillId)
+        {
+            var course = await this._context.Courses.Include(x => x.CourseSkills).FirstOrDefaultAsync(x => x.Id == courseId);
+            var skill = await this._context.Skills.FirstOrDefaultAsync(x => x.Id == skillId);
+
+            if (course != null)
+            {
+                List<Skill> skills;
+                if (course.CourseSkills == null)
+                {
+                    skills = new List<Skill>();
+                }
+                else
+                {
+                    skills = course.CourseSkills;
+                }
+
+                skills.Add(skill);
+                course.CourseSkills = skills;
+                this._context.Courses.Update(course);
+                await this._context.SaveChangesAsync();
+            }
         }
 
         public async Task DeleteAsync(int id)

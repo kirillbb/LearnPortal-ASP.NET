@@ -1,6 +1,5 @@
 ﻿using basicFunctions_DB.DAL.CourseType;
 using basicFunctions_DB.DAL.MaterialType;
-using basicFunctions_DB.DAL.UserType;
 
 namespace basicFunctions_DB.BLL.DTO
 {
@@ -16,7 +15,8 @@ namespace basicFunctions_DB.BLL.DTO
 
         public List<Skill>? CourseSkills { get; set; }
 
-        public User? Creator { get; set; }
+        public int CreatorId { get; set; }
+
         public override string ToString()
         {
             return $"ID: {Id} | Name: {Name} | Description: {Description}";
