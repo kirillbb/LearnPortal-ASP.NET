@@ -8,11 +8,13 @@ namespace basicFunctions_DB.BLL.DataServices
     {
         private readonly ApplicationContext _context;
         private readonly SkillService _skillService;
+
         public SkillOperationService(ApplicationContext context)
         {
             this._context = context;
             this._skillService = new SkillService(context);
         }
+
         public async Task StarterAsync()
         {
             Console.WriteLine();
