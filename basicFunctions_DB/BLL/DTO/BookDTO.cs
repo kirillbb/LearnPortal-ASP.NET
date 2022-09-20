@@ -1,6 +1,6 @@
 ﻿namespace basicFunctions_DB.BLL.DTO
 {
-    internal class BookDTO : MaterialDTO
+    public class BookDTO : MaterialDTO
     {
         public string? Author { get; set; }
 

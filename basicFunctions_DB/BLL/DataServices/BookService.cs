@@ -19,7 +19,7 @@ namespace basicFunctions_DB.BLL.DataServices
             await this._context.Materials.AddAsync(new Book
             {
                 Title = bookDTO.Title,
-                Creator = bookDTO.Creator,
+                CreatorUserName = bookDTO.CreatorUserName,
                 Pages = bookDTO.Pages,
                 BookFormat = bookDTO.BookFormat,
                 Author = bookDTO.Author,
@@ -31,14 +31,14 @@ namespace basicFunctions_DB.BLL.DataServices
 
         public async Task<List<BookDTO>> GetAllAsync()
         {
-            var books = await this._context.Books.Include(x => x.Creator).ToListAsync();
+            var books = await this._context.Books.ToListAsync();
             List<BookDTO> bookDTOs = new List<BookDTO>();
             foreach (var item in books)
             {
                 BookDTO bookDTO = new BookDTO
                 {
                     Title = item.Title,
-                    Creator = item.Creator,
+                    CreatorUserName = item.CreatorUserName,
                     Pages = item.Pages,
                     BookFormat = item.BookFormat,
                     Author = item.Author,
@@ -54,7 +54,7 @@ namespace basicFunctions_DB.BLL.DataServices
 
         public async Task<BookDTO?> GetAsync(int id)
         {
-            var book = await this._context.Books.Include(x => x.Creator).FirstOrDefaultAsync(x => x.Id == id);
+            var book = await this._context.Books.FirstOrDefaultAsync(x => x.Id == id);
             BookDTO bookDTO = null;
 
             if (book != null)
@@ -62,7 +62,7 @@ namespace basicFunctions_DB.BLL.DataServices
                 bookDTO = new BookDTO
                 {
                     Title = book.Title,
-                    Creator = book.Creator,
+                    CreatorUserName = book.CreatorUserName,
                     PublicationDate = book.PublicationDate,
                     Author = book.Author,
                     Pages = book.Pages,
@@ -85,7 +85,7 @@ namespace basicFunctions_DB.BLL.DataServices
             if (book != null)
             {
                 book.Title = bookDTO.Title;
-                book.Creator = bookDTO.Creator;
+                book.CreatorUserName = bookDTO.CreatorUserName;
                 book.Pages = bookDTO.Pages;
                 book.BookFormat = bookDTO.BookFormat;
                 book.Author = bookDTO.Author;

@@ -31,24 +31,19 @@
 
         public async Task<CourseDTO?> GetAsync(int? id)
         {
-            var course = await this._context.Courses.FirstOrDefaultAsync(x => x.Id == id);
-            CourseDTO courseDTO = new CourseDTO();
+            var courseDto = await this._context.Courses
+                .Select(x => new CourseDTO()
+                {
+                    Id = x.Id,
+                    Name = x.Name,
+                    Description = x.Description,
+                    CourseMaterials = x.CourseMaterials,
+                    CreatorUserName = x.CreatorUserName,
+                    CourseSkills = x.CourseSkills,
+                })
+                .FirstOrDefaultAsync(x => x.Id == id);
 
-            if (course != null)
-            {
-                courseDTO.Id = course.Id;
-                courseDTO.Name = course.Name;
-                courseDTO.Description = course.Description;
-                courseDTO.CourseMaterials = course.CourseMaterials;
-                courseDTO.CreatorUserName = course.CreatorUserName;
-                courseDTO.CourseSkills = course.CourseSkills;
-
-                return courseDTO;
-            }
-            else
-            {
-                return null;
-            }
+            return courseDto;
         }
 
         public async Task UpdateAsync(CourseDTO courseDTO)

@@ -66,7 +66,7 @@ namespace basicFunctions_DB.BLL.UI
                     Author = author,
                     Pages = pages,
                     BookFormat = format,
-                    Creator = user
+                    CreatorUserName = user.Email
                 };
 
                 Printer.BreakLine();
@@ -96,7 +96,7 @@ namespace basicFunctions_DB.BLL.UI
                     Title = title,
                     Resolution = resolution,
                     Duration = duration,
-                    Creator = user
+                    CreatorUserName = user.Email
                 };
 
                 Printer.BreakLine();
@@ -126,7 +126,7 @@ namespace basicFunctions_DB.BLL.UI
                     Title = title,
                     CreationDate = date,
                     Source = source,
-                    Creator = user
+                    CreatorUserName = user.Email
                 };
 
                 Printer.BreakLine();

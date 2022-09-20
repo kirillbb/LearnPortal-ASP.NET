@@ -8,6 +8,8 @@
 
         public string? Title { get; set; }
 
-        public User Creator { get; set; }
+        public string CreatorUserName { get; set; }
+
+        public string Discriminator { get; set; }
     }
 }

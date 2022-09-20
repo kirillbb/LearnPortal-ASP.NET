@@ -1,6 +1,6 @@
 ﻿namespace basicFunctions_DB.BLL.DTO
 {
-    internal class SkillDTO
+    public class SkillDTO
     {
         public string? Name { get; set; }
 

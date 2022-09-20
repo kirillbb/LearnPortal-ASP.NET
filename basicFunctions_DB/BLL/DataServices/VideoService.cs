@@ -22,7 +22,7 @@ namespace basicFunctions_DB.BLL.DataServices
                 Title = videoDTO.Title,
                 Duration = videoDTO.Duration,
                 Resolution = videoDTO.Resolution,
-                Creator = videoDTO.Creator
+                CreatorUserName = videoDTO.CreatorUserName
             });
 
             await this._context.SaveChangesAsync();
@@ -30,7 +30,7 @@ namespace basicFunctions_DB.BLL.DataServices
 
         public async Task<List<VideoDTO>> GetAllAsync()
         {
-            var videos = await this._context.Videos.Include(x => x.Creator).ToListAsync();
+            var videos = await this._context.Videos.ToListAsync();
             List<VideoDTO> videoDTOs = new List<VideoDTO>();
             foreach (var item in videos)
             {
@@ -38,19 +38,20 @@ namespace basicFunctions_DB.BLL.DataServices
                 {
                     Resolution = item.Resolution,
                     Duration = item.Duration,
-                    Creator = item.Creator,
+                    CreatorUserName = item.CreatorUserName,
                     Id = item.Id,
                     Title = item.Title
                 };
 
                 videoDTOs.Add(videoDTO);
             }
+
             return videoDTOs;
         }
 
         public async Task<VideoDTO?> GetAsync(int id)
         {
-            var video = await this._context.Videos.Include(x => x.Creator).FirstOrDefaultAsync(x => x.Id == id);
+            var video = await this._context.Videos.FirstOrDefaultAsync(x => x.Id == id);
             VideoDTO videoDTO = null;
 
             if (video != null)
@@ -59,7 +60,7 @@ namespace basicFunctions_DB.BLL.DataServices
                 {
                     Resolution = video.Resolution,
                     Duration = video.Duration,
-                    Creator = video.Creator,
+                    CreatorUserName = video.CreatorUserName,
                     Id = video.Id,
                     Title = video.Title
                 };
@@ -81,7 +82,7 @@ namespace basicFunctions_DB.BLL.DataServices
                 video.Title = videoDTO.Title;
                 video.Resolution = videoDTO.Resolution;
                 video.Duration = videoDTO.Duration;
-                video.Creator = videoDTO.Creator;
+                video.CreatorUserName = videoDTO.CreatorUserName;
 
                 await this._context.SaveChangesAsync();
             }

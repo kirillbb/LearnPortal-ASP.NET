@@ -21,7 +21,7 @@ namespace basicFunctions_DB.BLL.DataServices
             {
                 Title = publicationDTO.Title,
                 CreationDate = publicationDTO.CreationDate,
-                Creator = publicationDTO.Creator,
+                CreatorUserName = publicationDTO.CreatorUserName,
                 Source = publicationDTO.Source
             });
 
@@ -30,14 +30,14 @@ namespace basicFunctions_DB.BLL.DataServices
 
         public async Task<List<PublicationDTO>> GetAllAsync()
         {
-            var publications = await this._context.Publications.Include(x => x.Creator).ToListAsync();
+            var publications = await this._context.Publications.ToListAsync();
             List<PublicationDTO> publicationDTOs = new List<PublicationDTO>();
             foreach (var item in publications)
             {
                 PublicationDTO publicationDTO = new PublicationDTO
                 {
                     CreationDate = item.CreationDate,
-                    Creator = item.Creator,
+                    CreatorUserName = item.CreatorUserName,
                     Id = item.Id,
                     Source = item.Source,
                     Title = item.Title
@@ -51,7 +51,7 @@ namespace basicFunctions_DB.BLL.DataServices
 
         public async Task<PublicationDTO?> GetAsync(int id)
         {
-            var publication = await this._context.Publications.Include(x => x.Creator).FirstOrDefaultAsync(x => x.Id == id);
+            var publication = await this._context.Publications.FirstOrDefaultAsync(x => x.Id == id);
             PublicationDTO publicationDTO = null;
 
             if (publication != null)
@@ -59,7 +59,7 @@ namespace basicFunctions_DB.BLL.DataServices
                 publicationDTO = new PublicationDTO
                 {
                     Title = publication.Title,
-                    Creator = publication.Creator,
+                    CreatorUserName = publication.CreatorUserName,
                     CreationDate = publication.CreationDate,
                     Source = publication.Source,
                     Id = publication.Id
@@ -80,7 +80,7 @@ namespace basicFunctions_DB.BLL.DataServices
             if (publication != null)
             {
                 publication.Title = publicationDTO.Title;
-                publication.Creator = publicationDTO.Creator;
+                publication.CreatorUserName = publicationDTO.CreatorUserName;
                 publication.CreationDate = publicationDTO.CreationDate;
                 publication.Source = publicationDTO.Source;
 
