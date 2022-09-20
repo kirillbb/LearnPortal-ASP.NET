@@ -1,12 +1,10 @@
-﻿@model IEnumerable<basicFunctions_DB.BLL.DTO.CourseDTO>
+﻿@model IEnumerable<basicFunctions_DB.BLL.DTO.MaterialDTO>
 
 @{
-    ViewData["Title"] = "Courses";
+    ViewData["Title"] = "Materials";
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
-
-<h1>Courses</h1>
-
+<h1>Materials</h1>
 <p>
     <a asp-action="Create">Create New</a>
 </p>
@@ -17,11 +15,11 @@
                 #
             </th>
             <th>
-                @Html.DisplayNameFor(model => model.Name)
+                @Html.DisplayNameFor(model => model.Title)
             </th>
-            <th>
-                @Html.DisplayNameFor(model => model.Description)
-            </th>
+            @*<th>
+                Type
+            </th>*@
             <th>
                 Creator's email
             </th>
@@ -35,17 +33,17 @@
                 @Html.DisplayFor(modelItem => item.Id)
             </td>
             <td>
-                @Html.DisplayFor(modelItem => item.Name)
+                @Html.DisplayFor(modelItem => item.Title)
             </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.Description)
-            </td>
+            @*<td>
+                @Html.DisplayFor(modelItem => item.Discriminator)
+            </td>*@
             <td>
                 @Html.DisplayFor(modelItem => item.CreatorUserName)
             </td>
             <td>
-                <a asp-action="Edit" asp-route-id="@item.Id">Edit</a> |
-                <a asp-action="Details" asp-route-id="@item.Id">Details</a> |
+                @*<a asp-action="Edit" asp-route-id="@item.Id">Edit</a> |
+                <a asp-action="Details" asp-route-id="@item.Id">Details</a> |*@
                 <a asp-action="Delete" asp-route-id="@item.Id">Delete</a>
             </td>
         </tr>
