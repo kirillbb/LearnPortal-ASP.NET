@@ -178,7 +178,7 @@ namespace basicFunctions_DB.BLL.UI
                 {
                     Name = name,
                     Description = description,
-                    CreatorId = user.Id
+                    //CreatorId = user.Id
                 };
 
                 Printer.BreakLine();

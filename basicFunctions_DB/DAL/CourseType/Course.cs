@@ -1,5 +1,6 @@
 ﻿using basicFunctions_DB.DAL.MaterialType;
 using basicFunctions_DB.DAL.UserType;
+using System.ComponentModel.DataAnnotations;
 
 namespace basicFunctions_DB.DAL.CourseType
 {
@@ -15,7 +16,8 @@ namespace basicFunctions_DB.DAL.CourseType
 
         public List<Skill>? CourseSkills { get; set; }
 
-        public int CreatorId { get; set; }
+        [Required(ErrorMessage = "You must be authorizated!")]
+        public string CreatorUserName { get; set; }
 
         public List<User> Students { get; set; }
 

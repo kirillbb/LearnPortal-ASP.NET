@@ -1,25 +1,30 @@
 ﻿using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
-using LearnPortalASP.CourseType;
-using LearnPortalASP.Data;
+using basicFunctions_DB.BLL.DataServices;
+using basicFunctions_DB.DAL;
+using basicFunctions_DB.BLL.DTO;
 
 namespace LearnPortalASP.Controllers
 {
     public class CoursesController : Controller
     {
-        private readonly ApplicationDbContext _context;
+        private readonly ApplicationContext _context;
+        private readonly CourseService _courseService;
 
-        public CoursesController(ApplicationDbContext context)
+        public CoursesController(ApplicationContext context)
         {
             _context = context;
+            this._courseService = new CourseService(_context);
         }
 
         // GET: Courses
         public async Task<IActionResult> Index()
         {
-              return _context.Courses != null ? 
-                          View(await _context.Courses.ToListAsync()) :
-                          Problem("Entity set 'ApplicationDbContext.Courses'  is null.");
+            var courses = await _courseService.GetAllAsync();
+
+            return courses != null ?
+                        View(courses) :
+                        Problem("Entity set 'ApplicationContext.Courses'  is null.");
         }
 
         // GET: Courses/Details/5
@@ -30,8 +35,7 @@ namespace LearnPortalASP.Controllers
                 return NotFound();
             }
 
-            var course = await _context.Courses
-                .FirstOrDefaultAsync(m => m.Id == id);
+            var course = await _courseService.GetAsync(id);
             if (course == null)
             {
                 return NotFound();
@@ -51,15 +55,14 @@ namespace LearnPortalASP.Controllers
         // For more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Create([Bind("Id,Name,Description,CreatorId")] Course course)
+        public async Task<IActionResult> Create([Bind("Id,Name,Description,CreatorUserName")] CourseDTO course)
         {
             if (ModelState.IsValid)
             {
-                _context.Add(course);
-                await _context.SaveChangesAsync();
+                await _courseService.CreateAsync(course);
                 return RedirectToAction(nameof(Index));
             }
-            
+
             return View(course);
         }
 
@@ -71,7 +74,7 @@ namespace LearnPortalASP.Controllers
                 return NotFound();
             }
 
-            var course = await _context.Courses.FindAsync(id);
+            var course = await _courseService.GetAsync(id);
             if (course == null)
             {
                 return NotFound();
@@ -84,7 +87,7 @@ namespace LearnPortalASP.Controllers
         // For more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Edit(int id, [Bind("Id,Name,Description,CreatorId")] Course course)
+        public async Task<IActionResult> Edit(int id, [Bind("Id,Name,Description,CreatorUserName")] CourseDTO course)
         {
             if (id != course.Id)
             {
@@ -95,8 +98,7 @@ namespace LearnPortalASP.Controllers
             {
                 try
                 {
-                    _context.Update(course);
-                    await _context.SaveChangesAsync();
+                    await _courseService.UpdateAsync(course);
                 }
                 catch (DbUpdateConcurrencyException)
                 {
@@ -122,8 +124,7 @@ namespace LearnPortalASP.Controllers
                 return NotFound();
             }
 
-            var course = await _context.Courses
-                .FirstOrDefaultAsync(m => m.Id == id);
+            var course = await _courseService.GetAsync(id);
             if (course == null)
             {
                 return NotFound();
@@ -141,13 +142,12 @@ namespace LearnPortalASP.Controllers
             {
                 return Problem("Entity set 'ApplicationDbContext.Courses'  is null.");
             }
-            var course = await _context.Courses.FindAsync(id);
+            var course = await _courseService.GetAsync(id);
             if (course != null)
             {
-                _context.Courses.Remove(course);
+                await _courseService.DeleteAsync(course.Id);
             }
             
-            await _context.SaveChangesAsync();
             return RedirectToAction(nameof(Index));
         }
 

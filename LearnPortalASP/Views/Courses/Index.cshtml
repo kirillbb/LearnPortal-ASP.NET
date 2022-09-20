@@ -1,4 +1,4 @@
-﻿@model IEnumerable<LearnPortalASP.CourseType.Course>
+﻿@model IEnumerable<basicFunctions_DB.BLL.DTO.CourseDTO>
 
 @{
     ViewData["Title"] = "Index";
@@ -23,7 +23,7 @@
                 @Html.DisplayNameFor(model => model.Description)
             </th>
             <th>
-                @Html.DisplayNameFor(model => model.CreatorId)
+                @Html.DisplayNameFor(model => model.CreatorUserName)
             </th>
             <th></th>
         </tr>
@@ -41,7 +41,7 @@
                 @Html.DisplayFor(modelItem => item.Description)
             </td>
             <td>
-                @Html.DisplayFor(modelItem => item.CreatorId)
+                @Html.DisplayFor(modelItem => item.CreatorUserName)
             </td>
             <td>
                 <a asp-action="Edit" asp-route-id="@item.Id">Edit</a> |

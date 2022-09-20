@@ -1,6 +1,6 @@
-﻿using LearnPortalASP.CourseType;
-using LearnPortalASP.MaterialType;
-using LearnPortalASP.UserType;
+﻿using basicFunctions_DB.DAL.CourseType;
+using basicFunctions_DB.DAL.MaterialType;
+using basicFunctions_DB.DAL.UserType;
 using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore;
 namespace LearnPortalASP.Data
@@ -12,7 +12,7 @@ namespace LearnPortalASP.Data
         {
         }
 
-        public DbSet<User> Users { get; set; } = null!;
+        public virtual DbSet<User> Users { get; set; } = null!;
 
         public DbSet<Material> Materials { get; set; } = null!;
 

@@ -4,18 +4,16 @@ using LearnPortalASP.Data;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
-using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 
 #nullable disable
 
-namespace LearnPortalASP.Data.Migrations
+namespace LearnPortalASP.Migrations
 {
     [DbContext(typeof(ApplicationDbContext))]
-    [Migration("20220910061403_reworkContext")]
-    partial class reworkContext
+    partial class ApplicationDbContextModelSnapshot : ModelSnapshot
     {
-        protected override void BuildTargetModel(ModelBuilder modelBuilder)
+        protected override void BuildModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -24,7 +22,37 @@ namespace LearnPortalASP.Data.Migrations
 
             SqlServerModelBuilderExtensions.UseIdentityColumns(modelBuilder, 1L, 1);
 
-            modelBuilder.Entity("basicFunctions_DB.DAL.CourseType.Course", b =>
+            modelBuilder.Entity("CourseSkill", b =>
+                {
+                    b.Property<int>("CourseSkillsId")
+                        .HasColumnType("int");
+
+                    b.Property<int>("CoursesId")
+                        .HasColumnType("int");
+
+                    b.HasKey("CourseSkillsId", "CoursesId");
+
+                    b.HasIndex("CoursesId");
+
+                    b.ToTable("CourseSkill");
+                });
+
+            modelBuilder.Entity("CourseUser", b =>
+                {
+                    b.Property<int>("CurrentCoursesId")
+                        .HasColumnType("int");
+
+                    b.Property<int>("StudentsId")
+                        .HasColumnType("int");
+
+                    b.HasKey("CurrentCoursesId", "StudentsId");
+
+                    b.HasIndex("StudentsId");
+
+                    b.ToTable("CourseUser");
+                });
+
+            modelBuilder.Entity("LearnPortalASP.CourseType.Course", b =>
                 {
                     b.Property<int>("Id")
                         .ValueGeneratedOnAdd()
@@ -32,8 +60,9 @@ namespace LearnPortalASP.Data.Migrations
 
                     SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"), 1L, 1);
 
-                    b.Property<int>("CreatorId")
-                        .HasColumnType("int");
+                    b.Property<string>("CreatorUserName")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
 
                     b.Property<string>("Description")
                         .HasColumnType("nvarchar(max)");
@@ -46,7 +75,7 @@ namespace LearnPortalASP.Data.Migrations
                     b.ToTable("Courses");
                 });
 
-            modelBuilder.Entity("basicFunctions_DB.DAL.CourseType.Skill", b =>
+            modelBuilder.Entity("LearnPortalASP.CourseType.Skill", b =>
                 {
                     b.Property<int>("Id")
                         .ValueGeneratedOnAdd()
@@ -65,7 +94,7 @@ namespace LearnPortalASP.Data.Migrations
                     b.ToTable("Skills");
                 });
 
-            modelBuilder.Entity("basicFunctions_DB.DAL.MaterialType.Material", b =>
+            modelBuilder.Entity("LearnPortalASP.MaterialType.Material", b =>
                 {
                     b.Property<int>("Id")
                         .ValueGeneratedOnAdd()
@@ -97,7 +126,7 @@ namespace LearnPortalASP.Data.Migrations
                     b.HasDiscriminator<string>("Discriminator").HasValue("Material");
                 });
 
-            modelBuilder.Entity("basicFunctions_DB.DAL.UserType.User", b =>
+            modelBuilder.Entity("LearnPortalASP.UserModel.User", b =>
                 {
                     b.Property<int>("Id")
                         .ValueGeneratedOnAdd()
@@ -122,7 +151,7 @@ namespace LearnPortalASP.Data.Migrations
                     b.ToTable("Users");
                 });
 
-            modelBuilder.Entity("basicFunctions_DB.DAL.UserType.UserSkillState", b =>
+            modelBuilder.Entity("LearnPortalASP.UserModel.UserSkillState", b =>
                 {
                     b.Property<int>("Id")
                         .ValueGeneratedOnAdd()
@@ -136,7 +165,7 @@ namespace LearnPortalASP.Data.Migrations
                     b.Property<int>("SkillId")
                         .HasColumnType("int");
 
-                    b.Property<int>("UserId")
+                    b.Property<int?>("UserId")
                         .HasColumnType("int");
 
                     b.HasKey("Id");
@@ -146,36 +175,6 @@ namespace LearnPortalASP.Data.Migrations
                     b.HasIndex("UserId");
 
                     b.ToTable("UserSkillState");
-                });
-
-            modelBuilder.Entity("CourseSkill", b =>
-                {
-                    b.Property<int>("CourseSkillsId")
-                        .HasColumnType("int");
-
-                    b.Property<int>("CoursesId")
-                        .HasColumnType("int");
-
-                    b.HasKey("CourseSkillsId", "CoursesId");
-
-                    b.HasIndex("CoursesId");
-
-                    b.ToTable("CourseSkill");
-                });
-
-            modelBuilder.Entity("CourseUser", b =>
-                {
-                    b.Property<int>("CoursesId")
-                        .HasColumnType("int");
-
-                    b.Property<int>("StudentsId")
-                        .HasColumnType("int");
-
-                    b.HasKey("CoursesId", "StudentsId");
-
-                    b.HasIndex("StudentsId");
-
-                    b.ToTable("CourseUser");
                 });
 
             modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityRole", b =>
@@ -380,9 +379,9 @@ namespace LearnPortalASP.Data.Migrations
                     b.ToTable("AspNetUserTokens", (string)null);
                 });
 
-            modelBuilder.Entity("basicFunctions_DB.DAL.MaterialType.Book", b =>
+            modelBuilder.Entity("LearnPortalASP.MaterialType.Book", b =>
                 {
-                    b.HasBaseType("basicFunctions_DB.DAL.MaterialType.Material");
+                    b.HasBaseType("LearnPortalASP.MaterialType.Material");
 
                     b.Property<string>("Author")
                         .HasColumnType("nvarchar(max)");
@@ -400,9 +399,9 @@ namespace LearnPortalASP.Data.Migrations
                     b.HasDiscriminator().HasValue("Book");
                 });
 
-            modelBuilder.Entity("basicFunctions_DB.DAL.MaterialType.Publication", b =>
+            modelBuilder.Entity("LearnPortalASP.MaterialType.Publication", b =>
                 {
-                    b.HasBaseType("basicFunctions_DB.DAL.MaterialType.Material");
+                    b.HasBaseType("LearnPortalASP.MaterialType.Material");
 
                     b.Property<DateTime>("CreationDate")
                         .HasColumnType("datetime2");
@@ -413,9 +412,9 @@ namespace LearnPortalASP.Data.Migrations
                     b.HasDiscriminator().HasValue("Publication");
                 });
 
-            modelBuilder.Entity("basicFunctions_DB.DAL.MaterialType.Video", b =>
+            modelBuilder.Entity("LearnPortalASP.MaterialType.Video", b =>
                 {
-                    b.HasBaseType("basicFunctions_DB.DAL.MaterialType.Material");
+                    b.HasBaseType("LearnPortalASP.MaterialType.Material");
 
                     b.Property<int>("Duration")
                         .HasColumnType("int");
@@ -426,49 +425,15 @@ namespace LearnPortalASP.Data.Migrations
                     b.HasDiscriminator().HasValue("Video");
                 });
 
-            modelBuilder.Entity("basicFunctions_DB.DAL.MaterialType.Material", b =>
-                {
-                    b.HasOne("basicFunctions_DB.DAL.CourseType.Course", null)
-                        .WithMany("CourseMaterials")
-                        .HasForeignKey("CourseId");
-
-                    b.HasOne("basicFunctions_DB.DAL.UserType.User", "Creator")
-                        .WithMany()
-                        .HasForeignKey("CreatorId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
-
-                    b.Navigation("Creator");
-                });
-
-            modelBuilder.Entity("basicFunctions_DB.DAL.UserType.UserSkillState", b =>
-                {
-                    b.HasOne("basicFunctions_DB.DAL.CourseType.Skill", "Skill")
-                        .WithMany()
-                        .HasForeignKey("SkillId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
-
-                    b.HasOne("basicFunctions_DB.DAL.UserType.User", "User")
-                        .WithMany("UserSkillList")
-                        .HasForeignKey("UserId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
-
-                    b.Navigation("Skill");
-
-                    b.Navigation("User");
-                });
-
             modelBuilder.Entity("CourseSkill", b =>
                 {
-                    b.HasOne("basicFunctions_DB.DAL.CourseType.Skill", null)
+                    b.HasOne("LearnPortalASP.CourseType.Skill", null)
                         .WithMany()
                         .HasForeignKey("CourseSkillsId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
-                    b.HasOne("basicFunctions_DB.DAL.CourseType.Course", null)
+                    b.HasOne("LearnPortalASP.CourseType.Course", null)
                         .WithMany()
                         .HasForeignKey("CoursesId")
                         .OnDelete(DeleteBehavior.Cascade)
@@ -477,17 +442,47 @@ namespace LearnPortalASP.Data.Migrations
 
             modelBuilder.Entity("CourseUser", b =>
                 {
-                    b.HasOne("basicFunctions_DB.DAL.CourseType.Course", null)
+                    b.HasOne("LearnPortalASP.CourseType.Course", null)
                         .WithMany()
-                        .HasForeignKey("CoursesId")
+                        .HasForeignKey("CurrentCoursesId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
-                    b.HasOne("basicFunctions_DB.DAL.UserType.User", null)
+                    b.HasOne("LearnPortalASP.UserModel.User", null)
                         .WithMany()
                         .HasForeignKey("StudentsId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
+                });
+
+            modelBuilder.Entity("LearnPortalASP.MaterialType.Material", b =>
+                {
+                    b.HasOne("LearnPortalASP.CourseType.Course", null)
+                        .WithMany("CourseMaterials")
+                        .HasForeignKey("CourseId");
+
+                    b.HasOne("LearnPortalASP.UserModel.User", "Creator")
+                        .WithMany()
+                        .HasForeignKey("CreatorId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.Navigation("Creator");
+                });
+
+            modelBuilder.Entity("LearnPortalASP.UserModel.UserSkillState", b =>
+                {
+                    b.HasOne("LearnPortalASP.CourseType.Skill", "Skill")
+                        .WithMany()
+                        .HasForeignKey("SkillId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.HasOne("LearnPortalASP.UserModel.User", null)
+                        .WithMany("UserSkillStates")
+                        .HasForeignKey("UserId");
+
+                    b.Navigation("Skill");
                 });
 
             modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityRoleClaim<string>", b =>
@@ -541,14 +536,14 @@ namespace LearnPortalASP.Data.Migrations
                         .IsRequired();
                 });
 
-            modelBuilder.Entity("basicFunctions_DB.DAL.CourseType.Course", b =>
+            modelBuilder.Entity("LearnPortalASP.CourseType.Course", b =>
                 {
                     b.Navigation("CourseMaterials");
                 });
 
-            modelBuilder.Entity("basicFunctions_DB.DAL.UserType.User", b =>
+            modelBuilder.Entity("LearnPortalASP.UserModel.User", b =>
                 {
-                    b.Navigation("UserSkillList");
+                    b.Navigation("UserSkillStates");
                 });
 #pragma warning restore 612, 618
         }

@@ -9,11 +9,11 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 
 #nullable disable
 
-namespace LearnPortalASP.Data.Migrations
+namespace LearnPortalASP.Migrations
 {
     [DbContext(typeof(ApplicationDbContext))]
-    [Migration("20220910082021_reworkContext2")]
-    partial class reworkContext2
+    [Migration("20220910153856_InitialMigration")]
+    partial class InitialMigration
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
@@ -41,13 +41,13 @@ namespace LearnPortalASP.Data.Migrations
 
             modelBuilder.Entity("CourseUser", b =>
                 {
-                    b.Property<int>("CoursesId")
+                    b.Property<int>("CurrentCoursesId")
                         .HasColumnType("int");
 
                     b.Property<int>("StudentsId")
                         .HasColumnType("int");
 
-                    b.HasKey("CoursesId", "StudentsId");
+                    b.HasKey("CurrentCoursesId", "StudentsId");
 
                     b.HasIndex("StudentsId");
 
@@ -62,8 +62,9 @@ namespace LearnPortalASP.Data.Migrations
 
                     SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"), 1L, 1);
 
-                    b.Property<int>("CreatorId")
-                        .HasColumnType("int");
+                    b.Property<string>("CreatorUserName")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
 
                     b.Property<string>("Description")
                         .HasColumnType("nvarchar(max)");
@@ -127,7 +128,7 @@ namespace LearnPortalASP.Data.Migrations
                     b.HasDiscriminator<string>("Discriminator").HasValue("Material");
                 });
 
-            modelBuilder.Entity("LearnPortalASP.UserType.User", b =>
+            modelBuilder.Entity("LearnPortalASP.UserModel.User", b =>
                 {
                     b.Property<int>("Id")
                         .ValueGeneratedOnAdd()
@@ -152,7 +153,7 @@ namespace LearnPortalASP.Data.Migrations
                     b.ToTable("Users");
                 });
 
-            modelBuilder.Entity("LearnPortalASP.UserType.UserSkillState", b =>
+            modelBuilder.Entity("LearnPortalASP.UserModel.UserSkillState", b =>
                 {
                     b.Property<int>("Id")
                         .ValueGeneratedOnAdd()
@@ -166,7 +167,7 @@ namespace LearnPortalASP.Data.Migrations
                     b.Property<int>("SkillId")
                         .HasColumnType("int");
 
-                    b.Property<int>("UserId")
+                    b.Property<int?>("UserId")
                         .HasColumnType("int");
 
                     b.HasKey("Id");
@@ -445,11 +446,11 @@ namespace LearnPortalASP.Data.Migrations
                 {
                     b.HasOne("LearnPortalASP.CourseType.Course", null)
                         .WithMany()
-                        .HasForeignKey("CoursesId")
+                        .HasForeignKey("CurrentCoursesId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
-                    b.HasOne("LearnPortalASP.UserType.User", null)
+                    b.HasOne("LearnPortalASP.UserModel.User", null)
                         .WithMany()
                         .HasForeignKey("StudentsId")
                         .OnDelete(DeleteBehavior.Cascade)
@@ -462,7 +463,7 @@ namespace LearnPortalASP.Data.Migrations
                         .WithMany("CourseMaterials")
                         .HasForeignKey("CourseId");
 
-                    b.HasOne("LearnPortalASP.UserType.User", "Creator")
+                    b.HasOne("LearnPortalASP.UserModel.User", "Creator")
                         .WithMany()
                         .HasForeignKey("CreatorId")
                         .OnDelete(DeleteBehavior.Cascade)
@@ -471,7 +472,7 @@ namespace LearnPortalASP.Data.Migrations
                     b.Navigation("Creator");
                 });
 
-            modelBuilder.Entity("LearnPortalASP.UserType.UserSkillState", b =>
+            modelBuilder.Entity("LearnPortalASP.UserModel.UserSkillState", b =>
                 {
                     b.HasOne("LearnPortalASP.CourseType.Skill", "Skill")
                         .WithMany()
@@ -479,15 +480,11 @@ namespace LearnPortalASP.Data.Migrations
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
-                    b.HasOne("LearnPortalASP.UserType.User", "User")
-                        .WithMany("UserSkillList")
-                        .HasForeignKey("UserId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
+                    b.HasOne("LearnPortalASP.UserModel.User", null)
+                        .WithMany("UserSkillStates")
+                        .HasForeignKey("UserId");
 
                     b.Navigation("Skill");
-
-                    b.Navigation("User");
                 });
 
             modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityRoleClaim<string>", b =>
@@ -546,9 +543,9 @@ namespace LearnPortalASP.Data.Migrations
                     b.Navigation("CourseMaterials");
                 });
 
-            modelBuilder.Entity("LearnPortalASP.UserType.User", b =>
+            modelBuilder.Entity("LearnPortalASP.UserModel.User", b =>
                 {
-                    b.Navigation("UserSkillList");
+                    b.Navigation("UserSkillStates");
                 });
 #pragma warning restore 612, 618
         }

@@ -1,4 +1,4 @@
-﻿@model LearnPortalASP.CourseType.Course
+﻿@model basicFunctions_DB.BLL.DTO.CourseDTO
 
 @{
     ViewData["Title"] = "Details";
@@ -24,10 +24,10 @@
             @Html.DisplayFor(model => model.Description)
         </dd>
         <dt class = "col-sm-2">
-            @Html.DisplayNameFor(model => model.CreatorId)
+            @Html.DisplayNameFor(model => model.CreatorUserName)
         </dt>
         <dd class = "col-sm-10">
-            @Html.DisplayFor(model => model.CreatorId)
+            @Html.DisplayFor(model => model.CreatorUserName)
         </dd>
     </dl>
 </div>

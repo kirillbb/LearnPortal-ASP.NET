@@ -9,10 +9,5 @@
         public int Pages { get; set; }
 
         public string BookFormat { get; set; }
-
-        public override string ToString()
-        {
-            return $"ID: {Id} | Title: \"{Title}\" | Author: {Author} | Publication date: {PublicationDate.ToString("d")} | {Pages} pages | Format: {BookFormat} | added: {Creator.ToString()} ";
-        }
     }
 }
