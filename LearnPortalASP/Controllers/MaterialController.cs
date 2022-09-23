@@ -1,7 +1,6 @@
-﻿using basicFunctions_DB.DAL;
-using basicFunctions_DB.BLL.DataServices;
+﻿using LearnPortalASP.BLL.DataServices;
 using Microsoft.AspNetCore.Mvc;
-using basicFunctions_DB.BLL.DTO;
+using LearnPortalASP.Data;
 
 namespace LearnPortalASP.Controllers
 {

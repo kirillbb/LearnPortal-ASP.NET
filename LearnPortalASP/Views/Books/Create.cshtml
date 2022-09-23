@@ -1,0 +1,57 @@
+﻿@model LearnPortalASP.BLL.DTO.BookDTO
+
+@{
+    ViewData["Title"] = "Create";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h2>Create Material -> Book</h2>
+<div class="row">
+    <div class="col-md-4">
+        <form asp-action="Create">
+            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+            <div class="form-group">
+                Material type
+                <input asp-for="Discriminator" class="form-control mb-3" value="Book" readonly="true"/>
+            </div>
+            <div class="form-group">
+                <label asp-for="Title" class="control-label"></label>
+                <input asp-for="Title" class="form-control mb-3" />
+                <span asp-validation-for="Title" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="Author" class="control-label"></label>
+                <input asp-for="Author" class="form-control mb-3" />
+                <span asp-validation-for="Author" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                Publication Date
+                <input asp-for="PublicationDate" class="form-control mb-3" />
+                <span asp-validation-for="PublicationDate" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="Pages" class="control-label"></label>
+                <input asp-for="Pages" class="form-control mb-3" />
+                <span asp-validation-for="Pages" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                Format
+                <input asp-for="BookFormat" class="form-control mb-3" />
+                <span asp-validation-for="BookFormat" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                Creator
+                <input asp-for="CreatorUserName" class="form-control mb-3" value="@User.Identity?.Name" readonly="true"/>
+            </div>
+            <div class="form-group">
+                <input type="submit" value="Create" class="btn btn-primary" />
+                @Html.ValidationSummary(false, "", new { @class = "text-danger" })
+            </div>
+        </form>
+    </div>
+</div>
+
+<div>
+    <a asp-action="Index">Back to List</a>
+</div>
+

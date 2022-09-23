@@ -1,8 +1,8 @@
 ﻿using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
-using basicFunctions_DB.BLL.DataServices;
-using basicFunctions_DB.DAL;
-using basicFunctions_DB.BLL.DTO;
+using LearnPortalASP.BLL.DataServices;
+using LearnPortalASP.BLL.DTO;
+using LearnPortalASP.Data;
 
 namespace LearnPortalASP.Controllers
 {

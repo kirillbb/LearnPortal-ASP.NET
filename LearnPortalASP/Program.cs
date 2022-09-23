@@ -1,5 +1,4 @@
-using basicFunctions_DB.DAL;
-using basicFunctions_DB.DAL.UserType;
+using LearnPortalASP.Data;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.EntityFrameworkCore;
 

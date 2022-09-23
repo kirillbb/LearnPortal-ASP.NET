@@ -1,4 +1,4 @@
-﻿@model basicFunctions_DB.BLL.DTO.MaterialDTO
+﻿@model LearnPortalASP.BLL.DTO.MaterialDTO
 @using Microsoft.AspNetCore.Identity
 @inject SignInManager<IdentityUser> SignInManager
 @inject UserManager<IdentityUser> UserManager
@@ -7,37 +7,13 @@
     ViewData["Title"] = "Create material";
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
-
-
-<h1>Create material</h1>
-
-<hr />
+<h2 class="bm-3">Choose material type to create</h2>
 <div class="row">
     <div class="col-md-4">
         <form asp-action="Create">
-            <h2>Choose material type</h2>
-            <button type="button" class="btn btn-outline-dark">Book</button>
-            <button type="button" class="btn btn-outline-dark">Video</button>
-            <button type="button" class="btn btn-outline-dark">Publication</button>
-            @*<div asp-validation-summary="ModelOnly" class="text-danger"></div>
-            <div class="form-group">
-                <label asp-for="Title" class="control-label"></label>
-                <input asp-for="Title" class="mb-3 form-control" />
-                <span asp-validation-for="Title" class="text-danger"></span>
-            </div>
-            <div class="form-group">
-                <label asp-for="Discriminator" class="control-label"></label>
-                <input asp-for="Discriminator" class="mb-3 form-control" />
-                <span asp-validation-for="Discriminator" class="text-danger"></span>
-            </div>
-            <div class="form-group">
-                <label asp-for="CreatorUserName" class="control-label"></label>
-                <input asp-for="CreatorUserName" class="mb-3 form-control" value="@User.Identity?.Name" readonly="true"/>
-            </div>
-            <div class="form-group">
-                <input type="submit" value="Create" class="btn btn-primary" />
-                @Html.ValidationSummary(false, "", new { @class = "text-danger" })
-            </div>*@
+            <a asp-controller="Books" asp-action="Create" type="button" class="btn btn-outline-dark me-3 mb-3">Book</a>
+            <button type="button" class="btn btn-outline-dark me-3 mb-3">Video</button>
+            <button type="button" class="btn btn-outline-dark me-3 mb-3">Publication</button>
         </form>
     </div>
 </div>
