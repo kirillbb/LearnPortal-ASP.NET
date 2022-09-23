@@ -52,16 +52,16 @@ namespace LearnPortalASP.Controllers
         // POST: Courses/Create
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Create([Bind("Id,Title,Discriminator,CreatorUserName")] MaterialDTO materialDTO)
-        {
-            if (ModelState.IsValid)
-            {
-                await _materialService.CreateAsync(materialDTO);
-                return RedirectToAction(nameof(Index));
-            }
+        //public async Task<IActionResult> Create([Bind("Id,Title,Discriminator,CreatorUserName")] MaterialDTO materialDTO)
+        //{
+        //    if (ModelState.IsValid)
+        //    {
+        //        await _materialService.CreateAsync(materialDTO);
+        //        return RedirectToAction(nameof(Index));
+        //    }
 
-            return View(materialDTO);
-        }
+        //    return View(materialDTO);
+        //}
 
         // GET: Courses/Edit/5
         //public async Task<IActionResult> Edit(int? id)

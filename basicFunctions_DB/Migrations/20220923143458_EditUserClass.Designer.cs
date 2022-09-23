@@ -3,6 +3,7 @@ using System;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using basicFunctions_DB.DAL;
 
@@ -11,9 +12,10 @@ using basicFunctions_DB.DAL;
 namespace basicFunctions_DB.Migrations
 {
     [DbContext(typeof(ApplicationContext))]
-    partial class ApplicationContextModelSnapshot : ModelSnapshot
+    [Migration("20220923143458_EditUserClass")]
+    partial class EditUserClass
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -90,32 +92,6 @@ namespace basicFunctions_DB.Migrations
                     b.HasDiscriminator<string>("Discriminator").HasValue("Material");
                 });
 
-            modelBuilder.Entity("basicFunctions_DB.DAL.UserType.ApplicationUser", b =>
-                {
-                    b.Property<string>("Id")
-                        .HasColumnType("nvarchar(450)");
-
-                    b.Property<string>("Email")
-                        .IsRequired()
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<string>("FirstName")
-                        .IsRequired()
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<string>("LastName")
-                        .IsRequired()
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<string>("UserName")
-                        .IsRequired()
-                        .HasColumnType("nvarchar(max)");
-
-                    b.HasKey("Id");
-
-                    b.ToTable("Users");
-                });
-
             modelBuilder.Entity("basicFunctions_DB.DAL.UserType.Student", b =>
                 {
                     b.Property<int>("Id")
@@ -152,7 +128,6 @@ namespace basicFunctions_DB.Migrations
                         .HasColumnType("int");
 
                     b.Property<string>("UserId")
-                        .IsRequired()
                         .HasColumnType("nvarchar(450)");
 
                     b.HasKey("Id");
@@ -258,6 +233,10 @@ namespace basicFunctions_DB.Migrations
                         .IsConcurrencyToken()
                         .HasColumnType("nvarchar(max)");
 
+                    b.Property<string>("Discriminator")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
                     b.Property<string>("Email")
                         .HasMaxLength(256)
                         .HasColumnType("nvarchar(256)");
@@ -309,6 +288,8 @@ namespace basicFunctions_DB.Migrations
                         .HasFilter("[NormalizedUserName] IS NOT NULL");
 
                     b.ToTable("AspNetUsers", (string)null);
+
+                    b.HasDiscriminator<string>("Discriminator").HasValue("IdentityUser");
                 });
 
             modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityUserClaim<string>", b =>
@@ -442,6 +423,21 @@ namespace basicFunctions_DB.Migrations
                     b.HasDiscriminator().HasValue("Video");
                 });
 
+            modelBuilder.Entity("basicFunctions_DB.DAL.UserType.User", b =>
+                {
+                    b.HasBaseType("Microsoft.AspNetCore.Identity.IdentityUser");
+
+                    b.Property<string>("FirstName")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("LastName")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.HasDiscriminator().HasValue("User");
+                });
+
             modelBuilder.Entity("basicFunctions_DB.DAL.UserType.UserSkillState", b =>
                 {
                     b.HasOne("basicFunctions_DB.DAL.CourseType.Skill", "Skill")
@@ -450,11 +446,9 @@ namespace basicFunctions_DB.Migrations
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
-                    b.HasOne("basicFunctions_DB.DAL.UserType.ApplicationUser", "User")
+                    b.HasOne("basicFunctions_DB.DAL.UserType.User", "User")
                         .WithMany("UserSkillList")
-                        .HasForeignKey("UserId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
+                        .HasForeignKey("UserId");
 
                     b.Navigation("Skill");
 
@@ -542,7 +536,7 @@ namespace basicFunctions_DB.Migrations
                         .IsRequired();
                 });
 
-            modelBuilder.Entity("basicFunctions_DB.DAL.UserType.ApplicationUser", b =>
+            modelBuilder.Entity("basicFunctions_DB.DAL.UserType.User", b =>
                 {
                     b.Navigation("UserSkillList");
                 });

@@ -27,7 +27,7 @@ namespace basicFunctions_DB.BLL.UI
             string password = Console.ReadLine();
 
             Printer.BreakLine();
-            return new UserDTO { Email = email, Name = name, Password = password };
+            return new UserDTO { Email = email, FirstName = name, Password = password };
         }
 
         public  static string GetString()
@@ -45,7 +45,7 @@ namespace basicFunctions_DB.BLL.UI
             return id;
         }
 
-        public static BookDTO AddBook(User user)
+        public static BookDTO AddBook(ApplicationUser user)
         {
             try
             {
@@ -80,7 +80,7 @@ namespace basicFunctions_DB.BLL.UI
             return null;
         }
 
-        public static VideoDTO AddVideo(User user)
+        public static VideoDTO AddVideo(ApplicationUser user)
         {
             try
             {
@@ -110,7 +110,7 @@ namespace basicFunctions_DB.BLL.UI
             return null;
         }
 
-        public static PublicationDTO AddPublication(User user)
+        public static PublicationDTO AddPublication(ApplicationUser user)
         {
             try
             {
@@ -165,7 +165,7 @@ namespace basicFunctions_DB.BLL.UI
             return null;
         }
 
-        public static CourseDTO AddCourse(User user)
+        public static CourseDTO AddCourse(ApplicationUser user)
         {
             try
             {

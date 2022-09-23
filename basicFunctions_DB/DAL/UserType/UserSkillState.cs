@@ -8,7 +8,7 @@ namespace basicFunctions_DB.DAL.UserType
 
         public Skill Skill { get; set; }
 
-        public User User { get; set; }
+        public ApplicationUser User { get; set; }
 
         public int Level { get; set; }
     }

@@ -28,7 +28,17 @@
                             <a class="nav-link text-dark" asp-area="" asp-controller="Courses" asp-action="Index">Courses</a>
                         </li>
                         <li class="nav-item">
-                            <a class="nav-link text-dark" asp-area="" asp-controller="Material" asp-action="Index">Materials</a>
+                            <div class="btn-group">
+                                <a asp-area="" asp-controller="Material" asp-action="Index" class="nav-link text-dark">Materials</a>
+                                <a class="nav-link text-dark dropdown-toggle dropdown-toggle-split btn btn-link" id="dropdownMenuReference" data-bs-toggle="dropdown" aria-expanded="false" data-bs-reference="parent">
+                                  <span class="visually-hidden">Toggle Dropdown</span>
+                                </a>
+                                <ul class="dropdown-menu" aria-labelledby="dropdownMenuReference">
+                                  <li><a class="dropdown-item" href="#">Books</a></li>
+                                  <li><a class="dropdown-item" href="#">Videos</a></li>
+                                  <li><a class="dropdown-item" href="#">Publications</a></li>
+                                </ul>
+                            </div>
                         </li>
                     </ul>
                     <partial name="_LoginPartial" />

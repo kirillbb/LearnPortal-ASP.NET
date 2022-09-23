@@ -5,7 +5,7 @@ VisualStudioVersion = 17.0.32112.339
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "basicFunctions_DB", "basicFunctions_DB.csproj", "{269D0340-475C-4EF5-A8C6-D376D2A17324}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "LearnPortalASP", "..\LearnPortalASP\LearnPortalASP.csproj", "{C14DDA65-FE3F-4F6E-9620-13E33B86DC92}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "LearnPortalASP", "..\LearnPortalASP\LearnPortalASP.csproj", "{E31FC042-1794-4A0E-A4CE-B463C7323FC7}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -17,10 +17,10 @@ Global
 		{269D0340-475C-4EF5-A8C6-D376D2A17324}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{269D0340-475C-4EF5-A8C6-D376D2A17324}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{269D0340-475C-4EF5-A8C6-D376D2A17324}.Release|Any CPU.Build.0 = Release|Any CPU
-		{C14DDA65-FE3F-4F6E-9620-13E33B86DC92}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{C14DDA65-FE3F-4F6E-9620-13E33B86DC92}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{C14DDA65-FE3F-4F6E-9620-13E33B86DC92}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{C14DDA65-FE3F-4F6E-9620-13E33B86DC92}.Release|Any CPU.Build.0 = Release|Any CPU
+		{E31FC042-1794-4A0E-A4CE-B463C7323FC7}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{E31FC042-1794-4A0E-A4CE-B463C7323FC7}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{E31FC042-1794-4A0E-A4CE-B463C7323FC7}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{E31FC042-1794-4A0E-A4CE-B463C7323FC7}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

@@ -35,6 +35,7 @@
                     Id = x.Id,
                     Title = x.Title,
                     CreatorUserName = x.CreatorUserName,
+                    Discriminator= x.Discriminator
                 })
                 .FirstOrDefaultAsync(x => x.Id == id);
 
@@ -51,7 +52,8 @@
                 {
                     Id = item.Id,
                     CreatorUserName = item.CreatorUserName,
-                    Title = item.Title
+                    Title = item.Title,
+                    Discriminator = item.Discriminator
                 };
 
                 materialDTOs.Add(materialDTO);

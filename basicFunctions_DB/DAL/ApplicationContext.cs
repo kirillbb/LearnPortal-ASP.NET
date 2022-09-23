@@ -17,7 +17,7 @@
         {
         }
 
-        public virtual DbSet<User> Users { get; set; } = null!;
+        public virtual DbSet<ApplicationUser> Users { get; set; } = null!;
         
         public DbSet<Material> Materials { get; set; } = null!;
         
@@ -28,6 +28,9 @@
         public DbSet<Publication> Publications { get; set; } = null!;
 
         public DbSet<Course> Courses { get; set; } = null!;
+        
+        public DbSet<Student> Students { get; set; } = null!;
+
 
         public DbSet<Skill> Skills { get; set; } = null!;
 
