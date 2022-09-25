@@ -1,20 +1,22 @@
-﻿using Microsoft.AspNetCore.Mvc;
-using Microsoft.EntityFrameworkCore;
-using LearnPortalASP.BLL.DataServices;
-using LearnPortalASP.BLL.DTO;
-using LearnPortalASP.Data;
-
-namespace LearnPortalASP.Controllers
+﻿namespace LearnPortalASP.Controllers
 {
+    using Microsoft.AspNetCore.Mvc;
+    using Microsoft.EntityFrameworkCore;
+    using LearnPortalASP.BLL.DataServices;
+    using LearnPortalASP.BLL.DTO;
+    using LearnPortalASP.Data;
+
     public class CoursesController : Controller
     {
         private readonly ApplicationContext _context;
         private readonly CourseService _courseService;
+        private readonly SkillService _skillService;
 
         public CoursesController(ApplicationContext context)
         {
             _context = context;
-            this._courseService = new CourseService(_context);
+            _courseService = new CourseService(_context);
+            _skillService = new SkillService(_context);
         }
 
         // GET: Courses
@@ -45,22 +47,23 @@ namespace LearnPortalASP.Controllers
         }
 
         // GET: Courses/Create
-        public IActionResult Create()
+        public async Task<IActionResult> Create()
         {
+            ViewBag.Skills = await _context.Skills.ToListAsync();
             return View();
         }
 
         // POST: Courses/Create
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Create([Bind("Id,Name,Description,CreatorUserName")] CourseDTO course)
+        public async Task<IActionResult> Create([Bind("Id,Name,Description,CreatorUserName,CourseSkills")] CourseDTO course)
         {
             if (ModelState.IsValid)
             {
                 await _courseService.CreateAsync(course);
                 return RedirectToAction(nameof(Index));
             }
-
+             
             return View(course);
         }
 
@@ -107,8 +110,10 @@ namespace LearnPortalASP.Controllers
                         throw;
                     }
                 }
+
                 return RedirectToAction(nameof(Index));
             }
+
             return View(course);
         }
 
@@ -138,6 +143,7 @@ namespace LearnPortalASP.Controllers
             {
                 return Problem("Entity set 'ApplicationDbContext.Courses'  is null.");
             }
+
             var course = await _courseService.GetAsync(id);
             if (course != null)
             {

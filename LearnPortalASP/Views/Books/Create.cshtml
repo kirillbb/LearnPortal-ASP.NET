@@ -39,7 +39,6 @@
                 <span asp-validation-for="BookFormat" class="text-danger"></span>
             </div>
             <div class="form-group">
-                @*Creator*@
                 <input type="hidden" asp-for="CreatorUserName" class="mb-3 form-control mb-3" value="@User.Identity?.Name" readonly="true"/>
                 <span asp-validation-for="CreatorUserName" class="text-danger"></span>
             </div>

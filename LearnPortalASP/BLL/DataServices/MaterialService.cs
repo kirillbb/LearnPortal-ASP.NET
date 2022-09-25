@@ -41,6 +41,7 @@
 
             return materialDTO;
         }
+
         public async Task<List<MaterialDTO>> GetAllAsync()
         {
             var materials = await this._context.Materials.ToListAsync();

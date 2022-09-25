@@ -1,7 +1,7 @@
-﻿using LearnPortalASP.BLL.DTO;
-
-namespace LearnPortalASP.BLL.Interfaces
+﻿namespace LearnPortalASP.BLL.Interfaces
 {
+    using LearnPortalASP.BLL.DTO;
+
     internal interface IPublicationService
     {
         Task<List<PublicationDTO>> GetAllAsync();

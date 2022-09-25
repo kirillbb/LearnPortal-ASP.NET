@@ -1,9 +1,9 @@
-﻿using LearnPortalASP.Models.CourseType;
-using LearnPortalASP.Models.MaterialType;
-using System.ComponentModel.DataAnnotations;
-
-namespace LearnPortalASP.BLL.DTO
+﻿namespace LearnPortalASP.BLL.DTO
 {
+    using LearnPortalASP.Models.CourseType;
+    using LearnPortalASP.Models.MaterialType;
+    using System.ComponentModel.DataAnnotations;
+
     public class CourseDTO
     {
         public int Id { get; set; }

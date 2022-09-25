@@ -1,11 +1,11 @@
-﻿using Microsoft.AspNetCore.Mvc;
-using Microsoft.EntityFrameworkCore;
-using LearnPortalASP.Data;
-using LearnPortalASP.BLL.DataServices;
-using LearnPortalASP.BLL.DTO;
-
-namespace LearnPortalASP.Controllers
+﻿namespace LearnPortalASP.Controllers
 {
+    using Microsoft.AspNetCore.Mvc;
+    using Microsoft.EntityFrameworkCore;
+    using LearnPortalASP.Data;
+    using LearnPortalASP.BLL.DataServices;
+    using LearnPortalASP.BLL.DTO;
+
     public class PublicationsController : Controller
     {
         private readonly ApplicationContext _context;
@@ -78,6 +78,7 @@ namespace LearnPortalASP.Controllers
             {
                 return NotFound();
             }
+
             return View(publication);
         }
 
@@ -108,8 +109,10 @@ namespace LearnPortalASP.Controllers
                         throw;
                     }
                 }
+
                 return RedirectToAction(nameof(Index));
             }
+
             return View(publication);
         }
 
@@ -139,6 +142,7 @@ namespace LearnPortalASP.Controllers
             {
                 return Problem("Entity set 'ApplicationContext.Publications'  is null.");
             }
+
             var publication = await _publicationService.GetAsync(id);
             if (publication != null)
             {

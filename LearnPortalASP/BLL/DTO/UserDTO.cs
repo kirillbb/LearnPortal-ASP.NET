@@ -1,8 +1,8 @@
-﻿using LearnPortalASP.Models.CourseType;
-using LearnPortalASP.Models.UserType;
-
-namespace LearnPortalASP.BLL.DTO
+﻿namespace LearnPortalASP.BLL.DTO
 {
+    using LearnPortalASP.Models.CourseType;
+    using LearnPortalASP.Models.UserType;
+
     public class UserDTO
     {
         public string Id { get; set; }

@@ -9,5 +9,7 @@
         public List<CourseDTO>? Courses { get; set; }
 
         public int Id { get; set; }
+
+        public bool IsChecked { get; set; }
     }
 }

@@ -1,11 +1,11 @@
-﻿using LearnPortalASP.BLL.DTO;
-using LearnPortalASP.BLL.Interfaces;
-using LearnPortalASP.Data;
-using LearnPortalASP.Models.CourseType;
-using Microsoft.EntityFrameworkCore;
-
-namespace LearnPortalASP.BLL.DataServices
+﻿namespace LearnPortalASP.BLL.DataServices
 {
+    using LearnPortalASP.BLL.DTO;
+    using LearnPortalASP.BLL.Interfaces;
+    using LearnPortalASP.Data;
+    using LearnPortalASP.Models.CourseType;
+    using Microsoft.EntityFrameworkCore;
+
     internal class SkillService : ISkillService
     {
         private readonly ApplicationContext _context;

@@ -33,10 +33,5 @@
 
 
         public DbSet<Skill> Skills { get; set; } = null!;
-
-        //protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
-        //{
-        //    optionsBuilder.UseSqlServer(@"Server=DESKTOP-6KJ2COE;Database=LearnPortal;Trusted_Connection=True;");
-        //}
     }
 }

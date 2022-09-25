@@ -1,7 +1,7 @@
-﻿using LearnPortalASP.Models.CourseType;
-
-namespace LearnPortalASP.Models.UserType
+﻿namespace LearnPortalASP.Models.UserType
 {
+    using LearnPortalASP.Models.CourseType;
+
     public class UserSkillState
     {
         public int Id { get; set; }

@@ -1,17 +1,11 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
-using Microsoft.AspNetCore.Mvc;
-using Microsoft.AspNetCore.Mvc.Rendering;
-using Microsoft.EntityFrameworkCore;
-using LearnPortalASP.Data;
-using LearnPortalASP.Models.MaterialType;
-using LearnPortalASP.BLL.DataServices;
-using LearnPortalASP.BLL.DTO;
-
-namespace LearnPortalASP.Controllers
+﻿namespace LearnPortalASP.Controllers
 {
+    using Microsoft.AspNetCore.Mvc;
+    using Microsoft.EntityFrameworkCore;
+    using LearnPortalASP.Data;
+    using LearnPortalASP.BLL.DataServices;
+    using LearnPortalASP.BLL.DTO;
+
     public class VideosController : Controller
     {
         private readonly ApplicationContext _context;
@@ -85,6 +79,7 @@ namespace LearnPortalASP.Controllers
             {
                 return NotFound();
             }
+
             return View(book);
         }
 
@@ -115,8 +110,10 @@ namespace LearnPortalASP.Controllers
                         throw;
                     }
                 }
+
                 return RedirectToAction(nameof(Index));
             }
+
             return View(video);
         }
 
@@ -146,6 +143,7 @@ namespace LearnPortalASP.Controllers
             {
                 return Problem("Entity set 'ApplicationContext.Books'  is null.");
             }
+
             var book = await _videoService.GetAsync(id);
             if (book != null)
             {

@@ -1,8 +1,7 @@
-﻿using LearnPortalASP.Models.UserType;
-using System.ComponentModel.DataAnnotations;
-
-namespace LearnPortalASP.BLL.DTO
+﻿namespace LearnPortalASP.BLL.DTO
 {
+    using System.ComponentModel.DataAnnotations;
+
     public class MaterialDTO
     {
         public int Id { get; set; }

@@ -1,8 +1,8 @@
-﻿using LearnPortalASP.Models.MaterialType;
-using System.ComponentModel.DataAnnotations;
-
-namespace LearnPortalASP.Models.CourseType
+﻿namespace LearnPortalASP.Models.CourseType
 {
+    using LearnPortalASP.Models.MaterialType;
+    using System.ComponentModel.DataAnnotations;
+
     public class Course
     {
         public int Id { get; set; }

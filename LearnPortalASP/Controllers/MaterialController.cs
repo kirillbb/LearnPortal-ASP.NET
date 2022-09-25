@@ -1,9 +1,9 @@
-﻿using LearnPortalASP.BLL.DataServices;
-using Microsoft.AspNetCore.Mvc;
-using LearnPortalASP.Data;
-
-namespace LearnPortalASP.Controllers
+﻿namespace LearnPortalASP.Controllers
 {
+    using LearnPortalASP.BLL.DataServices;
+    using Microsoft.AspNetCore.Mvc;
+    using LearnPortalASP.Data;
+
     public class MaterialController : Controller
     {
         private readonly ApplicationContext _context;
@@ -25,92 +25,12 @@ namespace LearnPortalASP.Controllers
                         Problem("Entity set 'ApplicationContext.Materials'  is null.");
         }
 
-        // GET: Courses/Details/5
-        public async Task<IActionResult> Details(int? id)
-        {
-            if (id == null || _context.Materials == null)
-            {
-                return NotFound();
-            }
-
-            var material = await _materialService.GetAsync(id);
-            if (material == null)
-            {
-                return NotFound();
-            }
-
-            return View(material);
-        }
-
         // GET: Courses/Create
         public IActionResult Create()
         {
             return View();
         }
 
-        // POST: Courses/Create
-        [HttpPost]
-        [ValidateAntiForgeryToken]
-        //public async Task<IActionResult> Create([Bind("Id,Title,Discriminator,CreatorUserName")] MaterialDTO materialDTO)
-        //{
-        //    if (ModelState.IsValid)
-        //    {
-        //        await _materialService.CreateAsync(materialDTO);
-        //        return RedirectToAction(nameof(Index));
-        //    }
-
-        //    return View(materialDTO);
-        //}
-
-        // GET: Courses/Edit/5
-        //public async Task<IActionResult> Edit(int? id)
-        //{
-        //    if (id == null || _context.Courses == null)
-        //    {
-        //        return NotFound();
-        //    }
-
-        //    var course = await _courseService.GetAsync(id);
-        //    if (course == null)
-        //    {
-        //        return NotFound();
-        //    }
-        //    return View(course);
-        //}
-
-        //// POST: Courses/Edit/5
-        //[HttpPost]
-        //[ValidateAntiForgeryToken]
-        //public async Task<IActionResult> Edit(int id, [Bind("Id,Name,Description,CreatorUserName")] CourseDTO course)
-        //{
-        //    if (id != course.Id)
-        //    {
-        //        return NotFound();
-        //    }
-
-        //    if (ModelState.IsValid)
-        //    {
-        //        try
-        //        {
-        //            await _courseService.UpdateAsync(course);
-        //        }
-        //        catch (DbUpdateConcurrencyException)
-        //        {
-        //            if (!CourseExists(course.Id))
-        //            {
-        //                return NotFound();
-        //            }
-        //            else
-        //            {
-        //                throw;
-        //            }
-        //        }
-        //        return RedirectToAction(nameof(Index));
-        //    }
-        //    return View(course);
-        //}
-
-        // GET: Courses/Delete/5
         public async Task<IActionResult> Delete(int? id)
         {
             if (id == null || _context.Materials == null)
@@ -136,6 +56,7 @@ namespace LearnPortalASP.Controllers
             {
                 return Problem("Entity set 'ApplicationDbContext.Materials'  is null.");
             }
+
             var material = await _materialService.GetAsync(id);
             if (material != null)
             {

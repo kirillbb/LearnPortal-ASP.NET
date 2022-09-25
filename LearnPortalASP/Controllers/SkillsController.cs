@@ -1,11 +1,11 @@
-﻿using Microsoft.AspNetCore.Mvc;
-using Microsoft.EntityFrameworkCore;
-using LearnPortalASP.Data;
-using LearnPortalASP.BLL.DataServices;
-using LearnPortalASP.BLL.DTO;
-
-namespace LearnPortalASP.Controllers
+﻿namespace LearnPortalASP.Controllers
 {
+    using Microsoft.AspNetCore.Mvc;
+    using Microsoft.EntityFrameworkCore;
+    using LearnPortalASP.Data;
+    using LearnPortalASP.BLL.DataServices;
+    using LearnPortalASP.BLL.DTO;
+
     public class SkillsController : Controller
     {
         private readonly ApplicationContext _context;
@@ -20,7 +20,7 @@ namespace LearnPortalASP.Controllers
         // GET: Skills
         public async Task<IActionResult> Index()
         {
-              var skills = await _skillService.GetAllAsync();
+            var skills = await _skillService.GetAllAsync();
 
             return skills != null ?
                 View(skills) :
@@ -60,6 +60,7 @@ namespace LearnPortalASP.Controllers
                 await _skillService.CreateAsync(skill);
                 return RedirectToAction(nameof(Index));
             }
+
             return View(skill);
         }
 
@@ -76,6 +77,7 @@ namespace LearnPortalASP.Controllers
             {
                 return NotFound();
             }
+
             return View(skill);
         }
 
@@ -106,8 +108,10 @@ namespace LearnPortalASP.Controllers
                         throw;
                     }
                 }
+
                 return RedirectToAction(nameof(Index));
             }
+
             return View(skill);
         }
 
@@ -137,6 +141,7 @@ namespace LearnPortalASP.Controllers
             {
                 return Problem("Entity set 'ApplicationContext.Skills'  is null.");
             }
+
             var skill = await _skillService.GetAsync(id);
             if (skill != null)
             {

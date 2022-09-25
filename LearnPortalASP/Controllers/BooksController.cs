@@ -79,6 +79,7 @@
             {
                 return NotFound();
             }
+
             return View(book);
         }
 
@@ -109,8 +110,10 @@
                         throw;
                     }
                 }
+
                 return RedirectToAction(nameof(Index));
             }
+
             return View(book);
         }
 
@@ -140,6 +143,7 @@
             {
                 return Problem("Entity set 'ApplicationContext.Books'  is null.");
             }
+
             var book = await _bookService.GetAsync(id);
             if (book != null)
             {
