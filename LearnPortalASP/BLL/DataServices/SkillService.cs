@@ -56,7 +56,7 @@ namespace LearnPortalASP.BLL.DataServices
             return skillDTOs;
         }
 
-        public async Task<SkillDTO?> GetAsync(int id)
+        public async Task<SkillDTO?> GetAsync(int? id)
         {
             var skill = await this._context.Skills.Include(x => x.Courses).FirstOrDefaultAsync(x => x.Id == id);
             SkillDTO skillDTO = null;

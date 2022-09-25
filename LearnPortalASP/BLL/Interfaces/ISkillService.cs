@@ -10,7 +10,7 @@ namespace LearnPortalASP.BLL.Interfaces
 
         Task UpdateAsync(SkillDTO skillDTO);
 
-        Task<SkillDTO?> GetAsync(int id);
+        Task<SkillDTO?> GetAsync(int? id);
 
         Task CreateAsync(SkillDTO skillDTO);
     }

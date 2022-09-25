@@ -6,7 +6,7 @@
 
         public string? Description { get; set; }
 
-        public List<CourseDTO> Courses { get; set; }
+        public List<CourseDTO>? Courses { get; set; }
 
         public int Id { get; set; }
     }
