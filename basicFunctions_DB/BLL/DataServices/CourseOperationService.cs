@@ -87,7 +87,7 @@ namespace basicFunctions_DB.BLL.DataServices
         {
             var course = UserInputService.AddCourse(UiService.AuthorizatedUser);
             course.Id = UserInputService.GetId();
-            course.CreatorId = UiService.AuthorizatedUser.Id;
+            //course.CreatorId = UiService.AuthorizatedUser.Id;
             await _courseService.UpdateAsync(course);
         } 
 
@@ -95,7 +95,7 @@ namespace basicFunctions_DB.BLL.DataServices
         {
             CourseService courseService = new CourseService(_context);
             var course = UserInputService.AddCourse(UiService.AuthorizatedUser);
-            course.CreatorId = UiService.AuthorizatedUser.Id;
+            //course.CreatorId = UiService.AuthorizatedUser.Id;
             await courseService.CreateAsync(course);
         }
     }

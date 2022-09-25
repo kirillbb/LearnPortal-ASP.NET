@@ -24,16 +24,17 @@
 
             if (password != null && password != string.Empty && email != string.Empty && email != null && name != null)
             {
-                if (!IsExistingUser(email))
-                {
-                    User user = new User { Email = email, Name = name, Password = password };
-                    SaveUserInDataBase(user);
-                    return true;
-                }
-                else
-                {
-                    return false;
-                }
+                //if (!IsExistingUser(email))
+                //{
+                //    User user = new User { Email = email, FirstName = name, Password = password };
+                //    SaveUserInDataBase(user);
+                //    return true;
+                //}
+                //else
+                //{
+                //    return false;
+                //}
+                return false;
             }
             else
             {
@@ -49,7 +50,7 @@
             return user != null;
         }
 
-        private void SaveUserInDataBase(User user)
+        private void SaveUserInDataBase(ApplicationUser user)
         {
             this._context.Users.Add(user);
             this._context.SaveChanges();

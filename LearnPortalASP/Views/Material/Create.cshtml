@@ -1,0 +1,19 @@
+﻿@{
+    ViewData["Title"] = "Create material";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+<h2 class="bm-3">Choose material type to create</h2>
+<div class="row">
+    <div class="col-md-4">
+        <form asp-action="Create">
+            <a asp-controller="Books" asp-action="Create" type="button" class="btn btn-outline-dark me-3 mb-3">Book</a>
+            <a asp-controller="Videos" asp-action="Create" type="button" type="button" class="btn btn-outline-dark me-3 mb-3">Video</a>
+            <a asp-controller="Publications" asp-action="Create" type="button" class="btn btn-outline-dark me-3 mb-3">Publication</a>
+        </form>
+    </div>
+</div>
+
+<div>
+    <a asp-action="Index">Back to List</a>
+</div>
+

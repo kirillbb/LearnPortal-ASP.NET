@@ -8,14 +8,14 @@
     internal class Authorizator : IAuthorizator
     {
         private readonly ApplicationContext _context;
-        private static User authorizatedUser = null;
+        private static ApplicationUser authorizatedUser = null;
 
         public Authorizator(ApplicationContext context)
         {
             this._context = context;
         }
 
-        public User AuthorizatedUser
+        public ApplicationUser AuthorizatedUser
         {
             get { return authorizatedUser; }
         }
@@ -28,22 +28,23 @@
             //string? password = Console.ReadLine();
             try
             {
-                var user = await this._context.Users.Where(x => x.Email == email).FirstOrDefaultAsync();
+                //var user = await this._context.Users.Where(x => x.Email == email).FirstOrDefaultAsync();
 
-                if (user != null)
-                {
-                    if (password == user.Password)
-                    {
-                        //Console.WriteLine("Authorization successful!\n");
-                        authorizatedUser = user;
-                        return true;
-                    }
-                    else
-                    {
-                        //Console.WriteLine("\nEmail or password is not correct\n");
-                        return false;
-                    }
-                }
+                //if (user != null)
+                //{
+                //if (password == user.Password)
+                //{
+                //    //Console.WriteLine("Authorization successful!\n");
+                //    authorizatedUser = user;
+                //    return true;
+                //}
+                //else
+                //{
+                //    //Console.WriteLine("\nEmail or password is not correct\n");
+                //    return false;
+                //}
+                //}
+                return false;
             }
             catch (Exception ex)
             {

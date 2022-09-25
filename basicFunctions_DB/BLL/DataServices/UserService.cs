@@ -16,18 +16,18 @@ namespace basicFunctions_DB.BLL.DataServices
 
         public async Task ChangePassword(string oldPassword, string newPassword)
         {
-            var user = await this._context.Users.Include(x => x.Courses).FirstOrDefaultAsync(x => x.Id == UiService.AuthorizatedUser.Id);
-            
-            if (oldPassword == user.Password)
-            {
-                user.Password = newPassword;
-                this._context.Update(user);
-                await this._context.SaveChangesAsync();
-            }
+            var user = await this._context.Users.FirstOrDefaultAsync(x => x.Id == UiService.AuthorizatedUser.Id);
+
+            //if (oldPassword == user.Password)
+            //{
+            //    user.Password = newPassword;
+            //    this._context.Update(user);
+            await this._context.SaveChangesAsync();
+            //}
         }
         public async Task ChangeEmail(string oldEmail, string newEmail)
         {
-            var user = await this._context.Users.Include(x => x.Courses).FirstOrDefaultAsync(x => x.Id == UiService.AuthorizatedUser.Id);
+            var user = await this._context.Users.FirstOrDefaultAsync(x => x.Id == UiService.AuthorizatedUser.Id);
 
             if (oldEmail == user.Email)
             {
@@ -39,14 +39,13 @@ namespace basicFunctions_DB.BLL.DataServices
 
         public async Task<UserDTO> GetProfileAsync()
         {
-            var user = await this._context.Users.Include(x => x.Courses).FirstOrDefaultAsync(x => x.Id == UiService.AuthorizatedUser.Id);
+            var user = await this._context.Users.FirstOrDefaultAsync(x => x.Id == UiService.AuthorizatedUser.Id);
             var userDTO = new UserDTO
             {
                 Id = user.Id,
-                Name = user.Name,
+                FirstName = user.FirstName,
                 Email = user.Email,
-                UserSkillList = user.UserSkillList,
-                Courses = user.Courses
+                UserSkillList = user.UserSkillList
             };
 
             return userDTO;
@@ -55,36 +54,36 @@ namespace basicFunctions_DB.BLL.DataServices
         public async Task FinishCourse(int courseId)
         {
             var course = await this._context.Courses.Include(x => x.CourseSkills).Include(x => x.CourseMaterials).FirstOrDefaultAsync(x => x.Id == courseId);
-            var user = await this._context.Users.Include(x => x.Courses).FirstOrDefaultAsync(x => x.Id == UiService.AuthorizatedUser.Id);
+            var user = await this._context.Users.FirstOrDefaultAsync(x => x.Id == UiService.AuthorizatedUser.Id);
             if (course != null)
             {
-                if (await IsStudentAsync(course.Id))
-                {
-                    user.Courses.Remove(course);
-                    this._context.Update(user);
-                    await _context.SaveChangesAsync();
-                }
+                //if (await IsStudentAsync(course.Id))
+                //{
+                //    this._context.Update(user);
+                //    await _context.SaveChangesAsync();
+                //}
             }
         }
 
         public async Task TakeCourse(int courseId)
         {
             var course = await this._context.Courses.Include(x => x.CourseSkills).Include(x => x.CourseMaterials).FirstOrDefaultAsync(x => x.Id == courseId);
-            var user = await this._context.Users.Include(x => x.Courses).FirstOrDefaultAsync(x => x.Id == UiService.AuthorizatedUser.Id);
+            var user = await this._context.Users.FirstOrDefaultAsync(x => x.Id == UiService.AuthorizatedUser.Id);
             if (course != null)
             {
-                user.Courses.Add(course);
+                //user.Courses.Add(course);
                 this._context.Update(user);
                 await this._context.SaveChangesAsync();
             }
         }
 
-        private async Task<bool> IsStudentAsync(int courseId)
+        private async Task<bool?> IsStudentAsync(int courseId)
         {
-            var user = await this._context.Users.Include(x => x.Courses).FirstOrDefaultAsync(x => x.Id == UiService.AuthorizatedUser.Id);
+            var user = await this._context.Users.FirstOrDefaultAsync(x => x.Id == UiService.AuthorizatedUser.Id);
             var course = await this._context.Courses.Include(x => x.CourseSkills).Include(x => x.CourseMaterials).FirstOrDefaultAsync(x => x.Id == courseId);
 
-            return user.Courses.Contains(course);
+            //return user.Courses.Contains(course);
+            return null;
         }
     }
 }
