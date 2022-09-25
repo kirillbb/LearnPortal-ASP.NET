@@ -79,6 +79,7 @@
 
             if (book != null)
             {
+                book.Id = bookDTO.Id;
                 book.Title = bookDTO.Title;
                 book.CreatorUserName = bookDTO.CreatorUserName;
                 book.Pages = bookDTO.Pages;

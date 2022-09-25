@@ -49,7 +49,7 @@ namespace LearnPortalASP.BLL.DataServices
             return publicationDTOs;
         }
 
-        public async Task<PublicationDTO?> GetAsync(int id)
+        public async Task<PublicationDTO?> GetAsync(int? id)
         {
             var publication = await this._context.Publications.FirstOrDefaultAsync(x => x.Id == id);
             PublicationDTO publicationDTO = null;

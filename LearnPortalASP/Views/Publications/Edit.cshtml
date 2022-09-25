@@ -1,12 +1,11 @@
-﻿@model LearnPortalASP.BLL.DTO.BookDTO
+﻿@model LearnPortalASP.BLL.DTO.PublicationDTO
 
 @{
     ViewData["Title"] = "Edit";
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
 
-<h2>Edit Book</h2>
-
+<h2>Edit Publication</h2>
 <div class="row">
     <div class="col-md-4">
         <form asp-action="Edit">
@@ -17,33 +16,23 @@
                 <span asp-validation-for="Title" class="text-danger"></span>
             </div>
             <div class="form-group">
-                <label asp-for="Author" class="control-label"></label>
-                <input asp-for="Author" class="form-control" />
-                <span asp-validation-for="Author" class="text-danger"></span>
+                <label asp-for="CreationDate" class="control-label"></label>
+                <input asp-for="CreationDate" class="form-control" />
+                <span asp-validation-for="CreationDate" class="text-danger"></span>
             </div>
             <div class="form-group">
-                <label asp-for="PublicationDate" class="control-label"></label>
-                <input asp-for="PublicationDate" class="form-control" />
-                <span asp-validation-for="PublicationDate" class="text-danger"></span>
-            </div>
-            <div class="form-group">
-                <label asp-for="Pages" class="control-label"></label>
-                <input asp-for="Pages" class="form-control" />
-                <span asp-validation-for="Pages" class="text-danger"></span>
-            </div>
-            <div class="form-group">
-                <label asp-for="BookFormat" class="control-label"></label>
-                <input asp-for="BookFormat" class="form-control" />
-                <span asp-validation-for="BookFormat" class="text-danger"></span>
+                <label asp-for="Source" class="control-label"></label>
+                <input asp-for="Source" class="form-control" />
+                <span asp-validation-for="Source" class="text-danger"></span>
             </div>
             <input type="hidden" asp-for="Id" />
             <div class="form-group">
                 <label asp-for="CreatorUserName" class="control-label"></label>
                 <input asp-for="CreatorUserName" class="form-control" value="@User.Identity?.Name" readonly="true" />
-                <span asp-validation-for="CreatorUserName" class="text-danger" ></span>
+                <span asp-validation-for="CreatorUserName" class="text-danger"></span>
             </div>
             <div class="form-group">
-                <input type="hidden" asp-for="Discriminator" value="Book" class="form-control" />
+                <input type="hidden" asp-for="Discriminator" value="Publication" class="form-control" />
                 <span asp-validation-for="Discriminator" class="text-danger"></span>
             </div>
             <div class="form-group">

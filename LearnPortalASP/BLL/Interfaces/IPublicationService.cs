@@ -8,7 +8,7 @@ namespace LearnPortalASP.BLL.Interfaces
 
         Task UpdateAsync(PublicationDTO publicationDTO);
 
-        Task<PublicationDTO?> GetAsync(int id);
+        Task<PublicationDTO?> GetAsync(int? id);
 
         Task CreateAsync(PublicationDTO publicationDTO);
     }

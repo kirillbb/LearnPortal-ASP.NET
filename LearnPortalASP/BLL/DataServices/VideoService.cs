@@ -50,7 +50,7 @@ namespace LearnPortalASP.BLL.DataServices
             return videoDTOs;
         }
 
-        public async Task<VideoDTO?> GetAsync(int id)
+        public async Task<VideoDTO?> GetAsync(int? id)
         {
             var video = await this._context.Videos.FirstOrDefaultAsync(x => x.Id == id);
             VideoDTO videoDTO = null;

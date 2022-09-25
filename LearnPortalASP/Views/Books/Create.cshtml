@@ -11,40 +11,40 @@
         <form asp-action="Create">
             <div asp-validation-summary="ModelOnly" class="text-danger"></div>
             <div class="form-group">
-                Material type
-                <input asp-for="Discriminator" class="form-control mb-3" value="Book" readonly="true"/>
+                <input type="hidden" asp-for="Discriminator" class="form-control mb-3" value="Book" readonly="true"/>
             </div>
             <div class="form-group">
                 <label asp-for="Title" class="control-label"></label>
-                <input asp-for="Title" class="form-control mb-3" />
+                <input asp-for="Title" class="mb-3 form-control mb-3" />
                 <span asp-validation-for="Title" class="text-danger"></span>
             </div>
             <div class="form-group">
                 <label asp-for="Author" class="control-label"></label>
-                <input asp-for="Author" class="form-control mb-3" />
+                <input asp-for="Author" class="mb-3 form-control mb-3" />
                 <span asp-validation-for="Author" class="text-danger"></span>
             </div>
             <div class="form-group">
                 Publication Date
-                <input asp-for="PublicationDate" class="form-control mb-3" />
+                <input asp-for="PublicationDate" class="mb-3 form-control mb-3" />
                 <span asp-validation-for="PublicationDate" class="text-danger"></span>
             </div>
             <div class="form-group">
                 <label asp-for="Pages" class="control-label"></label>
-                <input asp-for="Pages" class="form-control mb-3" />
+                <input asp-for="Pages" class="mb-3 form-control mb-3" />
                 <span asp-validation-for="Pages" class="text-danger"></span>
             </div>
             <div class="form-group">
                 Format
-                <input asp-for="BookFormat" class="form-control mb-3" />
+                <input asp-for="BookFormat" class="mb-3 form-control mb-3" />
                 <span asp-validation-for="BookFormat" class="text-danger"></span>
             </div>
             <div class="form-group">
-                Creator
-                <input asp-for="CreatorUserName" class="form-control mb-3" value="@User.Identity?.Name" readonly="true"/>
+                @*Creator*@
+                <input type="hidden" asp-for="CreatorUserName" class="mb-3 form-control mb-3" value="@User.Identity?.Name" readonly="true"/>
+                <span asp-validation-for="CreatorUserName" class="text-danger"></span>
             </div>
             <div class="form-group">
-                <input type="submit" value="Create" class="btn btn-primary" />
+                <input type="submit" value="Create" class="mb-3 btn btn-primary" />
                 @Html.ValidationSummary(false, "", new { @class = "text-danger" })
             </div>
         </form>

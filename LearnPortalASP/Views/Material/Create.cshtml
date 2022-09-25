@@ -1,7 +1,4 @@
 ﻿@model LearnPortalASP.BLL.DTO.MaterialDTO
-@using Microsoft.AspNetCore.Identity
-@inject SignInManager<IdentityUser> SignInManager
-@inject UserManager<IdentityUser> UserManager
 
 @{
     ViewData["Title"] = "Create material";
@@ -12,8 +9,8 @@
     <div class="col-md-4">
         <form asp-action="Create">
             <a asp-controller="Books" asp-action="Create" type="button" class="btn btn-outline-dark me-3 mb-3">Book</a>
-            <button type="button" class="btn btn-outline-dark me-3 mb-3">Video</button>
-            <button type="button" class="btn btn-outline-dark me-3 mb-3">Publication</button>
+            <a asp-controller="Videos" asp-action="Create" type="button" type="button" class="btn btn-outline-dark me-3 mb-3">Video</a>
+            <a asp-controller="Publications" asp-action="Create" type="button" class="btn btn-outline-dark me-3 mb-3">Publication</a>
         </form>
     </div>
 </div>

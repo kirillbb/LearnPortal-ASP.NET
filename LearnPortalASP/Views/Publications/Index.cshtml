@@ -1,11 +1,11 @@
-﻿@model IEnumerable<LearnPortalASP.BLL.DTO.BookDTO>
+﻿@model IEnumerable<LearnPortalASP.BLL.DTO.PublicationDTO>
 
 @{
     ViewData["Title"] = "Index";
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
 
-<h1>Books</h1>
+<h1>Publications</h1>
 
 <p>
     <a asp-action="Create">Create New</a>
@@ -20,16 +20,10 @@
                 @Html.DisplayNameFor(model => model.Title)
             </th>
             <th>
-                @Html.DisplayNameFor(model => model.Author)
+                @Html.DisplayNameFor(model => model.CreationDate)
             </th>
             <th>
-                Publication Date
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.Pages)
-            </th>
-            <th>
-                Format
+                @Html.DisplayNameFor(model => model.Source)
             </th>
             <th>
                 Creator
@@ -44,19 +38,13 @@
                 @Html.DisplayFor(modelItem => item.Id)
             </td>
             <td>
-                "@Html.DisplayFor(modelItem => item.Title)"
+               "@Html.DisplayFor(modelItem => item.Title)"
             </td>
             <td>
-                @Html.DisplayFor(modelItem => item.Author)
+                @Html.DisplayFor(modelItem => item.CreationDate)
             </td>
             <td>
-                @Html.DisplayFor(modelItem => item.PublicationDate)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.Pages)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.BookFormat)
+                @Html.DisplayFor(modelItem => item.Source)
             </td>
             <td>
                 @Html.DisplayFor(modelItem => item.CreatorUserName)

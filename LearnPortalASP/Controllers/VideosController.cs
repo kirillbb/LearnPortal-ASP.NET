@@ -1,80 +1,86 @@
-﻿namespace LearnPortalASP.Controllers
-{
-    using Microsoft.AspNetCore.Mvc;
-    using Microsoft.EntityFrameworkCore;
-    using LearnPortalASP.Data;
-    using LearnPortalASP.BLL.DataServices;
-    using LearnPortalASP.BLL.DTO;
+﻿using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Threading.Tasks;
+using Microsoft.AspNetCore.Mvc;
+using Microsoft.AspNetCore.Mvc.Rendering;
+using Microsoft.EntityFrameworkCore;
+using LearnPortalASP.Data;
+using LearnPortalASP.Models.MaterialType;
+using LearnPortalASP.BLL.DataServices;
+using LearnPortalASP.BLL.DTO;
 
-    public class BooksController : Controller
+namespace LearnPortalASP.Controllers
+{
+    public class VideosController : Controller
     {
         private readonly ApplicationContext _context;
-        private readonly BookService _bookService;
+        private readonly VideoService _videoService;
         private readonly MaterialService _materialService;
 
-        public BooksController(ApplicationContext context)
+        public VideosController(ApplicationContext context)
         {
             _context = context;
-            _bookService = new BookService(_context);
-            _materialService = new MaterialService(_context);
+            _videoService = new VideoService(context);
+            _materialService = new MaterialService(context);
         }
 
-        // GET: Books
+        // GET: Videos
         public async Task<IActionResult> Index()
         {
-            var books = await _bookService.GetAllAsync();
+            var books = await _videoService.GetAllAsync();
 
             return books != null ?
                         View(books) :
                         Problem("Entity set 'ApplicationContext.Courses'  is null.");
         }
 
-        // GET: Books/Details/5
+        // GET: Videos/Details/5
         public async Task<IActionResult> Details(int? id)
         {
-            if (id == null || _context.Books == null)
+            if (id == null || _context.Videos == null)
             {
                 return NotFound();
             }
 
-            var book = await _bookService.GetAsync(id);
-            if (book == null)
+            var video = await _videoService.GetAsync(id);
+            if (video == null)
             {
                 return NotFound();
             }
 
-            return View(book);
+            return View(video);
         }
 
-        // GET: Books/Create
+        // GET: Videos/Create
         public IActionResult Create()
         {
             return View();
         }
 
-        // POST: Books/Create
+        // POST: Videos/Create
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Create([Bind("Id,Author,PublicationDate,Pages,BookFormat,Title,CreatorUserName,Discriminator")] BookDTO book)
+        public async Task<IActionResult> Create([Bind("Resolution,Duration,Id,Title,CreatorUserName,Discriminator")] VideoDTO video)
         {
             if (ModelState.IsValid)
             {
-                await _bookService.CreateAsync(book);
+                await _videoService.CreateAsync(video);
                 return RedirectToAction(nameof(Index));
             }
 
-            return View(book);
+            return View(video);
         }
 
-        // GET: Books/Edit/5
+        // GET: Videos/Edit/5
         public async Task<IActionResult> Edit(int? id)
         {
-            if (id == null || _context.Books == null)
+            if (id == null || _context.Videos == null)
             {
                 return NotFound();
             }
 
-            var book = await _bookService.GetAsync(id);
+            var book = await _videoService.GetAsync(id);
             if (book == null)
             {
                 return NotFound();
@@ -82,12 +88,12 @@
             return View(book);
         }
 
-        // POST: Books/Edit/5
+        // POST: Videos/Edit/5
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Edit(int id, [Bind("Id,Author,PublicationDate,Pages,BookFormat,Title,Discriminator,CreatorUserName")] BookDTO book)
+        public async Task<IActionResult> Edit(int id, [Bind("Resolution,Duration,Id,Title,CreatorUserName,Discriminator")] VideoDTO video)
         {
-            if (id != book.Id)
+            if (id != video.Id)
             {
                 return NotFound();
             }
@@ -96,11 +102,11 @@
             {
                 try
                 {
-                    await _bookService.UpdateAsync(book);
+                    await _videoService.UpdateAsync(video);
                 }
                 catch (DbUpdateConcurrencyException)
                 {
-                    if (!BookExists(book.Id))
+                    if (!VideoExists(video.Id))
                     {
                         return NotFound();
                     }
@@ -111,18 +117,18 @@
                 }
                 return RedirectToAction(nameof(Index));
             }
-            return View(book);
+            return View(video);
         }
 
-        // GET: Books/Delete/5
+        // GET: Videos/Delete/5
         public async Task<IActionResult> Delete(int? id)
         {
-            if (id == null || _context.Books == null)
+            if (id == null || _context.Videos == null)
             {
                 return NotFound();
             }
 
-            var book = await _bookService.GetAsync(id);
+            var book = await _videoService.GetAsync(id);
             if (book == null)
             {
                 return NotFound();
@@ -131,16 +137,16 @@
             return View(book);
         }
 
-        // POST: Books/Delete/5
+        // POST: Videos/Delete/5
         [HttpPost, ActionName("Delete")]
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> DeleteConfirmed(int id)
         {
-            if (_context.Books == null)
+            if (_context.Videos == null)
             {
                 return Problem("Entity set 'ApplicationContext.Books'  is null.");
             }
-            var book = await _bookService.GetAsync(id);
+            var book = await _videoService.GetAsync(id);
             if (book != null)
             {
                 await _materialService.DeleteAsync(id);
@@ -149,9 +155,9 @@
             return RedirectToAction(nameof(Index));
         }
 
-        private bool BookExists(int id)
+        private bool VideoExists(int id)
         {
-          return _context.Books.Any(e => e.Id == id);
+          return _context.Videos.Any(e => e.Id == id);
         }
     }
 }

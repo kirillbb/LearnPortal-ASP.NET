@@ -8,7 +8,7 @@ namespace LearnPortalASP.BLL.Interfaces
 
         Task UpdateAsync(VideoDTO videoDTO);
 
-        Task<VideoDTO?> GetAsync(int id);
+        Task<VideoDTO?> GetAsync(int? id);
 
         Task CreateAsync(VideoDTO videoDTO);
     }
