@@ -1,10 +1,11 @@
-﻿using Microsoft.EntityFrameworkCore.Migrations;
+﻿using System;
+using Microsoft.EntityFrameworkCore.Migrations;
 
 #nullable disable
 
 namespace basicFunctions_DB.Migrations
 {
-    public partial class InitialCreate : Migration
+    public partial class NewDBContext : Migration
     {
         protected override void Up(MigrationBuilder migrationBuilder)
         {
@@ -116,7 +117,16 @@ namespace basicFunctions_DB.Migrations
                         .Annotation("SqlServer:Identity", "1, 1"),
                     Title = table.Column<string>(type: "nvarchar(max)", nullable: true),
                     CreatorId = table.Column<int>(type: "int", nullable: false),
-                    CourseId = table.Column<int>(type: "int", nullable: true)
+                    CourseId = table.Column<int>(type: "int", nullable: true),
+                    Discriminator = table.Column<string>(type: "nvarchar(max)", nullable: false),
+                    Author = table.Column<string>(type: "nvarchar(max)", nullable: true),
+                    PublicationDate = table.Column<DateTime>(type: "datetime2", nullable: true),
+                    Pages = table.Column<int>(type: "int", nullable: true),
+                    BookFormat = table.Column<string>(type: "nvarchar(max)", nullable: true),
+                    CreationDate = table.Column<DateTime>(type: "datetime2", nullable: true),
+                    Source = table.Column<string>(type: "nvarchar(max)", nullable: true),
+                    Resolution = table.Column<int>(type: "int", nullable: true),
+                    Duration = table.Column<int>(type: "int", nullable: true)
                 },
                 constraints: table =>
                 {

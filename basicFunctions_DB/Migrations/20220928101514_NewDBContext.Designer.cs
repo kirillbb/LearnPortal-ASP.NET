@@ -12,19 +12,19 @@ using basicFunctions_DB.DAL;
 namespace basicFunctions_DB.Migrations
 {
     [DbContext(typeof(ApplicationContext))]
-    [Migration("20220814092123_FixMaterialsTable")]
-    partial class FixMaterialsTable
+    [Migration("20220928101514_NewDBContext")]
+    partial class NewDBContext
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
-                .HasAnnotation("ProductVersion", "6.0.8")
+                .HasAnnotation("ProductVersion", "6.0.9")
                 .HasAnnotation("Relational:MaxIdentifierLength", 128);
 
             SqlServerModelBuilderExtensions.UseIdentityColumns(modelBuilder, 1L, 1);
 
-            modelBuilder.Entity("basicFunctions_DB.DataLayer.CourseType.Course", b =>
+            modelBuilder.Entity("basicFunctions_DB.DAL.CourseType.Course", b =>
                 {
                     b.Property<int>("Id")
                         .ValueGeneratedOnAdd()
@@ -48,7 +48,7 @@ namespace basicFunctions_DB.Migrations
                     b.ToTable("Courses");
                 });
 
-            modelBuilder.Entity("basicFunctions_DB.DataLayer.CourseType.Skill", b =>
+            modelBuilder.Entity("basicFunctions_DB.DAL.CourseType.Skill", b =>
                 {
                     b.Property<int>("Id")
                         .ValueGeneratedOnAdd()
@@ -67,7 +67,7 @@ namespace basicFunctions_DB.Migrations
                     b.ToTable("Skills");
                 });
 
-            modelBuilder.Entity("basicFunctions_DB.DataLayer.MaterialType.Material", b =>
+            modelBuilder.Entity("basicFunctions_DB.DAL.MaterialType.Material", b =>
                 {
                     b.Property<int>("Id")
                         .ValueGeneratedOnAdd()
@@ -99,7 +99,7 @@ namespace basicFunctions_DB.Migrations
                     b.HasDiscriminator<string>("Discriminator").HasValue("Material");
                 });
 
-            modelBuilder.Entity("basicFunctions_DB.DataLayer.UserType.User", b =>
+            modelBuilder.Entity("basicFunctions_DB.DAL.UserType.User", b =>
                 {
                     b.Property<int>("Id")
                         .ValueGeneratedOnAdd()
@@ -124,7 +124,7 @@ namespace basicFunctions_DB.Migrations
                     b.ToTable("Users");
                 });
 
-            modelBuilder.Entity("basicFunctions_DB.DataLayer.UserType.UserSkillState", b =>
+            modelBuilder.Entity("basicFunctions_DB.DAL.UserType.UserSkillState", b =>
                 {
                     b.Property<int>("Id")
                         .ValueGeneratedOnAdd()
@@ -165,9 +165,9 @@ namespace basicFunctions_DB.Migrations
                     b.ToTable("CourseSkill");
                 });
 
-            modelBuilder.Entity("basicFunctions_DB.DataLayer.MaterialType.Book", b =>
+            modelBuilder.Entity("basicFunctions_DB.DAL.MaterialType.Book", b =>
                 {
-                    b.HasBaseType("basicFunctions_DB.DataLayer.MaterialType.Material");
+                    b.HasBaseType("basicFunctions_DB.DAL.MaterialType.Material");
 
                     b.Property<string>("Author")
                         .HasColumnType("nvarchar(max)");
@@ -185,9 +185,9 @@ namespace basicFunctions_DB.Migrations
                     b.HasDiscriminator().HasValue("Book");
                 });
 
-            modelBuilder.Entity("basicFunctions_DB.DataLayer.MaterialType.Publication", b =>
+            modelBuilder.Entity("basicFunctions_DB.DAL.MaterialType.Publication", b =>
                 {
-                    b.HasBaseType("basicFunctions_DB.DataLayer.MaterialType.Material");
+                    b.HasBaseType("basicFunctions_DB.DAL.MaterialType.Material");
 
                     b.Property<DateTime>("CreationDate")
                         .HasColumnType("datetime2");
@@ -198,9 +198,9 @@ namespace basicFunctions_DB.Migrations
                     b.HasDiscriminator().HasValue("Publication");
                 });
 
-            modelBuilder.Entity("basicFunctions_DB.DataLayer.MaterialType.Video", b =>
+            modelBuilder.Entity("basicFunctions_DB.DAL.MaterialType.Video", b =>
                 {
-                    b.HasBaseType("basicFunctions_DB.DataLayer.MaterialType.Material");
+                    b.HasBaseType("basicFunctions_DB.DAL.MaterialType.Material");
 
                     b.Property<int>("Duration")
                         .HasColumnType("int");
@@ -211,22 +211,22 @@ namespace basicFunctions_DB.Migrations
                     b.HasDiscriminator().HasValue("Video");
                 });
 
-            modelBuilder.Entity("basicFunctions_DB.DataLayer.CourseType.Course", b =>
+            modelBuilder.Entity("basicFunctions_DB.DAL.CourseType.Course", b =>
                 {
-                    b.HasOne("basicFunctions_DB.DataLayer.UserType.User", "Creator")
+                    b.HasOne("basicFunctions_DB.DAL.UserType.User", "Creator")
                         .WithMany("CompletedCourse")
                         .HasForeignKey("CreatorId");
 
                     b.Navigation("Creator");
                 });
 
-            modelBuilder.Entity("basicFunctions_DB.DataLayer.MaterialType.Material", b =>
+            modelBuilder.Entity("basicFunctions_DB.DAL.MaterialType.Material", b =>
                 {
-                    b.HasOne("basicFunctions_DB.DataLayer.CourseType.Course", null)
+                    b.HasOne("basicFunctions_DB.DAL.CourseType.Course", null)
                         .WithMany("CourseMaterials")
                         .HasForeignKey("CourseId");
 
-                    b.HasOne("basicFunctions_DB.DataLayer.UserType.User", "Creator")
+                    b.HasOne("basicFunctions_DB.DAL.UserType.User", "Creator")
                         .WithMany()
                         .HasForeignKey("CreatorId")
                         .OnDelete(DeleteBehavior.Cascade)
@@ -235,15 +235,15 @@ namespace basicFunctions_DB.Migrations
                     b.Navigation("Creator");
                 });
 
-            modelBuilder.Entity("basicFunctions_DB.DataLayer.UserType.UserSkillState", b =>
+            modelBuilder.Entity("basicFunctions_DB.DAL.UserType.UserSkillState", b =>
                 {
-                    b.HasOne("basicFunctions_DB.DataLayer.CourseType.Skill", "Skill")
+                    b.HasOne("basicFunctions_DB.DAL.CourseType.Skill", "Skill")
                         .WithMany()
                         .HasForeignKey("SkillId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
-                    b.HasOne("basicFunctions_DB.DataLayer.UserType.User", "User")
+                    b.HasOne("basicFunctions_DB.DAL.UserType.User", "User")
                         .WithMany("UserSkillList")
                         .HasForeignKey("UserId")
                         .OnDelete(DeleteBehavior.Cascade)
@@ -256,25 +256,25 @@ namespace basicFunctions_DB.Migrations
 
             modelBuilder.Entity("CourseSkill", b =>
                 {
-                    b.HasOne("basicFunctions_DB.DataLayer.CourseType.Skill", null)
+                    b.HasOne("basicFunctions_DB.DAL.CourseType.Skill", null)
                         .WithMany()
                         .HasForeignKey("CourseSkillsId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
-                    b.HasOne("basicFunctions_DB.DataLayer.CourseType.Course", null)
+                    b.HasOne("basicFunctions_DB.DAL.CourseType.Course", null)
                         .WithMany()
                         .HasForeignKey("CoursesId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
                 });
 
-            modelBuilder.Entity("basicFunctions_DB.DataLayer.CourseType.Course", b =>
+            modelBuilder.Entity("basicFunctions_DB.DAL.CourseType.Course", b =>
                 {
                     b.Navigation("CourseMaterials");
                 });
 
-            modelBuilder.Entity("basicFunctions_DB.DataLayer.UserType.User", b =>
+            modelBuilder.Entity("basicFunctions_DB.DAL.UserType.User", b =>
                 {
                     b.Navigation("CompletedCourse");
 
