@@ -4,10 +4,12 @@
     ViewData["Title"] = "Materials";
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
-<h1>Materials</h1>
-<p>
-    <a asp-action="Create">Create New</a>
-</p>
+<span class="flex">
+    <h1 class="align-l">Materials</h1>
+    <a asp-action="Create" type="button" class="align-r btn btn-outline-dark my-3 mb-3">Create New</a>
+</span>
+
+
 <table class="table">
     <thead>
         <tr>
@@ -44,20 +46,23 @@
             <td>
                     @if(item.Discriminator == "Book")
                     {
-                        <a asp-controller="Books" asp-action="Edit" asp-route-id="@item.Id">Edit|</a>
+                        <a asp-controller="Books" asp-action="Edit" asp-route-id="@item.Id">Edit</a>
                         <a asp-controller="Books" asp-action="Details" asp-route-id="@item.Id">Details</a>
+                        <a asp-controller="Books" asp-action="Delete" asp-route-id="@item.Id">Delete</a>
                     }
                     else if(item.Discriminator == "Video")
                     {
                         <a asp-controller="Videos" asp-action="Edit" asp-route-id="@item.Id">Edit</a>
                         <a asp-controller="Videos" asp-action="Details" asp-route-id="@item.Id">Details</a>
+                        <a asp-controller="Videos" asp-action="Delete" asp-route-id="@item.Id">Delete</a>
+
                     }
                     else
                     {
                         <a asp-controller="Publications" asp-action="Edit" asp-route-id="@item.Id">Edit</a>
                         <a asp-controller="Publications" asp-action="Details" asp-route-id="@item.Id">Details</a>
+                        <a asp-controller="Publications" asp-action="Delete" asp-route-id="@item.Id">Delete</a>
                     }
-                <a asp-action="Delete" asp-route-id="@item.Id">Delete</a>
             </td>
         </tr>
 }

@@ -5,11 +5,10 @@
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
 
-<h1>Books</h1>
-
-<p>
-    <a asp-action="Create">Create New</a>
-</p>
+<span class="flex">
+    <h1 class="align-l">Books</h1>
+    <a asp-action="Create" type="button" class="align-r btn btn-outline-dark my-3 mb-3">Create New</a>
+</span>
 <table class="table">
     <thead>
         <tr>
