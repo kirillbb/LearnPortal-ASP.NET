@@ -1,8 +1,8 @@
-﻿using basicFunctions_DB.DAL.CourseType;
-using basicFunctions_DB.DAL.MaterialType;
-
-namespace basicFunctions_DB.BLL.DTO
+﻿namespace basicFunctions_DB.BLL.DTO
 {
+    using basicFunctions_DB.DAL.CourseType;
+    using basicFunctions_DB.DAL.MaterialType;
+
     public class CourseDTO
     {
         public int Id { get; set; }

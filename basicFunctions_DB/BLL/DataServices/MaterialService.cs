@@ -11,12 +11,12 @@
 
         public MaterialService(ApplicationContext context)
         {
-            this._context = context;
+            _context = context;
         }
 
         public async Task<List<MaterialDTO>> GetAllAsync()
         {
-            var materials = await this._context.Materials.Include(x => x.Creator).ToListAsync();
+            var materials = await _context.Materials.Include(x => x.Creator).ToListAsync();
             List<MaterialDTO> materialDTOs = new List<MaterialDTO>();
 
             foreach (var item in materials)
@@ -36,7 +36,7 @@
 
         public async Task DeleteAsync(int id)
         {
-            var material = await this._context.Materials.Include(x => x.Creator).FirstOrDefaultAsync(x => x.Id == id);
+            var material = await _context.Materials.Include(x => x.Creator).FirstOrDefaultAsync(x => x.Id == id);
 
             if (material != null)
             {

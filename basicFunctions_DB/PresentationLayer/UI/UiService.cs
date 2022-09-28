@@ -1,11 +1,11 @@
-﻿using basicFunctions_DB.BLL.Authorization;
-using basicFunctions_DB.BLL.DataServices;
-using basicFunctions_DB.DAL;
-using basicFunctions_DB.DAL.UserType;
-using basicFunctions_DB.PresentationLayer;
-
-namespace basicFunctions_DB.BLL.UI
+﻿namespace basicFunctions_DB.BLL.UI
 {
+    using basicFunctions_DB.BLL.Authorization;
+    using basicFunctions_DB.BLL.DataServices;
+    using basicFunctions_DB.DAL;
+    using basicFunctions_DB.DAL.UserType;
+    using basicFunctions_DB.PresentationLayer;
+
     internal class UiService
     {
         private readonly ApplicationContext _context;
@@ -18,11 +18,11 @@ namespace basicFunctions_DB.BLL.UI
 
         public UiService(ApplicationContext context)
         {
-            this._context = context;
-            this._materialOperationService = new MaterialOperationService(context);
-            this._courseOperationService = new CourseOperationService(context);
-            this._skillOperationService = new SkillOperationService(context);
-            this._userOperationService = new UserOperationService(context);
+            _context = context;
+            _materialOperationService = new MaterialOperationService(context);
+            _courseOperationService = new CourseOperationService(context);
+            _skillOperationService = new SkillOperationService(context);
+            _userOperationService = new UserOperationService(context);
         }
 
         public async Task Start()

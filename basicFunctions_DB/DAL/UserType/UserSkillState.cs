@@ -1,7 +1,7 @@
-﻿using basicFunctions_DB.DAL.CourseType;
-
-namespace basicFunctions_DB.DAL.UserType
+﻿namespace basicFunctions_DB.DAL.UserType
 {
+    using basicFunctions_DB.DAL.CourseType;
+
     public class UserSkillState
     {
         public int Id { get; set; }

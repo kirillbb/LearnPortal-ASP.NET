@@ -14,6 +14,7 @@
             this._context = new ApplicationContext();
             _dbSet = _context.Set<T>();
         }
+
         public Repository(DbContext _context)
         {
             this._context = _context;
@@ -46,6 +47,7 @@
             var query = Include(includeProperties);
             return query.Where(predicate).ToList();
         }
+
         private IQueryable<T> Include(params Expression<Func<T, object>>[] includeProperties)
         {
             IQueryable<T> query = _dbSet.AsNoTracking();

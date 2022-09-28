@@ -1,23 +1,23 @@
-﻿using basicFunctions_DB.BLL.DTO;
-using basicFunctions_DB.BLL.Interfaces;
-using basicFunctions_DB.DAL;
-using basicFunctions_DB.DAL.MaterialType;
-using Microsoft.EntityFrameworkCore;
-
-namespace basicFunctions_DB.BLL.DataServices
+﻿namespace basicFunctions_DB.BLL.DataServices
 {
+    using basicFunctions_DB.BLL.DTO;
+    using basicFunctions_DB.BLL.Interfaces;
+    using basicFunctions_DB.DAL;
+    using basicFunctions_DB.DAL.MaterialType;
+    using Microsoft.EntityFrameworkCore;
+
     internal class PublicationService : IPublicationService
     {
         private readonly ApplicationContext _context;
 
         public PublicationService(ApplicationContext context)
         {
-            this._context = context;
+            _context = context;
         }
 
         public async Task CreateAsync(PublicationDTO publicationDTO)
         {
-            await this._context.Materials.AddAsync(new Publication
+            await _context.Materials.AddAsync(new Publication
             {
                 Title = publicationDTO.Title,
                 CreationDate = publicationDTO.CreationDate,
@@ -25,12 +25,12 @@ namespace basicFunctions_DB.BLL.DataServices
                 Source = publicationDTO.Source
             });
 
-            await this._context.SaveChangesAsync();
+            await _context.SaveChangesAsync();
         }
 
         public async Task<List<PublicationDTO>> GetAllAsync()
         {
-            var publications = await this._context.Publications.Include(x => x.Creator).ToListAsync();
+            var publications = await _context.Publications.Include(x => x.Creator).ToListAsync();
             List<PublicationDTO> publicationDTOs = new List<PublicationDTO>();
             foreach (var item in publications)
             {
@@ -51,7 +51,7 @@ namespace basicFunctions_DB.BLL.DataServices
 
         public async Task<PublicationDTO?> GetAsync(int id)
         {
-            var publication = await this._context.Publications.Include(x => x.Creator).FirstOrDefaultAsync(x => x.Id == id);
+            var publication = await _context.Publications.Include(x => x.Creator).FirstOrDefaultAsync(x => x.Id == id);
             PublicationDTO publicationDTO = null;
 
             if (publication != null)
@@ -75,7 +75,7 @@ namespace basicFunctions_DB.BLL.DataServices
 
         public async Task UpdateAsync(PublicationDTO publicationDTO)
         {
-            var publication = await this._context.Publications.FirstOrDefaultAsync(x => x.Id == publicationDTO.Id);
+            var publication = await _context.Publications.FirstOrDefaultAsync(x => x.Id == publicationDTO.Id);
 
             if (publication != null)
             {
@@ -84,7 +84,7 @@ namespace basicFunctions_DB.BLL.DataServices
                 publication.CreationDate = publicationDTO.CreationDate;
                 publication.Source = publicationDTO.Source;
 
-                await this._context.SaveChangesAsync();
+                await _context.SaveChangesAsync();
             }
         }
     }

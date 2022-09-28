@@ -1,22 +1,23 @@
-﻿using basicFunctions_DB.BLL.DTO;
-using basicFunctions_DB.BLL.Interfaces;
-using basicFunctions_DB.DAL;
-using basicFunctions_DB.DAL.MaterialType;
-using Microsoft.EntityFrameworkCore;
-
-namespace basicFunctions_DB.BLL.DataServices
+﻿namespace basicFunctions_DB.BLL.DataServices
 {
+    using basicFunctions_DB.BLL.DTO;
+    using basicFunctions_DB.BLL.Interfaces;
+    using basicFunctions_DB.DAL;
+    using basicFunctions_DB.DAL.MaterialType;
+    using Microsoft.EntityFrameworkCore;
+
     internal class BookService : IBookService
     {
         private readonly ApplicationContext _context;
 
         public BookService(ApplicationContext context)
         {
-            this._context = context;
+            _context = context;
         }
+
         public async Task CreateAsync(BookDTO bookDTO)
         {
-            await this._context.Materials.AddAsync(new Book
+            await _context.Materials.AddAsync(new Book
             {
                 Title = bookDTO.Title,
                 Creator = bookDTO.Creator,
@@ -26,12 +27,12 @@ namespace basicFunctions_DB.BLL.DataServices
                 PublicationDate = bookDTO.PublicationDate
             });
 
-            await this._context.SaveChangesAsync();
+            await _context.SaveChangesAsync();
         }
 
         public async Task<List<BookDTO>> GetAllAsync()
         {
-            var books = await this._context.Books.Include(x => x.Creator).ToListAsync();
+            var books = await _context.Books.Include(x => x.Creator).ToListAsync();
             List<BookDTO> bookDTOs = new List<BookDTO>();
             foreach (var item in books)
             {
@@ -54,7 +55,7 @@ namespace basicFunctions_DB.BLL.DataServices
 
         public async Task<BookDTO?> GetAsync(int id)
         {
-            var book = await this._context.Books.Include(x => x.Creator).FirstOrDefaultAsync(x => x.Id == id);
+            var book = await _context.Books.Include(x => x.Creator).FirstOrDefaultAsync(x => x.Id == id);
             BookDTO bookDTO = null;
 
             if (book != null)
@@ -80,7 +81,7 @@ namespace basicFunctions_DB.BLL.DataServices
 
         public async Task UpdateAsync(BookDTO bookDTO)
         {
-            var book = await this._context.Books.FirstOrDefaultAsync(x => x.Id == bookDTO.Id);
+            var book = await _context.Books.FirstOrDefaultAsync(x => x.Id == bookDTO.Id);
 
             if (book != null)
             {
@@ -91,7 +92,7 @@ namespace basicFunctions_DB.BLL.DataServices
                 book.Author = bookDTO.Author;
                 book.PublicationDate = bookDTO.PublicationDate;
 
-                await this._context.SaveChangesAsync();
+                await _context.SaveChangesAsync();
             }
         }
     }

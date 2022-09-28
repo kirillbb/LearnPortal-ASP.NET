@@ -1,45 +1,45 @@
-﻿using basicFunctions_DB.BLL.DTO;
-using basicFunctions_DB.BLL.Interfaces;
-using basicFunctions_DB.DAL;
-using basicFunctions_DB.DAL.CourseType;
-using Microsoft.EntityFrameworkCore;
-
-namespace basicFunctions_DB.BLL.DataServices
+﻿namespace basicFunctions_DB.BLL.DataServices
 {
+    using basicFunctions_DB.BLL.DTO;
+    using basicFunctions_DB.BLL.Interfaces;
+    using basicFunctions_DB.DAL;
+    using basicFunctions_DB.DAL.CourseType;
+    using Microsoft.EntityFrameworkCore;
+
     internal class SkillService : ISkillService
     {
         private readonly ApplicationContext _context;
 
         public SkillService(ApplicationContext context)
         {
-            this._context = context;
+            _context = context;
         }
 
         public async Task CreateAsync(SkillDTO skillDTO)
         {
-            await this._context.Skills.AddAsync(new Skill
+            await _context.Skills.AddAsync(new Skill
             {
                 Name = skillDTO.Name,
                 Description = skillDTO.Description
             });
 
-            await this._context.SaveChangesAsync();
+            await _context.SaveChangesAsync();
         }
 
         public async Task DeleteAsync(int id)
         {
-            var skill = await this._context.Skills.Include(x => x.Courses).FirstOrDefaultAsync(x => x.Id == id);
+            var skill = await _context.Skills.Include(x => x.Courses).FirstOrDefaultAsync(x => x.Id == id);
 
             if (skill != null)
             {
-                this._context.Remove(skill);
-                await this._context.SaveChangesAsync();
+                _context.Remove(skill);
+                await _context.SaveChangesAsync();
             }
         }
 
         public async Task<List<SkillDTO>> GetAllAsync()
         {
-            var skills = await this._context.Skills.ToListAsync();
+            var skills = await _context.Skills.ToListAsync();
             List<SkillDTO> skillDTOs = new List<SkillDTO>();
             foreach (var item in skills)
             {
@@ -58,7 +58,7 @@ namespace basicFunctions_DB.BLL.DataServices
 
         public async Task<SkillDTO?> GetAsync(int id)
         {
-            var skill = await this._context.Skills.Include(x => x.Courses).FirstOrDefaultAsync(x => x.Id == id);
+            var skill = await _context.Skills.Include(x => x.Courses).FirstOrDefaultAsync(x => x.Id == id);
             SkillDTO skillDTO = null;
 
             if (skill != null)
@@ -80,13 +80,13 @@ namespace basicFunctions_DB.BLL.DataServices
 
         public async Task UpdateAsync(SkillDTO skillDTO)
         {
-            var skill = await this._context.Skills.Include(x => x.Courses).FirstOrDefaultAsync(x => x.Id == skillDTO.Id);
+            var skill = await _context.Skills.Include(x => x.Courses).FirstOrDefaultAsync(x => x.Id == skillDTO.Id);
 
             if (skill != null)
             {
                 skill.Name = skillDTO.Name;
                 skill.Description = skillDTO.Description;
-                await this._context.SaveChangesAsync();
+                await _context.SaveChangesAsync();
             }
         }
     }

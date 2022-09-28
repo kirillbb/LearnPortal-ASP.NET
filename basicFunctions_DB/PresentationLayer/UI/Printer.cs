@@ -1,7 +1,7 @@
-﻿using basicFunctions_DB.BLL.DTO;
-
-namespace basicFunctions_DB.PresentationLayer
+﻿namespace basicFunctions_DB.PresentationLayer
 {
+    using basicFunctions_DB.BLL.DTO;
+
     internal static class Printer
     {
         public static void AuthorizationMenu()

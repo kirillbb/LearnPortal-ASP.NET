@@ -12,7 +12,7 @@
 
         public Authorizator(ApplicationContext context)
         {
-            this._context = context;
+            _context = context;
         }
 
         public User AuthorizatedUser
@@ -24,7 +24,7 @@
         {
             try
             {
-                var user = await this._context.Users.Where(x => x.Email == email).FirstOrDefaultAsync();
+                var user = await _context.Users.Where(x => x.Email == email).FirstOrDefaultAsync();
 
                 if (user != null)
                 {
@@ -46,6 +46,5 @@
 
             return false;
         }
-
     }
 }

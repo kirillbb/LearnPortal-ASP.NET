@@ -1,8 +1,8 @@
-﻿using basicFunctions_DB.DAL.CourseType;
-using basicFunctions_DB.DAL.UserType;
-
-namespace basicFunctions_DB.BLL.DTO
+﻿namespace basicFunctions_DB.BLL.DTO
 {
+    using basicFunctions_DB.DAL.CourseType;
+    using basicFunctions_DB.DAL.UserType;
+
     internal class UserDTO
     {
         public int Id { get; set; }

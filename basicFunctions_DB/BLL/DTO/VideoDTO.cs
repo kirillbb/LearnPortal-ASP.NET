@@ -5,6 +5,7 @@
         public int Resolution { get; set; }
 
         public int Duration { get; set; }
+
         public override string ToString()
         {
             return $"ID: {Id} | Title: \"{Title}\" | Resolution: {Resolution}p | Duration: {Duration} minutes | added: {Creator.ToString} ";

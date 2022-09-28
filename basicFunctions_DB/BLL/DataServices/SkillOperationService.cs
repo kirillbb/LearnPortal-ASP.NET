@@ -1,9 +1,9 @@
-﻿using basicFunctions_DB.BLL.UI;
-using basicFunctions_DB.DAL;
-using basicFunctions_DB.PresentationLayer;
-
-namespace basicFunctions_DB.BLL.DataServices
+﻿namespace basicFunctions_DB.BLL.DataServices
 {
+    using basicFunctions_DB.BLL.UI;
+    using basicFunctions_DB.DAL;
+    using basicFunctions_DB.PresentationLayer;
+
     internal class SkillOperationService
     {
         private readonly ApplicationContext _context;
@@ -11,8 +11,8 @@ namespace basicFunctions_DB.BLL.DataServices
 
         public SkillOperationService(ApplicationContext context)
         {
-            this._context = context;
-            this._skillService = new SkillService(context);
+            _context = context;
+            _skillService = new SkillService(context);
         }
 
         public async Task StarterAsync()

@@ -1,9 +1,9 @@
-﻿using basicFunctions_DB.BLL.UI;
-using basicFunctions_DB.DAL;
-using basicFunctions_DB.PresentationLayer;
-
-namespace basicFunctions_DB.BLL.DataServices
+﻿namespace basicFunctions_DB.BLL.DataServices
 {
+    using basicFunctions_DB.BLL.UI;
+    using basicFunctions_DB.DAL;
+    using basicFunctions_DB.PresentationLayer;
+
     internal class MaterialOperationService
     {
         private readonly ApplicationContext _context;
@@ -14,11 +14,11 @@ namespace basicFunctions_DB.BLL.DataServices
 
         public MaterialOperationService(ApplicationContext context)
         {
-            this._context = context;
-            this._materialService = new MaterialService(context);
-            this._bookService = new BookService(context);
-            this._publicationService = new PublicationService(context);
-            this._videoService = new VideoService(context);
+            _context = context;
+            _materialService = new MaterialService(context);
+            _bookService = new BookService(context);
+            _publicationService = new PublicationService(context);
+            _videoService = new VideoService(context);
         }
 
         public async Task StarterAsync()

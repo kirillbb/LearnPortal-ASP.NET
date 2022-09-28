@@ -1,9 +1,9 @@
-﻿using basicFunctions_DB.BLL.UI;
-using basicFunctions_DB.DAL;
-using basicFunctions_DB.PresentationLayer;
-
-namespace basicFunctions_DB.BLL.DataServices
+﻿namespace basicFunctions_DB.BLL.DataServices
 {
+    using basicFunctions_DB.BLL.UI;
+    using basicFunctions_DB.DAL;
+    using basicFunctions_DB.PresentationLayer;
+
     internal class UserOperationService
     {
         private readonly ApplicationContext _context;
@@ -11,8 +11,8 @@ namespace basicFunctions_DB.BLL.DataServices
 
         public UserOperationService(ApplicationContext context)
         {
-            this._context = context;
-            this._userService = new UserService(context);
+            _context = context;
+            _userService = new UserService(context);
         }
 
         public async Task StarterAsync()

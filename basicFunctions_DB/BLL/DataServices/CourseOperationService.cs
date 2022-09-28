@@ -1,9 +1,9 @@
-﻿using basicFunctions_DB.BLL.UI;
-using basicFunctions_DB.DAL;
-using basicFunctions_DB.PresentationLayer;
-
-namespace basicFunctions_DB.BLL.DataServices
+﻿namespace basicFunctions_DB.BLL.DataServices
 {
+    using basicFunctions_DB.BLL.UI;
+    using basicFunctions_DB.DAL;
+    using basicFunctions_DB.PresentationLayer;
+
     internal class CourseOperationService
     {
         private readonly ApplicationContext _context;
@@ -12,9 +12,9 @@ namespace basicFunctions_DB.BLL.DataServices
 
         public CourseOperationService(ApplicationContext context)
         {
-            this._context = context;
-            this._courseService = new CourseService(_context);
-            this._userService = new UserService(_context);
+            _context = context;
+            _courseService = new CourseService(_context);
+            _userService = new UserService(_context);
         }
 
         public async Task StarterAsync()

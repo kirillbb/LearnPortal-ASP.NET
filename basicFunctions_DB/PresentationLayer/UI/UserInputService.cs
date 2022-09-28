@@ -1,9 +1,9 @@
-﻿using basicFunctions_DB.BLL.DTO;
-using basicFunctions_DB.DAL.UserType;
-using basicFunctions_DB.PresentationLayer;
-
-namespace basicFunctions_DB.BLL.UI
+﻿namespace basicFunctions_DB.BLL.UI
 {
+    using basicFunctions_DB.BLL.DTO;
+    using basicFunctions_DB.DAL.UserType;
+    using basicFunctions_DB.PresentationLayer;
+
     internal static class UserInputService
     {
         public static UserDTO Authorization()
@@ -139,6 +139,7 @@ namespace basicFunctions_DB.BLL.UI
 
             return null;
         }
+
         public static SkillDTO AddSkill()
         {
             try

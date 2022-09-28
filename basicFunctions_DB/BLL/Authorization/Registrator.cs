@@ -10,7 +10,7 @@
 
         public Registrator(ApplicationContext context)
         {
-            this._context = context;
+            _context = context;
         }
 
         public bool SignUp(string email, string password, string name)
@@ -36,15 +36,15 @@
 
         private bool IsExistingUser(string email)
         {
-            var user = this._context.Users.Where(x => x.Email == email).FirstOrDefault();
+            var user = _context.Users.Where(x => x.Email == email).FirstOrDefault();
 
             return user != null;
         }
 
         private void SaveUserInDataBase(User user)
         {
-            this._context.Users.Add(user);
-            this._context.SaveChanges();
+            _context.Users.Add(user);
+            _context.SaveChanges();
         }
     }
 }

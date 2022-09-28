@@ -1,23 +1,23 @@
-﻿using basicFunctions_DB.BLL.DTO;
-using basicFunctions_DB.BLL.Interfaces;
-using basicFunctions_DB.DAL;
-using basicFunctions_DB.DAL.MaterialType;
-using Microsoft.EntityFrameworkCore;
-
-namespace basicFunctions_DB.BLL.DataServices
+﻿namespace basicFunctions_DB.BLL.DataServices
 {
+    using basicFunctions_DB.BLL.DTO;
+    using basicFunctions_DB.BLL.Interfaces;
+    using basicFunctions_DB.DAL;
+    using basicFunctions_DB.DAL.MaterialType;
+    using Microsoft.EntityFrameworkCore;
+
     internal class VideoService : IVideoService
     {
         private readonly ApplicationContext _context;
 
         public VideoService(ApplicationContext context)
         {
-            this._context = context;
+            _context = context;
         }
 
         public async Task CreateAsync(VideoDTO videoDTO)
         {
-            await this._context.Materials.AddAsync(new Video
+            await _context.Materials.AddAsync(new Video
             {
                 Title = videoDTO.Title,
                 Duration = videoDTO.Duration,
@@ -25,12 +25,12 @@ namespace basicFunctions_DB.BLL.DataServices
                 Creator = videoDTO.Creator
             });
 
-            await this._context.SaveChangesAsync();
+            await _context.SaveChangesAsync();
         }
 
         public async Task<List<VideoDTO>> GetAllAsync()
         {
-            var videos = await this._context.Videos.Include(x => x.Creator).ToListAsync();
+            var videos = await _context.Videos.Include(x => x.Creator).ToListAsync();
             List<VideoDTO> videoDTOs = new List<VideoDTO>();
             foreach (var item in videos)
             {
@@ -45,12 +45,13 @@ namespace basicFunctions_DB.BLL.DataServices
 
                 videoDTOs.Add(videoDTO);
             }
+
             return videoDTOs;
         }
 
         public async Task<VideoDTO?> GetAsync(int id)
         {
-            var video = await this._context.Videos.Include(x => x.Creator).FirstOrDefaultAsync(x => x.Id == id);
+            var video = await _context.Videos.Include(x => x.Creator).FirstOrDefaultAsync(x => x.Id == id);
             VideoDTO videoDTO = null;
 
             if (video != null)
@@ -74,7 +75,7 @@ namespace basicFunctions_DB.BLL.DataServices
 
         public async Task UpdateAsync(VideoDTO videoDTO)
         {
-            var video = await this._context.Videos.FirstOrDefaultAsync(x => x.Id == videoDTO.Id);
+            var video = await _context.Videos.FirstOrDefaultAsync(x => x.Id == videoDTO.Id);
 
             if (video != null)
             {
@@ -83,7 +84,7 @@ namespace basicFunctions_DB.BLL.DataServices
                 video.Duration = videoDTO.Duration;
                 video.Creator = videoDTO.Creator;
 
-                await this._context.SaveChangesAsync();
+                await _context.SaveChangesAsync();
             }
         }
     }

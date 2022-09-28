@@ -12,12 +12,12 @@
         
         public CourseService(ApplicationContext context)
         {
-            this._context = context;
+            _context = context;
         }
 
         public async Task CreateAsync(CourseDTO courseDTO)
         {            
-            await this._context.Courses.AddAsync(new Course
+            await _context.Courses.AddAsync(new Course
             {
                 Name = courseDTO.Name,
                 Description = courseDTO.Description,
@@ -26,12 +26,12 @@
                 CourseSkills = courseDTO.CourseSkills
             });
 
-            await this._context.SaveChangesAsync();
+            await _context.SaveChangesAsync();
         }
 
         public async Task<CourseDTO?> GetAsync(int id)
         {
-            var course = await this._context.Courses.FirstOrDefaultAsync(x => x.Id == id);
+            var course = await _context.Courses.FirstOrDefaultAsync(x => x.Id == id);
             CourseDTO courseDTO = null;
 
             if (course != null)
@@ -56,7 +56,7 @@
 
         public async Task UpdateAsync(CourseDTO courseDTO)
         {
-            var course = await this._context.Courses.FirstOrDefaultAsync(x => x.Id == courseDTO.Id);
+            var course = await _context.Courses.FirstOrDefaultAsync(x => x.Id == courseDTO.Id);
 
             if (course != null)
             {
@@ -66,14 +66,14 @@
                 course.CourseMaterials = courseDTO.CourseMaterials;
                 course.CreatorId = course.CreatorId;
 
-                this._context.Courses.Update(course);
-                await this._context.SaveChangesAsync();
+                _context.Courses.Update(course);
+                await _context.SaveChangesAsync();
             }
         }
 
         public async Task<List<CourseDTO>> GetAllAsync()
         {
-            var courses = await this._context.Courses.ToListAsync();
+            var courses = await _context.Courses.ToListAsync();
             List<CourseDTO> courseDTOs = new List<CourseDTO>();
             foreach (var item in courses)
             {
@@ -94,8 +94,8 @@
 
         internal async Task AddSkill(int courseId, int skillId)
         {
-            var course = await this._context.Courses.Include(x => x.CourseSkills).FirstOrDefaultAsync(x => x.Id == courseId);
-            var skill = await this._context.Skills.FirstOrDefaultAsync(x => x.Id == skillId);
+            var course = await _context.Courses.Include(x => x.CourseSkills).FirstOrDefaultAsync(x => x.Id == courseId);
+            var skill = await _context.Skills.FirstOrDefaultAsync(x => x.Id == skillId);
 
             if (course != null)
             {
@@ -111,8 +111,8 @@
 
                 skills.Add(skill);
                 course.CourseSkills = skills;
-                this._context.Courses.Update(course);
-                await this._context.SaveChangesAsync();
+                _context.Courses.Update(course);
+                await _context.SaveChangesAsync();
             }
         }
 

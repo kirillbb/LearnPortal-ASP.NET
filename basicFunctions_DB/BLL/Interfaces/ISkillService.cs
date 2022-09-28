@@ -1,7 +1,7 @@
-﻿using basicFunctions_DB.BLL.DTO;
-
-namespace basicFunctions_DB.BLL.Interfaces
+﻿namespace basicFunctions_DB.BLL.Interfaces
 {
+    using basicFunctions_DB.BLL.DTO;
+
     internal interface ISkillService
     {
         Task DeleteAsync(int id);
