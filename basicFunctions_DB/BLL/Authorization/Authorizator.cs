@@ -22,10 +22,6 @@
 
         public async Task<bool> LogInAsync(string email, string password)
         {
-            //Console.WriteLine("Enter your email and press Enter key:");
-            //string? email = Console.ReadLine();
-            //Console.WriteLine("Enter your password and press Enter key:");
-            //string? password = Console.ReadLine();
             try
             {
                 var user = await this._context.Users.Where(x => x.Email == email).FirstOrDefaultAsync();
@@ -34,13 +30,11 @@
                 {
                     if (password == user.Password)
                     {
-                        //Console.WriteLine("Authorization successful!\n");
                         authorizatedUser = user;
                         return true;
                     }
                     else
                     {
-                        //Console.WriteLine("\nEmail or password is not correct\n");
                         return false;
                     }
                 }

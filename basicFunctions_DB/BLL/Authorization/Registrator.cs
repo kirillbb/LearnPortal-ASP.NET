@@ -15,13 +15,6 @@
 
         public bool SignUp(string email, string password, string name)
         {
-            //
-            //string? name = Console.ReadLine();
-            //
-            //string? email = Console.ReadLine();
-            //
-            //string? password = Console.ReadLine();
-
             if (password != null && password != string.Empty && email != string.Empty && email != null && name != null)
             {
                 if (!IsExistingUser(email))
@@ -37,7 +30,6 @@
             }
             else
             {
-                //Console.WriteLine("email or password can't be empty!\n");
                 return false;
             }
         }

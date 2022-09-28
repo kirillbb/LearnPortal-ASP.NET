@@ -9,6 +9,7 @@
         {
             Starter starter = new Starter();
             await starter.RunAsync();
+            Console.ReadLine();
         }       
     }
 }

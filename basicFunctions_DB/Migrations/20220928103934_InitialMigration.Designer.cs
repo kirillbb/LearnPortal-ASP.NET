@@ -12,8 +12,8 @@ using basicFunctions_DB.DAL;
 namespace basicFunctions_DB.Migrations
 {
     [DbContext(typeof(ApplicationContext))]
-    [Migration("20220902121156_initial")]
-    partial class initial
+    [Migration("20220928103934_InitialMigration")]
+    partial class InitialMigration
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
@@ -31,6 +31,9 @@ namespace basicFunctions_DB.Migrations
                         .HasColumnType("int");
 
                     SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"), 1L, 1);
+
+                    b.Property<int>("CreatorId")
+                        .HasColumnType("int");
 
                     b.Property<string>("Description")
                         .HasColumnType("nvarchar(max)");
@@ -160,6 +163,21 @@ namespace basicFunctions_DB.Migrations
                     b.ToTable("CourseSkill");
                 });
 
+            modelBuilder.Entity("CourseUser", b =>
+                {
+                    b.Property<int>("CoursesId")
+                        .HasColumnType("int");
+
+                    b.Property<int>("StudentsId")
+                        .HasColumnType("int");
+
+                    b.HasKey("CoursesId", "StudentsId");
+
+                    b.HasIndex("StudentsId");
+
+                    b.ToTable("CourseUser");
+                });
+
             modelBuilder.Entity("basicFunctions_DB.DAL.MaterialType.Book", b =>
                 {
                     b.HasBaseType("basicFunctions_DB.DAL.MaterialType.Material");
@@ -251,6 +269,21 @@ namespace basicFunctions_DB.Migrations
                     b.HasOne("basicFunctions_DB.DAL.CourseType.Course", null)
                         .WithMany()
                         .HasForeignKey("CoursesId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+                });
+
+            modelBuilder.Entity("CourseUser", b =>
+                {
+                    b.HasOne("basicFunctions_DB.DAL.CourseType.Course", null)
+                        .WithMany()
+                        .HasForeignKey("CoursesId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.HasOne("basicFunctions_DB.DAL.UserType.User", null)
+                        .WithMany()
+                        .HasForeignKey("StudentsId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
                 });

@@ -5,7 +5,7 @@ using Microsoft.EntityFrameworkCore.Migrations;
 
 namespace basicFunctions_DB.Migrations
 {
-    public partial class initial : Migration
+    public partial class InitialMigration : Migration
     {
         protected override void Up(MigrationBuilder migrationBuilder)
         {
@@ -16,7 +16,8 @@ namespace basicFunctions_DB.Migrations
                     Id = table.Column<int>(type: "int", nullable: false)
                         .Annotation("SqlServer:Identity", "1, 1"),
                     Name = table.Column<string>(type: "nvarchar(max)", nullable: true),
-                    Description = table.Column<string>(type: "nvarchar(max)", nullable: true)
+                    Description = table.Column<string>(type: "nvarchar(max)", nullable: true),
+                    CreatorId = table.Column<int>(type: "int", nullable: false)
                 },
                 constraints: table =>
                 {
@@ -72,6 +73,30 @@ namespace basicFunctions_DB.Migrations
                         name: "FK_CourseSkill_Skills_CourseSkillsId",
                         column: x => x.CourseSkillsId,
                         principalTable: "Skills",
+                        principalColumn: "Id",
+                        onDelete: ReferentialAction.Cascade);
+                });
+
+            migrationBuilder.CreateTable(
+                name: "CourseUser",
+                columns: table => new
+                {
+                    CoursesId = table.Column<int>(type: "int", nullable: false),
+                    StudentsId = table.Column<int>(type: "int", nullable: false)
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_CourseUser", x => new { x.CoursesId, x.StudentsId });
+                    table.ForeignKey(
+                        name: "FK_CourseUser_Courses_CoursesId",
+                        column: x => x.CoursesId,
+                        principalTable: "Courses",
+                        principalColumn: "Id",
+                        onDelete: ReferentialAction.Cascade);
+                    table.ForeignKey(
+                        name: "FK_CourseUser_Users_StudentsId",
+                        column: x => x.StudentsId,
+                        principalTable: "Users",
                         principalColumn: "Id",
                         onDelete: ReferentialAction.Cascade);
                 });
@@ -144,6 +169,11 @@ namespace basicFunctions_DB.Migrations
                 column: "CoursesId");
 
             migrationBuilder.CreateIndex(
+                name: "IX_CourseUser_StudentsId",
+                table: "CourseUser",
+                column: "StudentsId");
+
+            migrationBuilder.CreateIndex(
                 name: "IX_Materials_CourseId",
                 table: "Materials",
                 column: "CourseId");
@@ -168,6 +198,9 @@ namespace basicFunctions_DB.Migrations
         {
             migrationBuilder.DropTable(
                 name: "CourseSkill");
+
+            migrationBuilder.DropTable(
+                name: "CourseUser");
 
             migrationBuilder.DropTable(
                 name: "Materials");

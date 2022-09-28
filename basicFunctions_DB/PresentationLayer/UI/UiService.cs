@@ -14,7 +14,6 @@ namespace basicFunctions_DB.BLL.UI
         private readonly SkillOperationService _skillOperationService;
         private readonly UserOperationService _userOperationService;
 
-
         public static User AuthorizatedUser { get; private set; }
 
         public UiService(ApplicationContext context)
