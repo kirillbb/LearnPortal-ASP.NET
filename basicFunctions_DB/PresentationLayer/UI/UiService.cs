@@ -14,8 +14,7 @@ namespace basicFunctions_DB.BLL.UI
         private readonly SkillOperationService _skillOperationService;
         private readonly UserOperationService _userOperationService;
 
-
-        public static ApplicationUser AuthorizatedUser { get; private set; }
+        public static User AuthorizatedUser { get; private set; }
 
         public UiService(ApplicationContext context)
         {
@@ -75,7 +74,7 @@ namespace basicFunctions_DB.BLL.UI
                     {
                         var newUserDTO = UserInputService.Registration();
                         Registrator registrator = new Registrator(_context);
-                        registrator.SignUp(email: newUserDTO.Email, password: newUserDTO.Password, name: newUserDTO.FirstName);
+                        registrator.SignUp(email: newUserDTO.Email, password: newUserDTO.Password, name: newUserDTO.Name);
                         break;
                     }
                 case 2:

@@ -27,7 +27,7 @@ namespace basicFunctions_DB.BLL.UI
             string password = Console.ReadLine();
 
             Printer.BreakLine();
-            return new UserDTO { Email = email, FirstName = name, Password = password };
+            return new UserDTO { Email = email, Name = name, Password = password };
         }
 
         public  static string GetString()
@@ -45,7 +45,7 @@ namespace basicFunctions_DB.BLL.UI
             return id;
         }
 
-        public static BookDTO AddBook(ApplicationUser user)
+        public static BookDTO AddBook(User user)
         {
             try
             {
@@ -66,7 +66,7 @@ namespace basicFunctions_DB.BLL.UI
                     Author = author,
                     Pages = pages,
                     BookFormat = format,
-                    CreatorUserName = user.Email
+                    Creator = user
                 };
 
                 Printer.BreakLine();
@@ -80,7 +80,7 @@ namespace basicFunctions_DB.BLL.UI
             return null;
         }
 
-        public static VideoDTO AddVideo(ApplicationUser user)
+        public static VideoDTO AddVideo(User user)
         {
             try
             {
@@ -96,7 +96,7 @@ namespace basicFunctions_DB.BLL.UI
                     Title = title,
                     Resolution = resolution,
                     Duration = duration,
-                    CreatorUserName = user.Email
+                    Creator = user
                 };
 
                 Printer.BreakLine();
@@ -110,7 +110,7 @@ namespace basicFunctions_DB.BLL.UI
             return null;
         }
 
-        public static PublicationDTO AddPublication(ApplicationUser user)
+        public static PublicationDTO AddPublication(User user)
         {
             try
             {
@@ -126,7 +126,7 @@ namespace basicFunctions_DB.BLL.UI
                     Title = title,
                     CreationDate = date,
                     Source = source,
-                    CreatorUserName = user.Email
+                    Creator = user
                 };
 
                 Printer.BreakLine();
@@ -165,7 +165,7 @@ namespace basicFunctions_DB.BLL.UI
             return null;
         }
 
-        public static CourseDTO AddCourse(ApplicationUser user)
+        public static CourseDTO AddCourse(User user)
         {
             try
             {
@@ -178,7 +178,7 @@ namespace basicFunctions_DB.BLL.UI
                 {
                     Name = name,
                     Description = description,
-                    //CreatorId = user.Id
+                    CreatorId = user.Id
                 };
 
                 Printer.BreakLine();

@@ -22,28 +22,36 @@
                 Name = courseDTO.Name,
                 Description = courseDTO.Description,
                 CourseMaterials = courseDTO.CourseMaterials,
-                CreatorUserName = courseDTO.CreatorUserName,
+                CreatorId = courseDTO.CreatorId,
                 CourseSkills = courseDTO.CourseSkills
             });
 
             await this._context.SaveChangesAsync();
         }
 
-        public async Task<CourseDTO?> GetAsync(int? id)
+        public async Task<CourseDTO?> GetAsync(int id)
         {
-            var courseDto = await this._context.Courses
-                .Select(x => new CourseDTO()
-                {
-                    Id = x.Id,
-                    Name = x.Name,
-                    Description = x.Description,
-                    CourseMaterials = x.CourseMaterials,
-                    CreatorUserName = x.CreatorUserName,
-                    CourseSkills = x.CourseSkills,
-                })
-                .FirstOrDefaultAsync(x => x.Id == id);
+            var course = await this._context.Courses.FirstOrDefaultAsync(x => x.Id == id);
+            CourseDTO courseDTO = null;
 
-            return courseDto;
+            if (course != null)
+            {
+                courseDTO = new CourseDTO
+                {
+                    Id = course.Id,
+                    Name = course.Name,
+                    Description = course.Description,
+                    CourseMaterials = course.CourseMaterials,
+                    CreatorId = courseDTO.CreatorId,
+                    CourseSkills = course.CourseSkills
+                };
+
+                return courseDTO;
+            }
+            else
+            {
+                return courseDTO;
+            }
         }
 
         public async Task UpdateAsync(CourseDTO courseDTO)
@@ -56,7 +64,7 @@
                 course.Description = courseDTO.Description;
                 course.CourseSkills = courseDTO.CourseSkills;
                 course.CourseMaterials = courseDTO.CourseMaterials;
-                course.CreatorUserName = course.CreatorUserName;
+                course.CreatorId = course.CreatorId;
 
                 this._context.Courses.Update(course);
                 await this._context.SaveChangesAsync();
@@ -75,7 +83,6 @@
                     Name = item.Name,
                     Description = item.Description,
                     CourseMaterials = item.CourseMaterials,
-                    CreatorUserName = item.CreatorUserName,
                     CourseSkills = item.CourseSkills
                 };
 
@@ -109,7 +116,7 @@
             }
         }
 
-        public async Task DeleteAsync(int? id)
+        public async Task DeleteAsync(int id)
         {
             var course = await this._context.Courses.Include(x => x.CourseSkills).Include(x => x.CourseMaterials).FirstOrDefaultAsync(x => x.Id == id);
 

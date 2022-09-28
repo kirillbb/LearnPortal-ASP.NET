@@ -34,7 +34,7 @@ namespace basicFunctions_DB.PresentationLayer
         {
             BreakLine();
             Console.WriteLine("|* Your profile: *");
-            Console.WriteLine($"|Id: {user.Id} | Name: {user.FirstName} | Email: {user.Email}");
+            Console.WriteLine($"|Id: {user.Id} | Name: {user.Name} | Email: {user.Email}");
             BreakLine();
             Console.WriteLine("|You are student in:");
             foreach (var item in user.Courses)

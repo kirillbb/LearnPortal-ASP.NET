@@ -1,6 +1,5 @@
 ﻿using basicFunctions_DB.DAL.CourseType;
 using basicFunctions_DB.DAL.MaterialType;
-using System.ComponentModel.DataAnnotations;
 
 namespace basicFunctions_DB.BLL.DTO
 {
@@ -16,9 +15,11 @@ namespace basicFunctions_DB.BLL.DTO
 
         public List<Skill>? CourseSkills { get; set; }
 
-        [Required(ErrorMessage = "You must be authorizated!")]
-        public string? CreatorUserName { get; set; }
+        public int CreatorId { get; set; }
 
-        public ICollection<UserDTO>? Students { get; set; }
+        public override string ToString()
+        {
+            return $"ID: {Id} | Name: {Name} | Description: {Description}";
+        }
     }
 }

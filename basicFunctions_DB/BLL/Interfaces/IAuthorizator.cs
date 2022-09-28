@@ -6,6 +6,6 @@
     {
         public Task<bool> LogInAsync(string email, string password);
 
-        public ApplicationUser AuthorizatedUser { get; }
+        public User AuthorizatedUser { get; }
     }
 }

@@ -15,30 +15,21 @@
 
         public bool SignUp(string email, string password, string name)
         {
-            //
-            //string? name = Console.ReadLine();
-            //
-            //string? email = Console.ReadLine();
-            //
-            //string? password = Console.ReadLine();
-
             if (password != null && password != string.Empty && email != string.Empty && email != null && name != null)
             {
-                //if (!IsExistingUser(email))
-                //{
-                //    User user = new User { Email = email, FirstName = name, Password = password };
-                //    SaveUserInDataBase(user);
-                //    return true;
-                //}
-                //else
-                //{
-                //    return false;
-                //}
-                return false;
+                if (!IsExistingUser(email))
+                {
+                    User user = new User { Email = email, Name = name, Password = password };
+                    SaveUserInDataBase(user);
+                    return true;
+                }
+                else
+                {
+                    return false;
+                }
             }
             else
             {
-                //Console.WriteLine("email or password can't be empty!\n");
                 return false;
             }
         }
@@ -50,7 +41,7 @@
             return user != null;
         }
 
-        private void SaveUserInDataBase(ApplicationUser user)
+        private void SaveUserInDataBase(User user)
         {
             this._context.Users.Add(user);
             this._context.SaveChanges();
