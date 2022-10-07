@@ -5,6 +5,7 @@
     using LearnPortalASP.BLL.DTO;
     using LearnPortalASP.BLL.Interfaces;
     using LearnPortalASP.Data;
+    using LearnPortalASP.Models.ViewModels;
 
     public class CourseService : ICourseService
     {
@@ -15,15 +16,25 @@
             this._context = context;
         }
 
-        public async Task CreateAsync(CourseDTO courseDTO)
-        {            
+        public async Task CreateAsync(CourseViewModel courseVM)
+        {
+            var skillsList = new List<Skill>();
+            
+            if (courseVM.SelectedSkillId.Count != 0)
+            {
+                foreach (var skill in courseVM.SelectedSkillId)
+                {
+                    skillsList.Add(await _context.Skills.FirstOrDefaultAsync(x => x.Id == skill));
+                }
+            }
+
             await this._context.Courses.AddAsync(new Course
             {
-                Name = courseDTO.Name,
-                Description = courseDTO.Description,
-                CourseMaterials = courseDTO.CourseMaterials,
-                CreatorUserName = courseDTO.CreatorUserName,
-                CourseSkills = courseDTO.CourseSkills
+                Name = courseVM.Name,
+                Description = courseVM.Description,
+                CourseMaterials = courseVM.CourseMaterials,
+                CreatorUserName = courseVM.CreatorUserName,
+                CourseSkills = skillsList
             });
 
             await this._context.SaveChangesAsync();

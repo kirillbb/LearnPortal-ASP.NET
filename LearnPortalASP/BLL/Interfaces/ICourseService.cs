@@ -1,6 +1,7 @@
 ﻿namespace LearnPortalASP.BLL.Interfaces
 {
     using LearnPortalASP.BLL.DTO;
+    using LearnPortalASP.Models.ViewModels;
 
     public interface ICourseService
     {
@@ -12,6 +13,6 @@
 
         Task<CourseDTO?> GetAsync(int? id);
 
-        Task CreateAsync(CourseDTO courseDTO);
+        Task CreateAsync(CourseViewModel courseViewModel);
     }
 }
