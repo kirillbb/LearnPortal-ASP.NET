@@ -15,12 +15,15 @@ namespace LearnPortalASP.Models.ViewModels
 
         public List<int> SelectedMaterials { get; set; }
 
+        public List<Material>? Materials { get; set; }
+
+        public List<Skill>? Skills { get; set; }
+
         public int Id { get; set; }
 
         public string Name { get; set; }
 
         public string? Description { get; set; }
-
 
         [Required(ErrorMessage = "You must be authorizated!")]
         public string CreatorUserName { get; set; }
