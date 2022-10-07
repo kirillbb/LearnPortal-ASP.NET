@@ -77,8 +77,6 @@
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> Create(CourseViewModel courseViewModel)
         {
-            var selectedSkill = courseViewModel.SelectedSkillId;
-
             if (ModelState.IsValid)
             {
                 await _courseService.CreateAsync(courseViewModel);
