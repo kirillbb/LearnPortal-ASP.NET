@@ -23,11 +23,16 @@
                 <label class="control-label">Creator User Name</label>
                 <input asp-for="CreatorUserName" class="mb-3 form-control" value="@User.Identity?.Name" readonly="true"/>
             </div>  
-                <div class="form-group mb-3">
-                <label class="control-label">Choose one of the following Skills</label>
-                <select class="form-select" multiple asp-items="Model.SkillSelectList" asp-for="SelectedSkillId">
+            <div class="form-group mb-3">
+                <label class="control-label">Choose of the following Skills</label>
+                <select class="form-select" multiple asp-items="Model.SkillSelectList" asp-for="SelectedSkills">
                 </select>
-                </div>
+            </div>
+            <div class="form-group mb-3">
+                <label class="control-label">Choose of the following Maaterials</label>
+                <select class="form-select" multiple asp-items="Model.MaterialSelectList" asp-for="SelectedMaterials">
+                </select>
+            </div>
             <div class="form-group">
                 <input type="submit" value="Create" class="btn btn-outline-primary" />
                 @*@Html.ValidationSummary(false, "", new { @class = "text-danger" })*@

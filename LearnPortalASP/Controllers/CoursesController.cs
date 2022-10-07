@@ -51,34 +51,36 @@
         // GET: Courses/Create
         public async Task<IActionResult> Create()
         {
-            var model = new CourseViewModel();
-            model.SkillSelectList = await BindSkillList();
+            var model = await BindSelectLists(new CourseViewModel());
 
             return View(model);
         }
 
-        public async Task<List<SelectListItem>> BindSkillList()
+        public async Task<CourseViewModel> BindSelectLists(CourseViewModel model)
         {
             var skills = await _context.Skills.ToListAsync();
-
-            List<SelectListItem> skillList = new List<SelectListItem>();
+            var materials = await _context.Materials.ToListAsync();
+            model.SkillSelectList = new();
+            model.MaterialSelectList = new();
 
             foreach (var skill in skills)
             {
-                skillList.Add(new SelectListItem { Text = skill.Name, Value = skill.Id.ToString() });
+                model.SkillSelectList.Add(new SelectListItem { Text = skill.Name, Value = skill.Id.ToString() });
             }
 
-            return skillList;
+            foreach (var material in materials)
+            {
+                model.MaterialSelectList.Add(new SelectListItem { Text = material.Title + material.Discriminator, Value = material.Id.ToString() });
+            }
+
+            return model;
         }
 
-        // [Bind("Id,Name,Description,CreatorUserName,CourseSkills")] CourseDTO course
         // POST: Courses/Create
         [HttpPost]
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> Create(CourseViewModel courseViewModel)
         {
-            var selectedSkill = courseViewModel.SelectedSkillId;
-
             if (ModelState.IsValid)
             {
                 await _courseService.CreateAsync(courseViewModel);

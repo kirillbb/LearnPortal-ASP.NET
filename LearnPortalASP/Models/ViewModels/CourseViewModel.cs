@@ -9,15 +9,17 @@ namespace LearnPortalASP.Models.ViewModels
     {
         public List<SelectListItem>? SkillSelectList { get; set; }
 
-        public List<int> SelectedSkillId { get; set; }
+        public List<int> SelectedSkills { get; set; }
+
+        public List<SelectListItem>? MaterialSelectList { get; set; }
+
+        public List<int> SelectedMaterials { get; set; }
 
         public int Id { get; set; }
 
         public string Name { get; set; }
 
         public string? Description { get; set; }
-
-        public List<Material>? CourseMaterials { get; set; }
 
 
         [Required(ErrorMessage = "You must be authorizated!")]
