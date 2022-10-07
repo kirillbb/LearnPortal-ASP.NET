@@ -13,5 +13,10 @@
         public string Discriminator { get; set; }
 
         public List<Course>? Courses { get; set; }
+
+        public override string ToString()
+        {
+            return $"{Title}-{Discriminator}";
+        }
     }
 }

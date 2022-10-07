@@ -45,7 +45,22 @@
                 return NotFound();
             }
 
-            return View(course);
+            List<string> materials = new();
+            foreach (var item in course.CourseMaterials)
+            {
+                materials.Add($"{item.Title}({item.Discriminator})");
+            }
+
+            //ViewBag.materials = materials;
+
+            return View(new CourseViewModel()
+            {
+                CreatorUserName = course.CreatorUserName,
+                Name = course.Name,
+                Description = course.Description,
+                Id = course.Id,
+                Materials = materials
+            });
         }
 
         // GET: Courses/Create
