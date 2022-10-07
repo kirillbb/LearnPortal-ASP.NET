@@ -35,7 +35,18 @@
         <dd class="col-sm-10">
             @foreach (var item in Model.Materials)
             {
-                @item.ToString() 
+                @if (item.Discriminator == "Book")
+                {
+                    <a asp-controller="Books" asp-action="Details" asp-route-id="@item.Id">@item.ToString()</a>
+                }
+                else if (item.Discriminator == "Video")
+                {
+                    <a asp-controller="Videos" asp-action="Details" asp-route-id="@item.Id">@item.ToString()</a>
+                }
+                else
+                {
+                    <a asp-controller="Publications" asp-action="Details" asp-route-id="@item.Id">@item.ToString()</a>
+                }
                 <br />
             }
         </dd>
@@ -46,7 +57,7 @@
         <dd class="col-sm-10">
             @foreach (var item in Model.Skills)
             {
-                @item.ToString()
+                <a asp-controller="Skills" asp-action="Details" asp-route-id="@item.Id">@item.ToString()</a>
                 <br />
             }
         </dd>
