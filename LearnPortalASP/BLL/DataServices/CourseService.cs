@@ -6,6 +6,7 @@
     using LearnPortalASP.BLL.Interfaces;
     using LearnPortalASP.Data;
     using LearnPortalASP.Models.ViewModels;
+    using LearnPortalASP.Models.MaterialType;
 
     public class CourseService : ICourseService
     {
@@ -19,12 +20,22 @@
         public async Task CreateAsync(CourseViewModel courseVM)
         {
             var skillsList = new List<Skill>();
-            
-            if (courseVM.SelectedSkillId.Count != 0)
+
+            if (courseVM.SelectedSkills.Count != 0)
             {
-                foreach (var skill in courseVM.SelectedSkillId)
+                foreach (var skill in courseVM.SelectedSkills)
                 {
                     skillsList.Add(await _context.Skills.FirstOrDefaultAsync(x => x.Id == skill));
+                }
+            }
+
+            var materialsList = new List<Material>();
+
+            if (courseVM.SelectedMaterials.Count != 0)
+            {
+                foreach (var material in courseVM.SelectedMaterials)
+                {
+                    materialsList.Add(await _context.Materials.FirstOrDefaultAsync(x => x.Id == material));
                 }
             }
 
@@ -32,9 +43,9 @@
             {
                 Name = courseVM.Name,
                 Description = courseVM.Description,
-                CourseMaterials = courseVM.CourseMaterials,
                 CreatorUserName = courseVM.CreatorUserName,
-                CourseSkills = skillsList
+                CourseSkills = skillsList,
+                CourseMaterials = materialsList
             });
 
             await this._context.SaveChangesAsync();
