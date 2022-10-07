@@ -45,7 +45,15 @@
                 return NotFound();
             }
 
-            return View(course);
+            return View(new CourseViewModel()
+            {
+                CreatorUserName = course.CreatorUserName,
+                Name = course.Name,
+                Description = course.Description,
+                Id = course.Id,
+                Materials = course.CourseMaterials,
+                Skills = course.CourseSkills
+            });
         }
 
         // GET: Courses/Create
