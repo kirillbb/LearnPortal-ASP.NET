@@ -15,9 +15,9 @@ namespace LearnPortalASP.Models.ViewModels
 
         public List<int> SelectedMaterials { get; set; }
 
-        public List<string>? Materials { get; set; }
+        public List<Material>? Materials { get; set; }
 
-        public List<string>? Skills { get; set; }
+        public List<Skill>? Skills { get; set; }
 
         public int Id { get; set; }
 

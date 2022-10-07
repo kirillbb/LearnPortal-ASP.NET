@@ -16,7 +16,7 @@
 
         public override string ToString()
         {
-            return $"{Title}-{Discriminator}";
+            return $"{Title}({Discriminator})";
         }
     }
 }
