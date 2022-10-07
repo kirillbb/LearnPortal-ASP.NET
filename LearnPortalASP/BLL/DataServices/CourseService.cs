@@ -5,6 +5,8 @@
     using LearnPortalASP.BLL.DTO;
     using LearnPortalASP.BLL.Interfaces;
     using LearnPortalASP.Data;
+    using LearnPortalASP.Models.ViewModels;
+    using LearnPortalASP.Models.MaterialType;
 
     public class CourseService : ICourseService
     {
@@ -15,15 +17,35 @@
             this._context = context;
         }
 
-        public async Task CreateAsync(CourseDTO courseDTO)
-        {            
+        public async Task CreateAsync(CourseViewModel courseVM)
+        {
+            var skillsList = new List<Skill>();
+
+            if (courseVM.SelectedSkills.Count != 0)
+            {
+                foreach (var skill in courseVM.SelectedSkills)
+                {
+                    skillsList.Add(await _context.Skills.FirstOrDefaultAsync(x => x.Id == skill));
+                }
+            }
+
+            var materialsList = new List<Material>();
+
+            if (courseVM.SelectedMaterials.Count != 0)
+            {
+                foreach (var material in courseVM.SelectedMaterials)
+                {
+                    materialsList.Add(await _context.Materials.FirstOrDefaultAsync(x => x.Id == material));
+                }
+            }
+
             await this._context.Courses.AddAsync(new Course
             {
-                Name = courseDTO.Name,
-                Description = courseDTO.Description,
-                CourseMaterials = courseDTO.CourseMaterials,
-                CreatorUserName = courseDTO.CreatorUserName,
-                CourseSkills = courseDTO.CourseSkills
+                Name = courseVM.Name,
+                Description = courseVM.Description,
+                CreatorUserName = courseVM.CreatorUserName,
+                CourseSkills = skillsList,
+                CourseMaterials = materialsList
             });
 
             await this._context.SaveChangesAsync();

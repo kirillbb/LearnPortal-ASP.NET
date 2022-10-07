@@ -5,6 +5,8 @@
     using LearnPortalASP.BLL.DataServices;
     using LearnPortalASP.BLL.DTO;
     using LearnPortalASP.Data;
+    using LearnPortalASP.Models.ViewModels;
+    using Microsoft.AspNetCore.Mvc.Rendering;
 
     public class CoursesController : Controller
     {
@@ -49,22 +51,43 @@
         // GET: Courses/Create
         public async Task<IActionResult> Create()
         {
-            ViewBag.Skills = await _context.Skills.ToListAsync();
-            return View();
+            var model = await BindSelectLists(new CourseViewModel());
+
+            return View(model);
+        }
+
+        public async Task<CourseViewModel> BindSelectLists(CourseViewModel model)
+        {
+            var skills = await _context.Skills.ToListAsync();
+            var materials = await _context.Materials.ToListAsync();
+            model.SkillSelectList = new();
+            model.MaterialSelectList = new();
+
+            foreach (var skill in skills)
+            {
+                model.SkillSelectList.Add(new SelectListItem { Text = skill.Name, Value = skill.Id.ToString() });
+            }
+
+            foreach (var material in materials)
+            {
+                model.MaterialSelectList.Add(new SelectListItem { Text = material.Title + material.Discriminator, Value = material.Id.ToString() });
+            }
+
+            return model;
         }
 
         // POST: Courses/Create
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Create([Bind("Id,Name,Description,CreatorUserName,CourseSkills")] CourseDTO course)
+        public async Task<IActionResult> Create(CourseViewModel courseViewModel)
         {
             if (ModelState.IsValid)
             {
-                await _courseService.CreateAsync(course);
+                await _courseService.CreateAsync(courseViewModel);
                 return RedirectToAction(nameof(Index));
             }
              
-            return View(course);
+            return View(courseViewModel);
         }
 
         // GET: Courses/Edit/5
