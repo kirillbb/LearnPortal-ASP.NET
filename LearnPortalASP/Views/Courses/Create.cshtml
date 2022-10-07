@@ -1,18 +1,15 @@
-﻿@using LearnPortalASP.Models.CourseType
-@model LearnPortalASP.BLL.DTO.CourseDTO
-
+﻿@model LearnPortalASP.Models.ViewModels.CourseViewModel
 @{
     ViewData["Title"] = "Create";
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
-
 <h1>Create course</h1>
 <hr />
 <div class="row">
     <div class="col-md-4">
         <form asp-action="Create">
             <div asp-validation-summary="ModelOnly" class="text-danger"></div>
-            <div class="form-group">
+            <div class="form-group mb-3">
                 <label asp-for="Name" class="control-label"></label>
                 <input asp-for="Name" class="mb-3 form-control" />
                 <span asp-validation-for="Name" class="text-danger"></span>
@@ -23,14 +20,17 @@
                 <span asp-validation-for="Description" class="text-danger"></span>
             </div>
             <div class="form-group">
-                <label asp-for="CreatorUserName" class="control-label"></label>
+                <label class="control-label">Creator User Name</label>
                 <input asp-for="CreatorUserName" class="mb-3 form-control" value="@User.Identity?.Name" readonly="true"/>
-            </div>
-            <div class="form-group">
-            </div>
+            </div>  
+                <div class="form-group mb-3">
+                <label class="control-label">Choose one of the following Skills</label>
+                <select class="form-select" multiple asp-items="Model.SkillSelectList" asp-for="SelectedSkillId">
+                </select>
+                </div>
             <div class="form-group">
                 <input type="submit" value="Create" class="btn btn-outline-primary" />
-                @Html.ValidationSummary(false, "", new { @class = "text-danger" })
+                @*@Html.ValidationSummary(false, "", new { @class = "text-danger" })*@
             </div>
         </form>
     </div>
@@ -39,4 +39,3 @@
 <div>
     <a asp-action="Index">Back to List</a>
 </div>
-

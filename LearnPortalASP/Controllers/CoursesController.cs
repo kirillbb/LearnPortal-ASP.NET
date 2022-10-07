@@ -5,6 +5,8 @@
     using LearnPortalASP.BLL.DataServices;
     using LearnPortalASP.BLL.DTO;
     using LearnPortalASP.Data;
+    using LearnPortalASP.Models.ViewModels;
+    using Microsoft.AspNetCore.Mvc.Rendering;
 
     public class CoursesController : Controller
     {
@@ -49,22 +51,41 @@
         // GET: Courses/Create
         public async Task<IActionResult> Create()
         {
-            ViewBag.Skills = await _context.Skills.ToListAsync();
-            return View();
+            var model = new CourseViewModel();
+            model.SkillSelectList = await BindSkillList();
+
+            return View(model);
         }
 
+        public async Task<List<SelectListItem>> BindSkillList()
+        {
+            var skills = await _context.Skills.ToListAsync();
+
+            List<SelectListItem> skillList = new List<SelectListItem>();
+
+            foreach (var skill in skills)
+            {
+                skillList.Add(new SelectListItem { Text = skill.Name, Value = skill.Id.ToString() });
+            }
+
+            return skillList;
+        }
+
+        // [Bind("Id,Name,Description,CreatorUserName,CourseSkills")] CourseDTO course
         // POST: Courses/Create
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Create([Bind("Id,Name,Description,CreatorUserName,CourseSkills")] CourseDTO course)
+        public async Task<IActionResult> Create(CourseViewModel courseViewModel)
         {
+            var selectedSkill = courseViewModel.SelectedSkillId;
+
             if (ModelState.IsValid)
             {
-                await _courseService.CreateAsync(course);
+                await _courseService.CreateAsync(courseViewModel);
                 return RedirectToAction(nameof(Index));
             }
              
-            return View(course);
+            return View(courseViewModel);
         }
 
         // GET: Courses/Edit/5
