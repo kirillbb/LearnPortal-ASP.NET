@@ -20,7 +20,8 @@
             await this._context.Skills.AddAsync(new Skill
             {
                 Name = skillDTO.Name,
-                Description = skillDTO.Description
+                Description = skillDTO.Description,
+                CreatorUserName = skillDTO.CreatorUserName,
             });
 
             await this._context.SaveChangesAsync();
@@ -67,7 +68,8 @@
                 {
                     Name = skill.Name,
                     Description = skill.Description,
-                    Id = skill.Id
+                    Id = skill.Id,
+                    CreatorUserName = skill.CreatorUserName,
                 };
 
                 return skillDTO;
@@ -86,6 +88,7 @@
             {
                 skill.Name = skillDTO.Name;
                 skill.Description = skillDTO.Description;
+                skill.CreatorUserName = skillDTO.CreatorUserName;
                 await this._context.SaveChangesAsync();
             }
         }

@@ -1,4 +1,6 @@
-﻿namespace LearnPortalASP.BLL.DTO
+﻿using System.ComponentModel.DataAnnotations;
+
+namespace LearnPortalASP.BLL.DTO
 {
     public class SkillDTO
     {
@@ -10,6 +12,7 @@
 
         public int Id { get; set; }
 
-        public bool IsChecked { get; set; }
+        [Required(ErrorMessage = "You must be authorizated!")]
+        public string CreatorUserName { get; set; }
     }
 }

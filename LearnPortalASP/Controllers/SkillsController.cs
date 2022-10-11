@@ -53,7 +53,7 @@
         // POST: Skills/Create
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Create([Bind("Name,Description,Id")] SkillDTO skill)
+        public async Task<IActionResult> Create([Bind("Name,Description,Id,CreatorUserName")] SkillDTO skill)
         {
             if (ModelState.IsValid)
             {
@@ -84,7 +84,7 @@
         // POST: Skills/Edit/5
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Edit(int id, [Bind("Name,Description,Id")] SkillDTO skill)
+        public async Task<IActionResult> Edit(int id, [Bind("Name,Description,Id,CreatorUserName")] SkillDTO skill)
         {
             if (id != skill.Id)
             {
